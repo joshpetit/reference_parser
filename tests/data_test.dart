@@ -13,4 +13,8 @@ void main() {
     bookNumber = Librarian.findBook('psalm');
     expect(19, bookNumber);
   });
+  test('Returns null for nonexistent books', () {
+    var bookNumber = Librarian.findBook('joe');
+    expect(null, bookNumber);
+  });
 }
