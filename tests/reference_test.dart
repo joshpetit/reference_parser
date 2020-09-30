@@ -20,4 +20,12 @@ void main() {
     expect(ref.chapter, equals(5));
     expect(ref.start_verse, equals(2));
   });
+  test('Creation of verse reference', () {
+    var ref = Reference('James', 5, 2, 3);
+    expect(ref.reference, equals('James 5:2-3'));
+    expect(ref.book, equals('James'));
+    expect(ref.chapter, equals(5));
+    expect(ref.start_verse, equals(2));
+    expect(ref.end_verse, equals(3));
+  });
 }
