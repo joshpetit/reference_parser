@@ -6,7 +6,7 @@ class Reference {
   final int end_verse;
   bool is_valid;
 
-  Reference(this.book, {this.chapter, this.start_verse, this.end_verse}) {
+  Reference(this.book, [this.chapter, this.start_verse, this.end_verse]) {
     reference = book;
     if (chapter != null) {
       reference += ' ${chapter}';
