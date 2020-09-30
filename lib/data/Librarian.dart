@@ -23,7 +23,13 @@ class Librarian {
   }
 
   ///Returns the osis, abbr, name, and short versions of a book title
-  static Map<String, String> getBookNames(int book) {
+  static Map<String, String> getBookNames(dynamic book) {
+    if (book is String) {
+      book = findBook(book);
+    }
+    if (!(book is int)) {
+      return null;
+    }
     var list = BibleData.book_names[book];
     return {
       'osis': list[0],
