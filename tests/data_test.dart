@@ -17,4 +17,16 @@ void main() {
     var bookNumber = Librarian.findBook('joe');
     expect(null, bookNumber);
   });
+  test('Librarian checks book validity correctly', () {
+    expect(false, Librarian.checkBook('joe'));
+    expect(true, Librarian.checkBook('1cor'));
+    expect(true, Librarian.checkBook('Genesis'));
+  });
+  test('Librarian returns correct book names', () {
+    var names = Librarian.getBookNames(1);
+    expect('Gen', names['osis']);
+    expect('GEN', names['abbr']);
+    expect('Genesis', names['name']);
+    expect('Gn', names['short']);
+  });
 }
