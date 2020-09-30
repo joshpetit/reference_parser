@@ -136,6 +136,16 @@ class BibleData {
     'jude': 65,
     'rev': 66
   };
+
+  ///Varied ways some books are referenced
+  static const variants = {
+    'psalm': 19,
+    'songs': 22,
+    'song of songs': 22,
+    'songs of solomon': 22,
+    'acts of the apostles': 44,
+    'revelations': 66
+  };
   ///book names based on book number in list format [book_number][format]
   ///when format = 0: OSIS, format = 1: Paratext Abbreviation, format = 2: Book_name, format = 3: Shortened
   static const book_names = [
