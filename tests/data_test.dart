@@ -28,5 +28,11 @@ void main() {
     expect('GEN', names['abbr']);
     expect('Genesis', names['name']);
     expect('Gn', names['short']);
+
+    names = Librarian.getBookNames('1 Corinthians');
+    expect('1Cor', names['osis']);
+    expect('1CO', names['abbr']);
+    expect('1 Corinthians', names['name']);
+    expect('1 Cor', names['short']);
   });
 }
