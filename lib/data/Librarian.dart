@@ -12,11 +12,24 @@ class Librarian {
     if (val != null) {
       return val;
     }
-   return BibleData.variants[book];
+    return BibleData.variants[book];
   }
+
+  ///Validate that a book is in the bible (book name or OSIS format)
   static bool checkBook(String book) {
     book = book.toLowerCase();
     return BibleData.books.containsKey(book) ||
         BibleData.osis_books.containsKey(book);
+  }
+
+  ///Returns the osis, abbr, name, and short versions of a book title
+  static Map<String, String> getBookNames(int book) {
+    var list = BibleData.book_names[book];
+    return {
+      'osis': list[0],
+      'abbr': list[1],
+      'name': list[2],
+      'short': list[3]
+    };
   }
 }
