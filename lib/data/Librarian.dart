@@ -11,7 +11,8 @@ class Librarian {
     if (val != null) {
       return val;
     }
-    return BibleData.books[book.toLowerCase()];
+   return BibleData.variants[book];
+
   }
   static bool checkBook(String book) {
     return BibleData.books.containsKey(book) ||
