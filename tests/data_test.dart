@@ -5,35 +5,35 @@ void main() {
   test('Retrieves correct book number', () {
     //test full book name
     var bookNumber = Librarian.findBook('genesis');
-    expect(1, bookNumber);
+    expect(bookNumber, 1);
     //test osis book name
     bookNumber = Librarian.findBook('1cor');
-    expect(46, bookNumber);
+    expect(bookNumber, 46);
     //test variant book name
     bookNumber = Librarian.findBook('psalm');
-    expect(19, bookNumber);
+    expect(bookNumber, 19);
   });
   test('Returns null for nonexistent books', () {
     var bookNumber = Librarian.findBook('joe');
-    expect(null, bookNumber);
+    expect(bookNumber, null);
   });
   test('Librarian checks book validity correctly', () {
-    expect(false, Librarian.checkBook('joe'));
-    expect(true, Librarian.checkBook('1cor'));
-    expect(true, Librarian.checkBook('Genesis'));
+    expect(Librarian.checkBook('joe'), false);
+    expect(Librarian.checkBook('1cor'), true);
+    expect(Librarian.checkBook('Genesis'), true);
   });
   test('Librarian returns correct book names', () {
     var names = Librarian.getBookNames(1);
-    expect('Gen', names['osis']);
-    expect('GEN', names['abbr']);
-    expect('Genesis', names['name']);
-    expect('Gn', names['short']);
+    expect(names['osis'], 'Gen');
+    expect(names['abbr'], 'GEN');
+    expect(names['name'], 'Genesis');
+    expect(names['short'], 'Gn');
 
     names = Librarian.getBookNames('1 Corinthians');
-    expect('1Cor', names['osis']);
-    expect('1CO', names['abbr']);
-    expect('1 Corinthians', names['name']);
-    expect('1 Cor', names['short']);
+    expect(names['osis'], '1Cor');
+    expect(names['abbr'], '1CO');
+    expect(names['name'], '1 Corinthians');
+    expect(names['short'], '1 Cor');
   });
   test('Librarian correctly verifies verses', () {
     expect(Librarian.verifyVerse(1), true, reason: 'First book should exist');
