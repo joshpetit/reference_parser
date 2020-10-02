@@ -219,6 +219,8 @@ class BibleData {
     ['Rev', 'REV', 'Revelation', 'Rv']
   ];
 
+  ///Returns the last verse in a specific chapter *Note*: reference must be
+  ///[book-1][chapter-1] i.e last_verse[0][0] = 31 (Genesis 1 has 31 verses).
   static const last_verse = [
     [31, 25, 24, 26, 32, 22, 24, 22, 29, 32, 32, 20, 18, 24, 21, 16, 27, 33,
         38, 18, 34, 24, 20, 67, 34, 35, 46, 22, 35, 43, 55, 32, 20, 31, 29, 43,

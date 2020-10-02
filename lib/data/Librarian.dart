@@ -38,4 +38,17 @@ class Librarian {
       'short': list[3]
     };
   }
+
+  static bool verifyVerse(int book, [int chapter, int verse]) {
+    if (!(book > 0 && BibleData.last_verse.length >= book)) {
+      return false;
+    } else if (chapter != null && !( chapter > 0 &&
+        BibleData.last_verse[book - 1].length >= chapter)) {
+      return false;
+    } else if (verse != null &&!( verse > 0 &&
+        BibleData.last_verse[book - 1][chapter - 1] >= verse)) {
+      return false;
+    }
+    return true;
+  }
 }
