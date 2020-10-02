@@ -35,4 +35,28 @@ void main() {
     expect('1 Corinthians', names['name']);
     expect('1 Cor', names['short']);
   });
+  test('Librarian correctly verifies verses', () {
+    expect(Librarian.verifyVerse(1), true, reason: 'First book should exist');
+    expect(Librarian.verifyVerse(33), true, reason: 'Middle book should exist');
+    expect(Librarian.verifyVerse(66), true, reason: 'Last book should exist');
+    expect(Librarian.verifyVerse(67), false,
+        reason: '67th book does not exist');
+    expect(Librarian.verifyVerse(-1), false,
+        reason: 'Negative books do not exist');
+
+    expect(Librarian.verifyVerse(33, 1), true,
+        reason: 'Book and chapter should exist');
+
+    expect(Librarian.verifyVerse(33, 8), false,
+        reason: 'Book and chapter should not exist');
+
+    expect(Librarian.verifyVerse(33, 1, 1), true,
+        reason: 'Book, chapter, and verse should exist');
+
+    expect(Librarian.verifyVerse(33, 1, 16), true,
+        reason: 'Book, chapter, and ending verse should exist');
+
+    expect(Librarian.verifyVerse(33, 1, 17), false,
+        reason: 'Verse should not exist');
+  });
 }
