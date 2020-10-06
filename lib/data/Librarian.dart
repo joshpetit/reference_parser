@@ -39,7 +39,10 @@ class Librarian {
     };
   }
 
-  static bool verifyVerse(int book, [int chapter, int verse]) {
+  static bool verifyVerse(dynamic book, [int chapter, int verse]) {
+    if (book is String) { book = findBook(book);}
+    if (!(book is int)) return null;
+
     if (!(book > 0 && BibleData.last_verse.length >= book)) {
       return false;
     } else if (chapter != null && !( chapter > 0 &&
