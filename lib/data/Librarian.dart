@@ -30,7 +30,7 @@ class Librarian {
     if (!(book is int)) {
       return null;
     }
-    var list = BibleData.book_names[book];
+    var list = BibleData.book_names[book - 1];
     return {
       'osis': list[0],
       'abbr': list[1],
