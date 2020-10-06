@@ -58,5 +58,8 @@ void main() {
 
     expect(Librarian.verifyVerse(33, 1, 17), false,
         reason: 'Verse should not exist');
+
+    expect(Librarian.verifyVerse('John', 1, 1), true,
+        reason: 'String book references should work');
   });
 }
