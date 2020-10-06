@@ -28,4 +28,10 @@ void main() {
     expect(ref.start_verse, equals(2));
     expect(ref.end_verse, equals(3));
   });
+  test('Verification works correctly', () {
+    var ref = Reference("James", 2, 4);
+    expect(ref.is_valid, true, reason: 'Passage should be valid');
+    ref = Reference('James', 15, 5, 3);
+    expect(ref.is_valid, false, reason: 'Passage should not be valid');
+  });
 }
