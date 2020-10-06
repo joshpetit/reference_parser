@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:reference_parser/model/Reference.dart';
 import 'package:test/test.dart';
 
@@ -29,9 +31,25 @@ void main() {
     expect(ref.end_verse, equals(3));
   });
   test('Verification works correctly', () {
-    var ref = Reference("James", 2, 4);
+    var ref = Reference('James', 2, 4);
     expect(ref.is_valid, true, reason: 'Passage should be valid');
     ref = Reference('James', 15, 5, 3);
     expect(ref.is_valid, false, reason: 'Passage should not be valid');
+  });
+  test('Book numbers correctly initialized', () {
+    var ref = Reference('Genesis');
+    expect(ref.book_number, equals(1),
+        reason: 'Genesis is the 1st book_number');
+
+    ref = Reference('John');
+    expect(ref.book_number, equals(43), reason: 'John is the 43rd book_number');
+
+    ref = Reference('Revelation');
+    expect(ref.book_number, equals(66),
+        reason: 'Revelation is the 66th book_number');
+
+    ref = Reference('Joe');
+    expect(ref.book_number, equals(null),
+        reason: 'The Gospel of Joe does not exist');
   });
 }
