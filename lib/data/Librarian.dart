@@ -40,18 +40,36 @@ class Librarian {
   }
 
   static bool verifyVerse(dynamic book, [int chapter, int verse]) {
-    if (book is String) { book = findBook(book);}
+    if (book is String) {
+      book = findBook(book);
+    }
     if (!(book is int)) return null;
 
     if (!(book > 0 && BibleData.last_verse.length >= book)) {
       return false;
-    } else if (chapter != null && !( chapter > 0 &&
-        BibleData.last_verse[book - 1].length >= chapter)) {
+    } else if (chapter != null &&
+        !(chapter > 0 && BibleData.last_verse[book - 1].length >= chapter)) {
       return false;
-    } else if (verse != null &&!( verse > 0 &&
-        BibleData.last_verse[book - 1][chapter - 1] >= verse)) {
+    } else if (verse != null &&
+        !(verse > 0 && BibleData.last_verse[book - 1][chapter - 1] >= verse)) {
       return false;
     }
     return true;
+  }
+
+  ///Creates a *String* reference from
+  static String createReference(String book,
+      [int chapter, int start_verse, int end_verse]) {
+    var reference = '' + book;
+    if (chapter != null) {
+      reference += ' ${chapter}';
+      if (start_verse != null) {
+        reference += ':${start_verse}';
+        if (end_verse != null) {
+          reference += '-$end_verse';
+        }
+      }
+    }
+    return reference;
   }
 }
