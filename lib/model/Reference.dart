@@ -1,3 +1,5 @@
+import 'package:reference_parser/data/Librarian.dart';
+
 class Reference {
   String reference;
   final String book;
@@ -17,10 +19,10 @@ class Reference {
         }
       }
     }
-    is_valid = validate();
+    is_valid = _validate();
   }
 
-  bool validate() {
-    return true;
+  bool _validate() {
+    return Librarian.verifyVerse(book, chapter, start_verse);
   }
 }
