@@ -8,7 +8,7 @@ class Librarian {
     if (val != null) {
       return val;
     }
-    val = BibleData.osis_books[book];
+    val = BibleData.osisBooks[book];
     if (val != null) {
       return val;
     }
@@ -19,7 +19,7 @@ class Librarian {
   static bool checkBook(String book) {
     book = book.toLowerCase();
     return BibleData.books.containsKey(book) ||
-        BibleData.osis_books.containsKey(book);
+        BibleData.osisBooks.containsKey(book);
   }
 
   ///Returns the osis, abbr, name, and short versions of a book title
@@ -30,7 +30,7 @@ class Librarian {
     if (!(book is int)) {
       return null;
     }
-    var list = BibleData.book_names[book - 1];
+    var list = BibleData.bookNames[book - 1];
     return {
       'osis': list[0],
       'abbr': list[1],
@@ -45,13 +45,13 @@ class Librarian {
     }
     if (!(book is int)) return null;
 
-    if (!(book > 0 && BibleData.last_verse.length >= book)) {
+    if (!(book > 0 && BibleData.lastVerse.length >= book)) {
       return false;
     } else if (chapter != null &&
-        !(chapter > 0 && BibleData.last_verse[book - 1].length >= chapter)) {
+        !(chapter > 0 && BibleData.lastVerse[book - 1].length >= chapter)) {
       return false;
     } else if (verse != null &&
-        !(verse > 0 && BibleData.last_verse[book - 1][chapter - 1] >= verse)) {
+        !(verse > 0 && BibleData.lastVerse[book - 1][chapter - 1] >= verse)) {
       return false;
     }
     return true;
@@ -59,14 +59,14 @@ class Librarian {
 
   ///Creates a *String* reference from
   static String createReference(String book,
-      [int chapter, int start_verse, int end_verse]) {
+      [int chapter, int startVerse, int endVerse]) {
     var reference = '' + book;
     if (chapter != null) {
       reference += ' ${chapter}';
-      if (start_verse != null) {
-        reference += ':${start_verse}';
-        if (end_verse != null) {
-          reference += '-$end_verse';
+      if (startVerse != null) {
+        reference += ':${startVerse}';
+        if (endVerse != null) {
+          reference += '-$endVerse';
         }
       }
     }

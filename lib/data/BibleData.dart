@@ -68,7 +68,7 @@ class BibleData {
     'revelation': 66
   };
 
-  static const osis_books = {
+  static const osisBooks = {
     'gen': 1,
     'exod': 2,
     'lev': 3,
@@ -147,9 +147,16 @@ class BibleData {
     'revelations': 66
   };
 
-  ///book names based on book number in list format book_names[book_number - 1][format]
-  ///when format = 0: OSIS, format = 1: Paratext Abbreviation, format = 2: Book_name, format = 3: Shortened
-  static const book_names = [
+  ///book names based on book number in list
+  ///
+  ///format bookNumber - 1 then format
+  ///
+  ///when format = 0: OSIS,
+  ///
+  ///format = 1: Paratext Abbreviation,
+  ///
+  /// format = 2: Book_name, format = 3: Shortened
+  static const bookNames = [
     ['Gen', 'GEN', 'Genesis', 'Gn'],
     ['Exod', 'EXO', 'Exodus', 'Ex'],
     ['Lev', 'LEV', 'Leviticus', 'Lv'],
@@ -218,9 +225,9 @@ class BibleData {
     ['Rev', 'REV', 'Revelation', 'Rv']
   ];
 
-  ///Returns the last verse in a specific chapter *Note*: reference must be
-  ///[book-1][chapter-1] i.e last_verse[0][0] = 31 (Genesis 1 has 31 verses).
-  static const last_verse = [
+  ///Returns the last verse in a specific chapter of a book. Two dimensional
+  ///array, book and chapter indexes start at 0
+  static const lastVerse = [
     [31, 25, 24, 26, 32, 22, 24, 22, 29, 32, 32, 20, 18, 24, 21, 16, 27, 33,
         38, 18, 34, 24, 20, 67, 34, 35, 46, 22, 35, 43, 55, 32, 20, 31, 29, 43,
         36, 30, 23, 23, 57, 38, 34, 34, 28, 34, 31, 22, 33, 26],
