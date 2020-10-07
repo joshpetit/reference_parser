@@ -57,8 +57,8 @@ class Librarian {
     return true;
   }
 
-  ///Creates a *String* reference from
-  static String createReference(String book,
+  ///Creates a *String* reference from a book and optional chapter and verses
+  static String createReferenceString(String book,
       [int chapter, int startVerse, int endVerse]) {
     var reference = '' + book;
     if (chapter != null) {
