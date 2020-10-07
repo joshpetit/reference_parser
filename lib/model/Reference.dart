@@ -7,7 +7,7 @@ class Reference {
   final int chapter;
   final int start_verse;
   final int end_verse;
-  bool is_valid;
+  final bool is_valid;
 
   Reference(book, [chapter, start_verse, end_verse])
       : book = book,
@@ -15,12 +15,7 @@ class Reference {
         start_verse = start_verse,
         end_verse = end_verse,
         book_number = Librarian.findBook(book),
-        reference = Librarian.createReference(book, chapter, start_verse, end_verse) {
-    is_valid = _validate();
-  }
-
-
-  bool _validate() {
-    return Librarian.verifyVerse(book, chapter, start_verse);
-  }
+        reference =
+            Librarian.createReference(book, chapter, start_verse, end_verse),
+        is_valid = Librarian.verifyVerse(book);
 }
