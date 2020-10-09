@@ -43,7 +43,7 @@ class Librarian {
     if (book is String) {
       book = findBook(book);
     }
-    if (!(book is int)) return null;
+    if (!(book is int)) return false;
 
     if (!(book > 0 && BibleData.lastVerse.length >= book)) {
       return false;
