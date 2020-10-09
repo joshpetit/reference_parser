@@ -23,8 +23,8 @@ Reference createReference(String stringReference) {
   var reference = Reference(
       book ?? pr['book'],
       pr['chapter'] == null ? null : int.parse(pr['chapter']),
-      pr['startVerse'] == null ? null : int.parse(pr['chapter']),
-      pr['endVerse'] == null ? null : int.parse(pr['chapter']));
+      pr['startVerse'] == null ? null : int.parse(pr['startVerse']),
+      pr['endVerse'] == null ? null : int.parse(pr['endVerse']));
 
   return reference;
 }
