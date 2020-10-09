@@ -19,7 +19,8 @@ Map<String, String> _parseString(String reference) {
 Reference createReference(String stringReference) {
   var pr = _parseString(stringReference);
   var bookNumber = Librarian.findBook(pr['book']);
-  var book = Librarian.getBookNames(bookNumber)[2];
+  var book =
+      bookNumber != null ? Librarian.getBookNames(bookNumber)[2] : pr['book'];
   var reference = Reference(
       book ?? pr['book'],
       pr['chapter'] == null ? null : int.parse(pr['chapter']),
