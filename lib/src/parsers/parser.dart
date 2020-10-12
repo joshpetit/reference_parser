@@ -7,6 +7,7 @@ var exp = RegExp(r'([1-3]?[^\s]+[A-Za-z ]+[^\d ]?) ?(\d+)?:?(\d+)?-?(\d+)?');
 
 Map<String, String> _parseString(String reference) {
   var match = exp.firstMatch(reference);
+  if (match == null) return null;
   var thing = match.groups([0, 1, 2, 3, 4]);
   return {
     'reference': thing[0],
@@ -20,7 +21,8 @@ Map<String, String> _parseString(String reference) {
 /// Create a reference from a string
 Reference parseReference(String stringReference) {
   var pr = _parseString(stringReference);
-  var bookNumber = Librarian.findBook(pr['book'].toLowerCase());
+  if (pr == null) return Reference('');
+  var bookNumber = Librarian.findBook(pr['book']);
   var book =
   bookNumber != null ? Librarian.getBookNames(bookNumber)['name'] : pr['book'];
   print(book);
