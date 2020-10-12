@@ -10,7 +10,7 @@ Map<String, String> _parseString(String reference) {
   var thing = match.groups([0, 1, 2, 3, 4]);
   return {
     'reference': thing[0],
-    'book': thing[1],
+    'book': thing[1].trim(),
     'chapter': thing[2],
     'startVerse': thing[3],
     'endVerse': thing[4],
@@ -20,9 +20,10 @@ Map<String, String> _parseString(String reference) {
 /// Create a reference from a string
 Reference parseReference(String stringReference) {
   var pr = _parseString(stringReference);
-  var bookNumber = Librarian.findBook(pr['book']);
+  var bookNumber = Librarian.findBook(pr['book'].toLowerCase());
   var book =
-  bookNumber != null ? Librarian.getBookNames(bookNumber)[2] : pr['book'];
+  bookNumber != null ? Librarian.getBookNames(bookNumber)['name'] : pr['book'];
+  print(book);
   var reference = Reference(
       book ?? pr['book'],
       pr['chapter'] == null ? null : int.parse(pr['chapter']),
