@@ -17,7 +17,8 @@ Map<String, String> _parseString(String reference) {
   };
 }
 
-Reference createReference(String stringReference) {
+/// Create a reference from a string
+Reference parseReference(String stringReference) {
   var pr = _parseString(stringReference);
   var bookNumber = Librarian.findBook(pr['book']);
   var book =
