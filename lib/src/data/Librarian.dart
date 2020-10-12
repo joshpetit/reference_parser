@@ -13,6 +13,10 @@ class Librarian {
     if (val != null) {
       return val;
     }
+    val = BibleData.shortenedBooks[book];
+    if (val != null) {
+      return val;
+    }
     return BibleData.variants[book];
   }
 
@@ -20,7 +24,8 @@ class Librarian {
   static bool checkBook(String book) {
     book = book.toLowerCase();
     return BibleData.books.containsKey(book) ||
-        BibleData.osisBooks.containsKey(book);
+        BibleData.osisBooks.containsKey(book) ||
+    BibleData.shortenedBooks.containsKey(book);
   }
 
   ///Returns the osis, abbr, name, and short versions of a book title
