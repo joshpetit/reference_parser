@@ -21,6 +21,7 @@ void main() {
     expect(Librarian.checkBook('joe'), false);
     expect(Librarian.checkBook('1cor'), true);
     expect(Librarian.checkBook('Genesis'), true);
+    expect(Librarian.checkBook('jn'), true);
   });
   test('Librarian returns correct book names', () {
     var names = Librarian.getBookNames(1);
