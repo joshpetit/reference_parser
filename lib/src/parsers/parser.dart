@@ -25,7 +25,6 @@ Reference parseReference(String stringReference) {
   var bookNumber = Librarian.findBook(pr['book']);
   var book =
   bookNumber != null ? Librarian.getBookNames(bookNumber)['name'] : pr['book'];
-  print(book);
   var reference = Reference(
       book ?? pr['book'],
       pr['chapter'] == null ? null : int.parse(pr['chapter']),
