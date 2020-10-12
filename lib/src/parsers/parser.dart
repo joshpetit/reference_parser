@@ -3,7 +3,7 @@ import 'package:reference_parser/src/model/Reference.dart';
 
 
 
-var exp = RegExp(r'([1-3]?[^\s]+[A-Za-z ]+[^\d ]) ?(\d+)?:?(\d+)?-?(\d+)?');
+var exp = RegExp(r'([1-3]?[^\s]+[A-Za-z ]+[^\d ]?) ?(\d+)?:?(\d+)?-?(\d+)?');
 
 Map<String, String> _parseString(String reference) {
   var match = exp.firstMatch(reference);
