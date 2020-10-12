@@ -1,4 +1,5 @@
-import 'package:reference_parser/data/BibleData.dart';
+
+import 'BibleData.dart';
 
 class Librarian {
   ///Returns the integer of the book, checks for variant spellings also

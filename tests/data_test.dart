@@ -1,4 +1,4 @@
-import 'package:reference_parser/data/Librarian.dart';
+import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:test/test.dart';
 
 void main() {

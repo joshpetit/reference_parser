@@ -1,4 +1,4 @@
-import 'package:reference_parser/model/Reference.dart';
+import 'package:reference_parser/src/model/Reference.dart';
 import 'package:test/test.dart';
 
 void main() {
