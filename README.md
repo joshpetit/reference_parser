@@ -5,7 +5,7 @@ A dart package that parses strings for bible references
 `pub get reference_parser`
 
 ## Usage
-See `examples/main.dart` for a look at the types of strings
+See `example/main.dart` for a look at the types of strings
 that can be parsed
 ```dart
 import 'package:reference_parser/reference_parser.dart';

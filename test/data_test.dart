@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:test/test.dart';
 
