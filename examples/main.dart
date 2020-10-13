@@ -14,7 +14,7 @@ void main() {
 
   //Variant Spellings
   ref = parseReference('Songs 2:1');
-  print(ref.book); //'Song of Solomon'
+  print(ref.reference); //'Song of Solomon 2:1'
 
   //Range of verses
   ref = parseReference('Gen 4:5-10');
