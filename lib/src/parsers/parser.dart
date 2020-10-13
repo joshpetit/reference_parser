@@ -20,12 +20,9 @@ Map<String, String> _parseString(String reference) {
 Reference parseReference(String stringReference) {
   var pr = _parseString(stringReference);
   if (pr == null) return Reference('');
-  var bookNumber = Librarian.findBook(pr['book']);
-  var book = bookNumber != null
-      ? Librarian.getBookNames(bookNumber)['name']
-      : pr['book'];
+  var book = Librarian.getBookNames(pr['book'])['name'] ?? pr['book'];
   var reference = Reference(
-      book ?? pr['book'],
+      book,
       pr['chapter'] == null ? null : int.parse(pr['chapter']),
       pr['startVerse'] == null ? null : int.parse(pr['startVerse']),
       pr['endVerse'] == null ? null : int.parse(pr['endVerse']));
@@ -35,8 +32,7 @@ Reference parseReference(String stringReference) {
 
 Reference createReference(String book,
     [int chapter, int startVerse, int endVerse]) {
-  var name = Librarian.getBookNames(book);
-  book = name != null ? name['name'] : book;
+  book = Librarian.getBookNames(book)['name'] ?? book;
   return Reference(
       book, chapter = chapter, startVerse = startVerse, endVerse = endVerse);
 }

@@ -34,7 +34,7 @@ class Librarian {
       book = findBook(book);
     }
     if (!(book is int)) {
-      return null;
+      return {};
     }
     var list = BibleData.bookNames[book - 1];
     return {
