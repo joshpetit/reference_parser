@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:test/test.dart';
 
@@ -35,6 +37,9 @@ void main() {
     expect(names['abbr'], '1CO');
     expect(names['name'], '1 Corinthians');
     expect(names['short'], '1 Cor');
+
+    names = Librarian.getBookNames('');
+    expect(names.length, equals(0));
   });
   test('Librarian correctly verifies verses', () {
     expect(Librarian.verifyVerse(1), true, reason: 'First book should exist');
