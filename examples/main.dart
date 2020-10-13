@@ -4,8 +4,10 @@ void main() {
   //Parse Reference
   var ref = parseReference('Jn 3:16');
   print(ref.book); //'John'
+  print(ref.bookNumber); //43
   print(ref.chapter); //3
   print(ref.startVerse); //16
+  print(ref.isValid); //true
 
   ref = parseReference('1john 4:5');
   print(ref.book); //'1 John'
@@ -27,6 +29,15 @@ void main() {
   //Book References
   ref = parseReference('gn');
   print(ref.reference); //'Genesis'
+
+  //Validation
+  ref = parseReference('Joe 2:4');
+  print(ref.book); //Joe
+  print(ref.bookNumber); //null
+  print(ref.isValid); //false
+
+  ref = parseReference('Genesis 1:100');
+  print(ref.isValid); //false
 
   //Create Reference
   ref = createReference('1co', 3, 4, 5);
