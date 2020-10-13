@@ -31,3 +31,10 @@ ref.isValid; //true
 Note that you can create non-existent references, so always
 check the isValid field to ensure a reference is correct
 
+You can also directly create reference objects by calling
+`createReference(String book, [int chapter, int startVerse, int endVerse])`
+```dart
+var ref = createReference('1Co', 2);
+print(ref.reference); //1 Corinthians 2
+```
+

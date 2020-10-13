@@ -1,6 +1,6 @@
 name: reference_parser
 description: Parse strings to find the reference to bible verses
-version: 0.0.1
+version: 0.5.0
 homepage: https://github.com/joshpetit/reference_parser
 issue_tracker:  https://github.com/joshpetit/reference_parser/issues
 environment:
