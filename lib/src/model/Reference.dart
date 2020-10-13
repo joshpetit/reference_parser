@@ -17,6 +17,6 @@ class Reference {
         bookNumber = Librarian.findBook(book),
         reference = Librarian.createReferenceString(
             book, chapter, startVerse, endVerse),
-        isValid = Librarian.verifyVerse(book, chapter, startVerse);
+        isValid = Librarian.verifyVerse(book, chapter, startVerse) &&
+            Librarian.verifyVerse(book, chapter, endVerse);
 }
-
