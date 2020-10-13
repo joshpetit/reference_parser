@@ -1,0 +1,37 @@
+import 'package:reference_parser/reference_parser.dart';
+
+void main() {
+  //Parse Reference
+  var ref = parseReference('Jn 3:16');
+  print(ref.book); //'John'
+  print(ref.chapter); //3
+  print(ref.startVerse); //16
+
+  ref = parseReference('1john 4:5');
+  print(ref.book); //'1 John'
+
+  //Variant Spellings
+  ref = parseReference('Songs 2:1');
+  print(ref.book); //'Song of Solomon'
+
+  //Range of verses
+  ref = parseReference('Gen 4:5-10');
+  print(ref.reference); //'Genesis 4:5-10'
+  print(ref.startVerse); //5
+  print(ref.endVerse); //10
+
+  //Book and chapter references
+  ref = parseReference('Ps 1');
+  print(ref.reference); //'Psalms 1'
+
+  //Book References
+  ref = parseReference('gn');
+  print(ref.reference); //'Genesis'
+
+  //Create Reference
+  ref = createReference('1co', 3, 4, 5);
+  print(ref.book); //'1 Corinthians'
+  print(ref.chapter); //3
+  print(ref.startVerse); //4
+  print(ref.endVerse); //5
+}
