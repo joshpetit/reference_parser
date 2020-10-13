@@ -2,7 +2,7 @@
 A dart package that parses strings for bible references
 
 ## Installation
-`pub get reference_parser`
+Add `reference_parser: ^0.5.0` to your pubspec.yaml then run pub get in the project directory
 
 ## Usage
 See `example/main.dart` for a look at the types of strings
