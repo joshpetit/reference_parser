@@ -32,7 +32,11 @@ void main() {
     var ref = Reference('James', 2, 4);
     expect(ref.isValid, true, reason: 'Passage should be valid');
     ref = Reference('James', 15, 5, 3);
-    expect(ref.isValid, false, reason: 'Passage should not be valid');
+    expect(ref.isValid, false, reason: 'Chapter should not be valid');
+    ref = Reference('James', 15, -5, 3);
+    expect(ref.isValid, false, reason: 'Negative values should return false');
+    ref = Reference('Psalms', 1, 5, 100);
+    expect(ref.isValid, false, reason: 'End verse should not be valid');
   });
   test('Book numbers correctly initialized', () {
     var ref = Reference('Genesis');
