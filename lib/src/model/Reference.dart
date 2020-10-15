@@ -20,3 +20,7 @@ class Reference {
         isValid = Librarian.verifyVerse(book, chapter, startVerse) &&
             Librarian.verifyVerse(book, chapter, endVerse);
 }
+
+String toString() {
+  return reference;
+}
