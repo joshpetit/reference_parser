@@ -19,8 +19,8 @@ class Reference {
             book, chapter, startVerse, endVerse),
         isValid = Librarian.verifyVerse(book, chapter, startVerse) &&
             Librarian.verifyVerse(book, chapter, endVerse);
-}
-
-String toString() {
-  return reference;
+  @override
+  String toString() {
+    return reference;
+  }
 }
