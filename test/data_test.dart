@@ -66,4 +66,7 @@ void main() {
     expect(Librarian.verifyVerse('John', 1, 1), true,
         reason: 'String book references should work');
   });
+  test('Librarian correctly fetches last verses', () {
+    expect(Librarian.getLastVerse('John'), equals(25));
+  });
 }

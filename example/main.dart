@@ -6,7 +6,7 @@ void main() {
   print(ref.book); //'John'
   print(ref.bookNumber); //43
   print(ref.chapter); //3
-  print(ref.startVerse); //16
+  print(ref.startVerseNumber); //16
   print(ref.isValid); //true
 
   ref = parseReference('1john 4:5');
@@ -19,8 +19,8 @@ void main() {
   //Range of verses
   ref = parseReference('Gen 4:5-10');
   print(ref.reference); //'Genesis 4:5-10'
-  print(ref.startVerse); //5
-  print(ref.endVerse); //10
+  print(ref.startVerseNumber); //5
+  print(ref.endVerseNumber); //10
 
   //Book and chapter references
   ref = parseReference('Ps 1');
@@ -43,6 +43,6 @@ void main() {
   ref = createReference('1co', 3, 4, 5);
   print(ref.book); //'1 Corinthians'
   print(ref.chapter); //3
-  print(ref.startVerse); //4
-  print(ref.endVerse); //5
+  print(ref.startVerseNumber); //4
+  print(ref.endVerseNumber); //5
 }

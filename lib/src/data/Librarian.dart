@@ -44,6 +44,19 @@ class Librarian {
     };
   }
 
+  static int getLastVerse(dynamic book, [int chapter]) {
+    if (book is String) {
+      book = findBook(book);
+    }
+    if (!(book is int)) {
+      return null;
+    }
+    if (chapter == null) {
+      chapter = BibleData.lastVerse[book - 1].length;
+    }
+    return BibleData.lastVerse[book - 1][chapter - 1];
+  }
+
   ///Verifies that a verse is in the bible, optional chapter and verse
   ///positional parameters
   static bool verifyVerse(dynamic book, [int chapter, int verse]) {

@@ -18,15 +18,15 @@ void main() {
     expect(ref.reference, equals('James 5:2'));
     expect(ref.book, equals('James'));
     expect(ref.chapter, equals(5));
-    expect(ref.startVerse, equals(2));
+    expect(ref.startVerseNumber, equals(2));
   });
   test('Creation of verse reference', () {
     var ref = Reference('James', 5, 2, 3);
     expect(ref.reference, equals('James 5:2-3'));
     expect(ref.book, equals('James'));
     expect(ref.chapter, equals(5));
-    expect(ref.startVerse, equals(2));
-    expect(ref.endVerse, equals(3));
+    expect(ref.startVerseNumber, equals(2));
+    expect(ref.endVerseNumber, equals(3));
   });
   test('Verification works correctly', () {
     var ref = Reference('James', 2, 4);

@@ -7,13 +7,13 @@ void main() {
     expect(ref.book, equals('John'));
     expect(ref.chapter, equals(3));
     expect(ref.reference, equals('John 3:16'));
-    expect(ref.startVerse, equals(16));
+    expect(ref.startVerseNumber, equals(16));
 
     ref = parseReference('1john 3:16');
     expect(ref.book, equals('1 John'));
     expect(ref.chapter, equals(3));
     expect(ref.reference, equals('1 John 3:16'));
-    expect(ref.startVerse, equals(16));
+    expect(ref.startVerseNumber, equals(16));
 
     ref = parseReference('Joe 2:4');
     expect(ref.book, equals('Joe'));
@@ -23,7 +23,7 @@ void main() {
     expect(ref.book, equals('John'));
     expect(ref.book, 'John');
     expect(ref.chapter, 2);
-    expect(ref.startVerse, 4);
+    expect(ref.startVerseNumber, 4);
     expect(ref.isValid, true);
 
     ref = parseReference('');
@@ -35,10 +35,10 @@ void main() {
     var ref = createReference('James', 2, 1);
     expect(ref.book, equals('James'));
     expect(ref.chapter, equals(2));
-    expect(ref.startVerse, equals(1));
+    expect(ref.startVerseNumber, equals(1));
 
     ref = createReference('JOHN', 2, 1);
     expect(ref.book, equals('John'));
-    expect(ref.startVerse, equals(1));
+    expect(ref.startVerseNumber, equals(1));
   });
 }

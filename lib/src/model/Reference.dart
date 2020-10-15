@@ -5,20 +5,20 @@ class Reference {
   final String book;
   final int bookNumber;
   final int chapter;
-  final int startVerse;
-  final int endVerse;
+  final int startVerseNumber;
+  final int endVerseNumber;
   final bool isValid;
 
-  Reference(book, [chapter, startVerse, endVerse])
+  Reference(book, [chapter, startVerseNumber, endVerseNumber])
       : book = book,
         chapter = chapter,
-        startVerse = startVerse,
-        endVerse = endVerse,
+        startVerseNumber = startVerseNumber,
+        endVerseNumber = endVerseNumber,
         bookNumber = Librarian.findBook(book),
         reference = Librarian.createReferenceString(
-            book, chapter, startVerse, endVerse),
-        isValid = Librarian.verifyVerse(book, chapter, startVerse) &&
-            Librarian.verifyVerse(book, chapter, endVerse);
+            book, chapter, startVerseNumber, endVerseNumber),
+        isValid = Librarian.verifyVerse(book, chapter, startVerseNumber) &&
+            Librarian.verifyVerse(book, chapter, endVerseNumber);
   @override
   String toString() {
     return reference;
