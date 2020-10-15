@@ -1,4 +1,3 @@
-
 import 'BibleData.dart';
 
 class Librarian {
@@ -25,7 +24,7 @@ class Librarian {
     book = book.toLowerCase();
     return BibleData.books.containsKey(book) ||
         BibleData.osisBooks.containsKey(book) ||
-    BibleData.shortenedBooks.containsKey(book);
+        BibleData.shortenedBooks.containsKey(book);
   }
 
   ///Returns the osis, abbr, name, and short versions of a book title
@@ -45,6 +44,8 @@ class Librarian {
     };
   }
 
+  ///Verifies that a verse is in the bible, optional chapter and verse
+  ///positional parameters
   static bool verifyVerse(dynamic book, [int chapter, int verse]) {
     if (book is String) {
       book = findBook(book);
