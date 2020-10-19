@@ -11,3 +11,4 @@ doc/api/
 .idea/
 *.iml
 *.swp
+*.swo
