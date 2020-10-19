@@ -1,4 +1,5 @@
 import 'package:reference_parser/src/data/Librarian.dart';
+import 'package:reference_parser/src/util/VerseEnum.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -70,6 +71,12 @@ void main() {
     expect(Librarian.getLastVerse('John'), equals(25));
   });
   test('Librarian correctly creates ReferenceType', () {
-
+    expect(Librarian.identifyVerseType('John'), equals(ReferenceType.BOOK));
+    expect(
+        Librarian.identifyVerseType('John', 1), equals(ReferenceType.CHAPTER));
+    expect(
+        Librarian.identifyVerseType('Joe', 2, 4), equals(ReferenceType.VERSE));
+    expect(Librarian.identifyVerseType('Joe', 2, 4, 5),
+        equals(ReferenceType.RANGE));
   });
 }
