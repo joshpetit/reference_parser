@@ -56,7 +56,7 @@ class Librarian {
     return BibleData.lastVerse[book - 1][chapter - 1];
   }
 
-  static ReferenceType identifyVerseType(book,
+  static ReferenceType identifyReferenceType(book,
       [chapter, startVerse, endVerse]) {
     if (endVerse != null) {
       return ReferenceType.RANGE;
