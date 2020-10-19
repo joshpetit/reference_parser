@@ -45,7 +45,7 @@ class Librarian {
     };
   }
 
-  static int getLastVerse(dynamic book, [int chapter]) {
+  static int getLastVerseNumber(dynamic book, [int chapter]) {
     if (book is String) {
       book = findBook(book);
     }

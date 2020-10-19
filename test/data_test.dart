@@ -68,7 +68,7 @@ void main() {
         reason: 'String book references should work');
   });
   test('Librarian correctly fetches last verses', () {
-    expect(Librarian.getLastVerse('John'), equals(25));
+    expect(Librarian.getLastVerseNumber('John'), equals(25));
   });
   test('Librarian correctly creates ReferenceType', () {
     expect(Librarian.identifyReferenceType('John'), equals(ReferenceType.BOOK));
