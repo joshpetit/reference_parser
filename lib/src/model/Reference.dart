@@ -1,4 +1,7 @@
 import 'package:reference_parser/src/data/Librarian.dart';
+import 'package:reference_parser/src/model/Verse.dart';
+
+import 'package:reference_parser/src/util/VerseEnum.dart';
 
 class Reference {
   final String reference;

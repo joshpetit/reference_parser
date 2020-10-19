@@ -1,3 +1,4 @@
+import '../../reference_parser.dart';
 import 'BibleData.dart';
 
 class Librarian {
@@ -51,10 +52,21 @@ class Librarian {
     if (!(book is int)) {
       return null;
     }
-    if (chapter == null) {
-      chapter = BibleData.lastVerse[book - 1].length;
-    }
+    chapter ??= BibleData.lastVerse[book - 1].length;
     return BibleData.lastVerse[book - 1][chapter - 1];
+  }
+
+  static ReferenceType identifyVerseType(book,
+      [chapter, startVerse, endVerse]) {
+    if (endVerse != null) {
+      return ReferenceType.RANGE;
+    } else if (startVerse != null) {
+      return ReferenceType.VERSE;
+    } else if (chapter != null) {
+      return ReferenceType.CHAPTER;
+    } else {
+      return ReferenceType.BOOK;
+    }
   }
 
   ///Verifies that a verse is in the bible, optional chapter and verse

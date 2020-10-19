@@ -22,8 +22,8 @@ var ref = parseString('Gen 1:1-5');
 ref.book; //Genesis
 ref.bookNumber; //1
 ref.chapter; //1
-ref.startVerse; //1
-ref.endVerse; //5
+ref.startVerseNumber; //1
+ref.endVerseNumber; //5
 ref.reference; //Genesis 1:1-5
 ref.isValid; //true
 ```

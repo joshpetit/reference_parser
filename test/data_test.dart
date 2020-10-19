@@ -69,4 +69,7 @@ void main() {
   test('Librarian correctly fetches last verses', () {
     expect(Librarian.getLastVerse('John'), equals(25));
   });
+  test('Librarian correctly creates ReferenceType', () {
+
+  });
 }
