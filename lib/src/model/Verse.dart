@@ -6,6 +6,6 @@ class Verse {
   final int chapter;
   final int verseNumber;
   final ReferenceType verseType;
-  Verse._(this.reference, this.book, this.chapter, this.verseNumber,
+  Verse(this.reference, this.book, this.chapter, this.verseNumber,
       this.verseType);
 }
