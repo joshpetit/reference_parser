@@ -67,7 +67,7 @@ void main() {
     expect(Librarian.verifyVerse('John', 1, 1), true,
         reason: 'String book references should work');
   });
-  test('Librarian correctly fetches last verses', () {
+  test('Librarian correctly fetches last verses numbers', () {
     expect(Librarian.getLastVerseNumber('John'), equals(25));
   });
   test('Librarian correctly creates ReferenceType', () {
@@ -78,5 +78,24 @@ void main() {
         equals(ReferenceType.VERSE));
     expect(Librarian.identifyReferenceType('Joe', 2, 4, 5),
         equals(ReferenceType.RANGE));
+  });
+  test('Librarian correctly creates last verse objects', () {
+    var verse = Librarian.getLastVerse('John');
+    expect(verse.book, equals('John'));
+    expect(verse.chapter, equals(21));
+    expect(verse.verseNumber, equals(25));
+    expect(verse.verseType, equals(ReferenceType.VERSE));
+
+    verse = Librarian.getLastVerse('Ps');
+    expect(verse.book, equals('Psalms'));
+    expect(verse.chapter, equals(150));
+    expect(verse.verseNumber, equals(6));
+    expect(verse.verseType, equals(ReferenceType.VERSE));
+
+    verse = Librarian.getLastVerse('Gen', 2);
+    expect(verse.book, equals('Genesis'));
+    expect(verse.chapter, equals(2));
+    expect(verse.verseNumber, equals(25));
+    expect(verse.verseType, equals(ReferenceType.VERSE));
   });
 }
