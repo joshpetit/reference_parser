@@ -10,6 +10,7 @@ class Reference {
   final int chapter;
   final int startVerseNumber;
   final int endVerseNumber;
+  final ReferenceType referenceType;
   final bool isValid;
 
   Reference(book, [chapter, startVerseNumber, endVerseNumber])
@@ -19,6 +20,8 @@ class Reference {
         endVerseNumber = endVerseNumber,
         bookNumber = Librarian.findBook(book),
         reference = Librarian.createReferenceString(
+            book, chapter, startVerseNumber, endVerseNumber),
+        referenceType = Librarian.identifyReferenceType(
             book, chapter, startVerseNumber, endVerseNumber),
         isValid = Librarian.verifyVerse(book, chapter, startVerseNumber) &&
             Librarian.verifyVerse(book, chapter, endVerseNumber);
