@@ -1,4 +1,5 @@
 import 'package:reference_parser/src/model/Reference.dart';
+import 'package:reference_parser/src/model/Verse.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -52,5 +53,13 @@ void main() {
     ref = Reference('Joe');
     expect(ref.bookNumber, equals(null),
         reason: 'The Gospel of Joe does not exist');
+  });
+  test('Verse object creation', () {
+    var verse = Verse('Genesis', 2, 3);
+    expect(verse.book, equals('Genesis'));
+    expect(verse.chapter, equals(2));
+    expect(verse.bookNumber, equals(1));
+    expect(verse.verseNumber, equals(3));
+    expect(verse.isValid, equals(true));
   });
 }
