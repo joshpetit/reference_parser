@@ -9,7 +9,9 @@ class Reference {
   final int bookNumber;
   final int chapter;
   final int startVerseNumber;
+  final Verse startVerse;
   final int endVerseNumber;
+  final Verse endVerse;
   final ReferenceType referenceType;
   final bool isValid;
 
@@ -17,7 +19,11 @@ class Reference {
       : book = book,
         chapter = chapter,
         startVerseNumber = startVerseNumber,
+        startVerse = Verse(book, chapter, startVerseNumber),
         endVerseNumber = endVerseNumber,
+        endVerse = endVerseNumber == null
+            ? null
+            : Verse(book, chapter, endVerseNumber),
         bookNumber = Librarian.findBook(book),
         reference = Librarian.createReferenceString(
             book, chapter, startVerseNumber, endVerseNumber),
