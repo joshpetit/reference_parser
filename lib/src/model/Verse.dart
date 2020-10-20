@@ -9,7 +9,7 @@ class Verse {
   final int verseNumber;
   final bool isValid;
   final ReferenceType verseType;
-  Verse(book, chapter, verseNumber, verseType)
+  Verse(book, chapter, verseNumber)
       : reference = Librarian.createReferenceString(book, chapter, verseNumber),
         book = book,
         bookNumber = Librarian.findBook(book),
