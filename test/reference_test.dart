@@ -66,4 +66,36 @@ void main() {
     expect(verse.verseNumber, equals(3));
     expect(verse.isValid, equals(true));
   });
+  test('Reference [start/end]Verse objects for single verse references', () {
+    var ref = Reference('John', 2, 4);
+    expect(ref.endVerse, equals(null),
+        reason: 'This is a single verse Reference');
+
+    expect(ref.startVerse.book, equals('John'),
+        reason: 'All verses have a book');
+
+    expect(ref.startVerse.chapter, equals(2),
+        reason: 'Verse should have a chapter');
+
+    expect(ref.startVerse.verseNumber, equals(4),
+        reason: 'Verse should have a verse number');
+
+    expect(ref.startVerse.isValid, equals(true),
+        reason: 'Verse is a valid reference');
+
+    ref = Reference('Joe', 2, 5);
+    expect(ref.startVerse.isValid, equals(false),
+        reason: 'Joe is not a book in the bible');
+  });
+  test('Reference [start/end]Verse objects for range references', () {
+    var ref = Reference('Genesis', 2, 5, 10);
+    expect(ref.endVerse.book, equals('Genesis'));
+    expect(ref.endVerse.verseNumber, equals(10));
+    expect(ref.endVerse.chapter, equals(2));
+    expect(ref.endVerse.isValid, equals(true));
+
+    ref = Reference('Genesis', 60, 5, 10);
+    expect(ref.endVerse.chapter, equals(60));
+    expect(ref.endVerse.isValid, equals(false));
+  });
 }
