@@ -77,8 +77,7 @@ class Librarian {
       return null;
     }
     var lastVerse = BibleData.lastVerse[bookNumber - 1][chapter - 1];
-    var reference = createReferenceString(book, chapter, lastVerse);
-    return Verse(reference, book, chapter, lastVerse, ReferenceType.VERSE);
+    return Verse(book, chapter, lastVerse, ReferenceType.VERSE);
   }
 
   static ReferenceType identifyReferenceType(book,
