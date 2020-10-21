@@ -68,7 +68,7 @@ void main() {
   });
   test('Reference [start/end]Verse objects for single verse references', () {
     var ref = Reference('John', 2, 4);
-    expect(ref.endVerse, equals(null),
+    expect(ref.endVerse.verseNumber, ref.startVerse.verseNumber,
         reason: 'This is a single verse Reference');
 
     expect(ref.startVerse.book, equals('John'),
