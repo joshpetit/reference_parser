@@ -19,7 +19,11 @@ class Reference {
       : book = book,
         chapter = chapter,
         startVerseNumber = startVerseNumber,
-        startVerse = Verse(book, chapter, startVerseNumber),
+        startVerse = startVerseNumber != null
+            ? Verse(book, chapter, startVerseNumber)
+            : chapter != null
+                ? Verse(book, chapter, 1)
+                : Verse(book, 1, 1),
         endVerseNumber = endVerseNumber,
         endVerse = endVerseNumber != null
             ? Verse(book, chapter, endVerseNumber)
