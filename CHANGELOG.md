@@ -1,3 +1,7 @@
+## 0.7.5
+- endVerseNumber and endVerse determine last verse if passed value is null
+- [start/end]VerseNumber fields initialize based on passed parameters
+- [start/end]Verse initialize based on passed parameters
 ## 0.7.0
 - Created ReferenceType enum
 - Changed the integer fields [start/end]Verse to [start/end]VerseNumber
