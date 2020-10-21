@@ -98,4 +98,18 @@ void main() {
     expect(ref.endVerse.chapter, equals(60));
     expect(ref.endVerse.isValid, equals(false));
   });
+  test(
+      'Reference [start/end]Verse objects for (book and chapter) and chapter references',
+      () {
+    var ref = Reference('Ecclesiastes', 5);
+    expect(ref.startVerse.verseNumber, equals(1));
+    expect(ref.startVerse.chapter, equals(5));
+    expect(ref.endVerse.verseNumber, equals(20));
+    expect(ref.endVerse.chapter, equals(5));
+
+    ref = Reference('Ecclesiastes');
+    expect(ref.startVerse.verseNumber, equals(1));
+    expect(ref.endVerse.chapter, equals(12));
+    expect(ref.endVerse.verseNumber, equals(14));
+  });
 }
