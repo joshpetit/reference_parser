@@ -8,6 +8,8 @@ void main() {
     var ref = Reference('James');
     expect(ref.book, equals('James'));
     expect(ref.reference, equals('James'));
+    expect(ref.startVerseNumber, equals(1));
+    expect(ref.chapter, equals(1));
     expect(ref.referenceType, equals(ReferenceType.BOOK));
   });
   test('Creation of book and chapter reference', () {
@@ -15,6 +17,8 @@ void main() {
     expect(ref.reference, equals('James 5'));
     expect(ref.book, equals('James'));
     expect(ref.chapter, equals(5));
+    expect(ref.startVerseNumber, equals(1));
+    expect(ref.endVerseNumber, equals(20));
     expect(ref.referenceType, equals(ReferenceType.CHAPTER));
   });
   test('Creation of verse reference', () {
@@ -23,6 +27,7 @@ void main() {
     expect(ref.book, equals('James'));
     expect(ref.chapter, equals(5));
     expect(ref.startVerseNumber, equals(2));
+    expect(ref.endVerseNumber, equals(2));
     expect(ref.referenceType, equals(ReferenceType.VERSE));
   });
   test('Creation of range of verses reference', () {
@@ -57,6 +62,7 @@ void main() {
     ref = Reference('Joe');
     expect(ref.bookNumber, equals(null),
         reason: 'The Gospel of Joe does not exist');
+    expect(ref.endVerseNumber, equals(null));
   });
   test('Verse object creation', () {
     var verse = Verse('Genesis', 2, 3);
