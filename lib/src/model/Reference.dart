@@ -17,14 +17,18 @@ class Reference {
 
   Reference(book, [chapter, startVerseNumber, endVerseNumber])
       : book = book,
-        chapter = chapter,
-        startVerseNumber = startVerseNumber,
+        chapter = chapter != null ? chapter : 1,
+        startVerseNumber = startVerseNumber != null ? startVerseNumber : 1,
         startVerse = startVerseNumber != null
             ? Verse(book, chapter, startVerseNumber)
             : chapter != null
                 ? Verse(book, chapter, 1)
                 : Verse(book, 1, 1),
-        endVerseNumber = endVerseNumber,
+        endVerseNumber = endVerseNumber != null
+            ? endVerseNumber
+            : startVerseNumber != null
+                ? startVerseNumber
+                : Librarian.getLastVerseNumber(book, chapter),
         endVerse = endVerseNumber != null
             ? Verse(book, chapter, endVerseNumber)
             : startVerseNumber != null
