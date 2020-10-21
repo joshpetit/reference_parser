@@ -21,9 +21,11 @@ class Reference {
         startVerseNumber = startVerseNumber,
         startVerse = Verse(book, chapter, startVerseNumber),
         endVerseNumber = endVerseNumber,
-        endVerse = endVerseNumber == null
-            ? null
-            : Verse(book, chapter, endVerseNumber),
+        endVerse = endVerseNumber != null
+            ? Verse(book, chapter, endVerseNumber)
+            : startVerseNumber != null
+                ? Verse(book, chapter, startVerseNumber)
+                : Librarian.getLastVerse(book, chapter),
         bookNumber = Librarian.findBook(book),
         reference = Librarian.createReferenceString(
             book, chapter, startVerseNumber, endVerseNumber),
