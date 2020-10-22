@@ -1,5 +1,4 @@
 import '../../reference_parser.dart';
-import 'package:reference_parser/src/model/Reference.dart';
 import 'package:reference_parser/src/model/Verse.dart';
 import 'BibleData.dart';
 
@@ -35,7 +34,7 @@ class Librarian {
     if (book is String) {
       book = findBook(book);
     }
-    if (!(book is int)) {
+    if (book is! int) {
       return {};
     }
     var list = BibleData.bookNames[book - 1];
@@ -51,7 +50,7 @@ class Librarian {
     if (book is String) {
       book = findBook(book);
     }
-    if (!(book is int)) {
+    if (book is! int) {
       return null;
     }
     chapter ??= BibleData.lastVerse[book - 1].length;
@@ -99,7 +98,7 @@ class Librarian {
     if (book is String) {
       book = findBook(book);
     }
-    if (!(book is int)) return false;
+    if (book is! int) return false;
 
     if (!(book > 0 && BibleData.lastVerse.length >= book)) {
       return false;
