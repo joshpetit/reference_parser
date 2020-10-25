@@ -1,7 +1,8 @@
 import 'package:reference_parser/src/util/VerseEnum.dart';
 import 'package:reference_parser/src/data/Librarian.dart';
+import 'package:reference_parser/src/model/BibleReference.dart';
 
-class Verse {
+class Verse extends BibleReference {
   final String reference;
   final String book;
   final int bookNumber;
@@ -16,5 +17,6 @@ class Verse {
         chapter = chapter,
         verseNumber = verseNumber,
         verseType = ReferenceType.VERSE,
-        isValid = Librarian.verifyVerse(book, chapter, verseNumber);
+        isValid = Librarian.verifyVerse(book, chapter, verseNumber),
+        super(book);
 }

@@ -1,9 +1,10 @@
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:reference_parser/src/model/Verse.dart';
+import 'package:reference_parser/src/model/BibleReference.dart';
 
 import 'package:reference_parser/src/util/VerseEnum.dart';
 
-class Reference {
+class Reference extends BibleReference {
   final String reference;
   final String book;
   final int bookNumber;
@@ -34,7 +35,8 @@ class Reference {
         reference = Librarian.createReferenceString(book, chp, svn, evn),
         referenceType = Librarian.identifyReferenceType(book, chp, svn, evn),
         isValid = Librarian.verifyVerse(book, chp, svn) &&
-            Librarian.verifyVerse(book, chp, evn);
+            Librarian.verifyVerse(book, chp, evn),
+        super(book);
   @override
   String toString() {
     return reference;
