@@ -14,4 +14,8 @@ abstract class BibleReference {
         bookNumber = Librarian.findBook(book),
         referenceType = Librarian.identifyReferenceType(book),
         isValid = Librarian.verifyVerse(book);
+
+  String toString() {
+    return reference;
+  }
 }

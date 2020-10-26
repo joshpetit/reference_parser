@@ -37,8 +37,4 @@ class Reference extends BibleReference {
         isValid = Librarian.verifyVerse(book, chp, svn) &&
             Librarian.verifyVerse(book, chp, evn),
         super(book);
-  @override
-  String toString() {
-    return reference;
-  }
 }
