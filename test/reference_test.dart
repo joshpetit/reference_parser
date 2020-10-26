@@ -70,6 +70,7 @@ void main() {
     expect(verse.chapter, equals(2));
     expect(verse.bookNumber, equals(1));
     expect(verse.verseNumber, equals(3));
+    expect(verse.reference, equals('Genesis 2:3'));
     expect(verse.isValid, equals(true));
   });
   test('Reference [start/end]Verse objects for single verse references', () {
