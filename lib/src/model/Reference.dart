@@ -5,20 +5,20 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 import 'package:reference_parser/src/util/VerseEnum.dart';
 
 class Reference extends BibleReference {
+  @override
   final String reference;
-  final String book;
-  final int bookNumber;
   final int chapter;
   final int startVerseNumber;
   final Verse startVerse;
   final int endVerseNumber;
   final Verse endVerse;
+  @override
   final ReferenceType referenceType;
+  @override
   final bool isValid;
 
   Reference(book, [chp, svn, evn])
-      : book = book,
-        chapter = chp ?? 1,
+      : chapter = chp ?? 1,
         startVerseNumber = svn ?? 1,
         startVerse = svn != null
             ? Verse(book, chp, svn)
@@ -31,7 +31,6 @@ class Reference extends BibleReference {
             : svn != null
                 ? Verse(book, chp, svn)
                 : Librarian.getLastVerse(book, chp),
-        bookNumber = Librarian.findBook(book),
         reference = Librarian.createReferenceString(book, chp, svn, evn),
         referenceType = Librarian.identifyReferenceType(book, chp, svn, evn),
         isValid = Librarian.verifyVerse(book, chp, svn) &&
