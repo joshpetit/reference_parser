@@ -7,9 +7,11 @@ void main() {
     //test full book name
     var bookNumber = Librarian.findBook('genesis');
     expect(bookNumber, equals(1), reason: 'Genesis is the first book');
+
     //test osis book name
     bookNumber = Librarian.findBook('1cor');
     expect(bookNumber, equals(46), reason: '1cor is the 46th book');
+
     //test variant book name
     bookNumber = Librarian.findBook('psalm');
     expect(bookNumber, equals(19), reason: 'Psalm(s) is the 19th book');
@@ -21,10 +23,13 @@ void main() {
   test('Librarian checks book validity correctly', () {
     expect(Librarian.checkBook('joe'), equals(false),
         reason: 'Joe is an invalid book');
+
     expect(Librarian.checkBook('1cor'), equals(true),
         reason: '1cor is a valid book');
+
     expect(Librarian.checkBook('Genesis'), equals(true),
         reason: 'Genesis is a vlid book');
+
     expect(Librarian.checkBook('jn'), equals(true),
         reason: 'jn is a valid book');
   });
@@ -47,12 +52,16 @@ void main() {
   test('Librarian correctly verifies verses', () {
     expect(Librarian.verifyVerse(1), equals(true),
         reason: 'First book should exist');
+
     expect(Librarian.verifyVerse(33), equals(true),
         reason: 'Middle book should exist');
+
     expect(Librarian.verifyVerse(66), equals(true),
         reason: 'Last book should exist');
+
     expect(Librarian.verifyVerse(67), equals(false),
         reason: '67th book does not exist');
+
     expect(Librarian.verifyVerse(-1), equals(false),
         reason: 'Negative books do not exist');
 
@@ -79,10 +88,13 @@ void main() {
   });
   test('Librarian correctly creates ReferenceType', () {
     expect(Librarian.identifyReferenceType('John'), equals(ReferenceType.BOOK));
+
     expect(Librarian.identifyReferenceType('John', 1),
         equals(ReferenceType.CHAPTER));
+
     expect(Librarian.identifyReferenceType('Joe', 2, 4),
         equals(ReferenceType.VERSE));
+
     expect(Librarian.identifyReferenceType('Joe', 2, 4, 5),
         equals(ReferenceType.RANGE));
   });
