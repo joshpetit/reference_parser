@@ -40,7 +40,7 @@ class Reference extends BibleReference {
   /// Returns [null] if neither are specified.
   final Verse endVerse;
 
-  /// The type of reference. Either VERSE, RANGE, CHAPTER, or BOOK
+  /// The type of reference. Either VERSE, RANGE, CHAPTER, or BOOK.
   @override
   final ReferenceType referenceType;
 
@@ -49,7 +49,7 @@ class Reference extends BibleReference {
   final bool isValid;
 
   Reference(book, [chp, svn, evn])
-      : chapter = chp ?? 1,
+      : chapter = chp,
         startVerseNumber = svn ?? 1,
         startVerse = svn != null
             ? Verse(book, chp, svn)
