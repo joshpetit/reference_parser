@@ -5,19 +5,19 @@ import 'package:test/test.dart';
 void main() {
   test('Retrieves correct book number', () {
     //test full book name
-    var bookNumber = Librarian.findBook('genesis');
+    var bookNumber = Librarian.findBookNumber('genesis');
     expect(bookNumber, equals(1), reason: 'Genesis is the first book');
 
     //test osis book name
-    bookNumber = Librarian.findBook('1cor');
+    bookNumber = Librarian.findBookNumber('1cor');
     expect(bookNumber, equals(46), reason: '1cor is the 46th book');
 
     //test variant book name
-    bookNumber = Librarian.findBook('psalm');
+    bookNumber = Librarian.findBookNumber('psalm');
     expect(bookNumber, equals(19), reason: 'Psalm(s) is the 19th book');
   });
   test('Returns null for nonexistent books', () {
-    var bookNumber = Librarian.findBook('joe');
+    var bookNumber = Librarian.findBookNumber('joe');
     expect(bookNumber, equals(null), reason: 'Joe is not a book in the bible');
   });
   test('Librarian checks book validity correctly', () {

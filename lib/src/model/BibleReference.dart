@@ -29,7 +29,7 @@ abstract class BibleReference {
   BibleReference(book)
       : book = book,
         reference = Librarian.createReferenceString(book),
-        bookNumber = Librarian.findBook(book),
+        bookNumber = Librarian.findBookNumber(book),
         referenceType = Librarian.identifyReferenceType(book),
         _bookNames = Librarian.getBookNames(book),
         isValid = Librarian.verifyVerse(book);

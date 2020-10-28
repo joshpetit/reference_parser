@@ -3,8 +3,8 @@ import 'package:reference_parser/src/model/Verse.dart';
 import 'BibleData.dart';
 
 class Librarian {
-  ///Returns the integer of the book, checks for variant spellings also
-  static int findBook(String book) {
+  ///Returns the book number from a string
+  static int findBookNumber(String book) {
     book = book.toLowerCase();
     var val = BibleData.books[book];
     if (val != null) {
@@ -32,7 +32,7 @@ class Librarian {
   ///Returns the osis, abbr, name, and short versions of a book title
   static Map<String, String> getBookNames(dynamic book) {
     if (book is String) {
-      book = findBook(book);
+      book = findBookNumber(book);
     }
     if (book is! int) {
       return {};
@@ -48,7 +48,7 @@ class Librarian {
 
   static int getLastVerseNumber(dynamic book, [int chapter]) {
     if (book is String) {
-      book = findBook(book);
+      book = findBookNumber(book);
     }
     if (book is! int) {
       return null;
@@ -62,7 +62,7 @@ class Librarian {
     if (book is int) {
       bookNumber = book;
     } else if (book is String) {
-      bookNumber = findBook(book);
+      bookNumber = findBookNumber(book);
     } else {
       return null;
     }
@@ -96,7 +96,7 @@ class Librarian {
   ///positional parameters
   static bool verifyVerse(dynamic book, [int chapter, int verse]) {
     if (book is String) {
-      book = findBook(book);
+      book = findBookNumber(book);
     }
     if (book is! int) return false;
 
