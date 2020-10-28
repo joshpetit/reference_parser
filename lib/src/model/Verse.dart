@@ -8,13 +8,14 @@ class Verse extends BibleReference {
   final int chapter;
   final int verseNumber;
   @override
+  ReferenceType referenceType;
+  @override
   final bool isValid;
-  final ReferenceType verseType;
   Verse(book, chapter, verseNumber)
       : reference = Librarian.createReferenceString(book, chapter, verseNumber),
         chapter = chapter,
         verseNumber = verseNumber,
-        verseType = ReferenceType.VERSE,
+        referenceType = ReferenceType.VERSE,
         isValid = Librarian.verifyVerse(book, chapter, verseNumber),
         super(book);
 }
