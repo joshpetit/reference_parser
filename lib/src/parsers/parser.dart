@@ -1,10 +1,10 @@
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:reference_parser/src/model/Reference.dart';
 
-var exp = RegExp(r'([1-3]?[^\s]+[A-Za-z ]+[^\d ]?) ?(\d+)?:?(\d+)?-?(\d+)?');
+var _exp = RegExp(r'([1-3]?[^\s]+[A-Za-z ]+[^\d ]?) ?(\d+)?:?(\d+)?-?(\d+)?');
 
 Map<String, String> _parseString(String reference) {
-  var match = exp.firstMatch(reference);
+  var match = _exp.firstMatch(reference);
   if (match == null) return null;
   var thing = match.groups([0, 1, 2, 3, 4]);
   return {
@@ -16,7 +16,12 @@ Map<String, String> _parseString(String reference) {
   };
 }
 
-/// Create a reference from a string
+/// Create a reference by parsing a string
+///
+/// Currently only functions with simple references
+/// ```dart
+///parseReference('Gen 2:4');
+///```
 Reference parseReference(String stringReference) {
   var pr = _parseString(stringReference);
   if (pr == null) return Reference('');
@@ -30,6 +35,10 @@ Reference parseReference(String stringReference) {
   return reference;
 }
 
+/// Directly create a reference, parses [book] for variant spellings
+///
+/// initializes the [Reference] book to the long name of the passed
+/// in book parameter
 Reference createReference(String book,
     [int chapter, int startVerse, int endVerse]) {
   book = Librarian.getBookNames(book)['name'] ?? book;
