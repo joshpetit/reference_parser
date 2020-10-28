@@ -9,7 +9,9 @@ void main() {
     expect(ref.book, equals('James'));
     expect(ref.reference, equals('James'));
     expect(ref.startVerseNumber, equals(1));
-    expect(ref.chapter, equals(1));
+    expect(ref.endVerseNumber, equals(20),
+        reason: 'The last verse in James is 20');
+    expect(ref.chapter, equals(null));
     expect(ref.referenceType, equals(ReferenceType.BOOK));
   });
   test('Creation of book and chapter reference', () {
