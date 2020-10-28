@@ -8,7 +8,7 @@ abstract class BibleReference {
 
   /// The whole book name of the reference.
   ///
-  /// Returns [null] if the book name could not be parsed.
+  /// Returns `null` if the book name could not be parsed.
   final String book;
 
   /// The different reference formats for book names.
@@ -17,7 +17,7 @@ abstract class BibleReference {
 
   /// The book number for the passed in reference book.
   ///
-  /// Returns [null] if the book name is null or invalid.
+  /// Returns `null` if the book name is null or invalid.
   final int bookNumber;
 
   /// The type of reference.

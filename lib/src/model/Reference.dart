@@ -11,7 +11,7 @@ class Reference extends BibleReference {
 
   /// The chapter number in this reference.
   ///
-  /// Defaults to 1.
+  /// initializes to `null` if unspecified
   final int chapter;
 
   /// The first verse number found in this reference.
@@ -25,7 +25,7 @@ class Reference extends BibleReference {
   /// [startVerse] is not specified.
   /// Returns the verse object of the first verse in the book if
   /// [chapter] is not specified.
-  /// Returns [null] if neither are specified.
+  /// Returns `null` if neither are specified.
   final Verse startVerse;
 
   /// The last verse number found in this reference.
@@ -37,7 +37,7 @@ class Reference extends BibleReference {
   /// [endVerse] is not specified.
   /// Returns the verse object of the last verse in the book if
   /// [chapter] is not specified.
-  /// Returns [null] if neither are specified.
+  /// Returns `null` if neither are specified.
   final Verse endVerse;
 
   /// The type of reference. Either VERSE, RANGE, CHAPTER, or BOOK.
