@@ -6,65 +6,72 @@ void main() {
   test('Retrieves correct book number', () {
     //test full book name
     var bookNumber = Librarian.findBook('genesis');
-    expect(bookNumber, 1);
+    expect(bookNumber, equals(1), reason: 'Genesis is the first book');
     //test osis book name
     bookNumber = Librarian.findBook('1cor');
-    expect(bookNumber, 46);
+    expect(bookNumber, equals(46), reason: '1cor is the 46th book');
     //test variant book name
     bookNumber = Librarian.findBook('psalm');
-    expect(bookNumber, 19);
+    expect(bookNumber, equals(19), reason: 'Psalm(s) is the 19th book');
   });
   test('Returns null for nonexistent books', () {
     var bookNumber = Librarian.findBook('joe');
-    expect(bookNumber, null);
+    expect(bookNumber, equals(null), reason: 'Joe is not a book in the bible');
   });
   test('Librarian checks book validity correctly', () {
-    expect(Librarian.checkBook('joe'), false);
-    expect(Librarian.checkBook('1cor'), true);
-    expect(Librarian.checkBook('Genesis'), true);
-    expect(Librarian.checkBook('jn'), true);
+    expect(Librarian.checkBook('joe'), equals(false),
+        reason: 'Joe is an invalid book');
+    expect(Librarian.checkBook('1cor'), equals(true),
+        reason: '1cor is a valid book');
+    expect(Librarian.checkBook('Genesis'), equals(true),
+        reason: 'Genesis is a vlid book');
+    expect(Librarian.checkBook('jn'), equals(true),
+        reason: 'jn is a valid book');
   });
   test('Librarian returns correct book names', () {
     var names = Librarian.getBookNames(1);
-    expect(names['osis'], 'Gen');
-    expect(names['abbr'], 'GEN');
-    expect(names['name'], 'Genesis');
-    expect(names['short'], 'Gn');
+    expect(names['osis'], equals('Gen'));
+    expect(names['abbr'], equals('GEN'));
+    expect(names['name'], equals('Genesis'));
+    expect(names['short'], equals('Gn'));
 
     names = Librarian.getBookNames('1 Corinthians');
-    expect(names['osis'], '1Cor');
-    expect(names['abbr'], '1CO');
-    expect(names['name'], '1 Corinthians');
-    expect(names['short'], '1 Cor');
+    expect(names['osis'], equals('1Cor'));
+    expect(names['abbr'], equals('1CO'));
+    expect(names['name'], equals('1 Corinthians'));
+    expect(names['short'], equals('1 Cor'));
 
     names = Librarian.getBookNames('');
     expect(names.length, equals(0));
   });
   test('Librarian correctly verifies verses', () {
-    expect(Librarian.verifyVerse(1), true, reason: 'First book should exist');
-    expect(Librarian.verifyVerse(33), true, reason: 'Middle book should exist');
-    expect(Librarian.verifyVerse(66), true, reason: 'Last book should exist');
-    expect(Librarian.verifyVerse(67), false,
+    expect(Librarian.verifyVerse(1), equals(true),
+        reason: 'First book should exist');
+    expect(Librarian.verifyVerse(33), equals(true),
+        reason: 'Middle book should exist');
+    expect(Librarian.verifyVerse(66), equals(true),
+        reason: 'Last book should exist');
+    expect(Librarian.verifyVerse(67), equals(false),
         reason: '67th book does not exist');
-    expect(Librarian.verifyVerse(-1), false,
+    expect(Librarian.verifyVerse(-1), equals(false),
         reason: 'Negative books do not exist');
 
-    expect(Librarian.verifyVerse(33, 1), true,
+    expect(Librarian.verifyVerse(33, 1), equals(true),
         reason: 'Book and chapter should exist');
 
-    expect(Librarian.verifyVerse(33, 8), false,
+    expect(Librarian.verifyVerse(33, 8), equals(false),
         reason: 'Book and chapter should not exist');
 
-    expect(Librarian.verifyVerse(33, 1, 1), true,
+    expect(Librarian.verifyVerse(33, 1, 1), equals(true),
         reason: 'Book, chapter, and verse should exist');
 
-    expect(Librarian.verifyVerse(33, 1, 16), true,
+    expect(Librarian.verifyVerse(33, 1, 16), equals(true),
         reason: 'Book, chapter, and ending verse should exist');
 
-    expect(Librarian.verifyVerse(33, 1, 17), false,
+    expect(Librarian.verifyVerse(33, 1, 17), equals(false),
         reason: 'Verse should not exist');
 
-    expect(Librarian.verifyVerse('John', 1, 1), true,
+    expect(Librarian.verifyVerse('John', 1, 1), equals(true),
         reason: 'String book references should work');
   });
   test('Librarian correctly fetches last verses numbers', () {
