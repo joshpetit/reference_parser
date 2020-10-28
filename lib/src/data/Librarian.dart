@@ -3,7 +3,7 @@ import 'package:reference_parser/src/model/Verse.dart';
 import 'BibleData.dart';
 
 class Librarian {
-  ///Returns the book number from a string
+  ///Returns the book number from a string.
   static int findBookNumber(String book) {
     book = book.toLowerCase();
     var val = BibleData.books[book];
@@ -21,7 +21,7 @@ class Librarian {
     return BibleData.variants[book];
   }
 
-  ///Validate that a book is in the bible (book name or OSIS format)
+  ///Validate that a book is in the bible, does not validate mispellings.
   static bool checkBook(String book) {
     book = book.toLowerCase();
     return BibleData.books.containsKey(book) ||
@@ -29,7 +29,7 @@ class Librarian {
         BibleData.shortenedBooks.containsKey(book);
   }
 
-  ///Returns the osis, abbr, name, and short versions of a book title
+  ///Returns the osis, abbr, name, and short versions of a book title.
   static Map<String, String> getBookNames(dynamic book) {
     if (book is String) {
       book = findBookNumber(book);
@@ -46,6 +46,7 @@ class Librarian {
     };
   }
 
+  /// Gets the last verse number in a specified book or book + chapter.
   static int getLastVerseNumber(dynamic book, [int chapter]) {
     if (book is String) {
       book = findBookNumber(book);
@@ -57,6 +58,7 @@ class Librarian {
     return BibleData.lastVerse[book - 1][chapter - 1];
   }
 
+  /// Creates a verse object for the last verse in a book or book + chapter.
   static Verse getLastVerse(dynamic book, [int chapter]) {
     int bookNumber;
     if (book is int) {
@@ -79,6 +81,7 @@ class Librarian {
     return Verse(book, chapter, lastVerse);
   }
 
+  /// Returns the type of reference based on the number of passed in arguments.
   static ReferenceType identifyReferenceType(book,
       [chapter, startVerse, endVerse]) {
     if (endVerse != null) {
@@ -92,8 +95,7 @@ class Librarian {
     }
   }
 
-  ///Verifies that a verse is in the bible, optional chapter and verse
-  ///positional parameters
+  /// Verifies that a book, and optionally chapter and verse, are in the bible.
   static bool verifyVerse(dynamic book, [int chapter, int verse]) {
     if (book is String) {
       book = findBookNumber(book);
@@ -112,7 +114,7 @@ class Librarian {
     return true;
   }
 
-  ///Creates a *String* reference from a book and optional chapter and verses
+  ///Creates a String reference from a book and optionallly chapter and verses.
   static String createReferenceString(String book,
       [int chapter, int startVerse, int endVerse]) {
     var reference = '' + book;
