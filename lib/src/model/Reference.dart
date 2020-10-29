@@ -4,14 +4,15 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 
 import 'package:reference_parser/src/util/VerseEnum.dart';
 
-/// A general BibleReference, can contain all [ReferenceType]
+/// A general BibleReference, can contain all [ReferenceType]s.
 class Reference extends BibleReference {
+  /// The representation of the reference.
   @override
   final String reference;
 
   /// The chapter number in this reference.
   ///
-  /// initializes to `null` if unspecified
+  /// Initializes to `null` if unspecified.
   final int chapter;
 
   /// The first verse number found in this reference.
@@ -19,32 +20,29 @@ class Reference extends BibleReference {
   /// Defaults to 1.
   final int startVerseNumber;
 
-  /// The [Verse] object representing the first verse in the reference.
+  /// The [Verse] object representing the first verse in this reference.
   ///
   /// Returns the verse object of the first verse in the chapter if
-  /// [startVerse] is not specified.
-  /// Returns the verse object of the first verse in the book if
-  /// [chapter] is not specified.
-  /// Returns `null` if neither are specified.
+  /// [startVerse] is not specified or the verse object of the first
+  /// verse in the book if [chapter] is not specified.
   final Verse startVerse;
 
   /// The last verse number found in this reference.
   final int endVerseNumber;
 
-  /// The [Verse] object representing the last verse in the reference.
+  /// The [Verse] object representing the last verse in this reference.
   ///
   /// Returns the verse object of the last verse in the chapter if
-  /// [endVerse] is not specified.
-  /// Returns the verse object of the last verse in the book if
-  /// [chapter] is not specified.
-  /// Returns `null` if neither are specified.
+  /// [endVerse] is not specified or the verse object of the last verse in the
+  /// book if [chapter] is not specified.
   final Verse endVerse;
 
-  /// The type of reference. Either VERSE, RANGE, CHAPTER, or BOOK.
+  /// The type of reference.
+  /// [ReferenceType.VERSE] [ReferenceType.RANGE],[ReferenceType.CHAPTER], [ReferenceType.BOOK].
   @override
   final ReferenceType referenceType;
 
-  /// Whether the reference is within the bible.
+  /// Whether this reference is within the bible.
   @override
   final bool isValid;
 
