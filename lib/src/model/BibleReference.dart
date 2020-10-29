@@ -1,14 +1,16 @@
 import 'package:reference_parser/src/util/VerseEnum.dart';
 import 'package:reference_parser/src/data/Librarian.dart';
 
-/// Base class for all reference objects
+/// Base class for all reference objects, basically a [ReferenceType.BOOK].
 abstract class BibleReference {
   /// The representation of the reference.
   final String reference;
 
-  /// The whole book name of the reference.
+  /// The full book name of the reference.
   ///
-  /// Returns `null` if the book name could not be parsed.
+  /// Can be an invalid book reference, always.
+  /// check [isValid] to verify the reference's
+  /// authenticity.
   final String book;
 
   /// The different reference formats for book names.
@@ -17,7 +19,7 @@ abstract class BibleReference {
 
   /// The book number for the passed in reference book.
   ///
-  /// Returns `null` if the book name is null or invalid.
+  /// `null` if the book name is null or invalid.
   final int bookNumber;
 
   /// The type of reference.
@@ -26,6 +28,7 @@ abstract class BibleReference {
   /// Whether the reference is in the bible.
   final bool isValid;
 
+  /// Constructs the [BibleReference] as a reference to a book.
   BibleReference(book)
       : book = book,
         reference = Librarian.createReferenceString(book),
@@ -40,12 +43,12 @@ abstract class BibleReference {
     return reference;
   }
 
-  /// The title cased representation of the reference's book.
+  /// The title cased representation for this reference's book.
   String get osis => _bookNames['osis'];
 
-  /// The uppercased letter paratext abbreviation of the reference's book.
+  /// The uppercased paratext abbreviation for this reference's book.
   String get abbr => _bookNames['abbr'];
 
-  /// The shortest abbreviation for the reference's book.
+  /// The shortest standard abbreviation for this reference's book.
   String get short => _bookNames['short'];
 }
