@@ -55,6 +55,10 @@ void main() {
     ref = Reference('Psalms', 1, 5, 100);
     expect(ref.isValid, equals(false), reason: 'End verse should not be valid');
   });
+  test('Reference.book field initializes to full book name', () {
+    var ref = Reference('Ps');
+    expect(ref.book, equals('Psalms'));
+  });
   test('Book numbers correctly initialized', () {
     var ref = Reference('Genesis');
     expect(ref.bookNumber, equals(1), reason: 'Genesis is the 1st book');
