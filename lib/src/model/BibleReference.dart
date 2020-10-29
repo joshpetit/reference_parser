@@ -30,7 +30,7 @@ abstract class BibleReference {
 
   /// Constructs the [BibleReference] as a reference to a book.
   BibleReference(book)
-      : book = book,
+      : book = Librarian.getBookNames(book)['name'] ?? book,
         reference = Librarian.createReferenceString(book),
         bookNumber = Librarian.findBookNumber(book),
         referenceType = Librarian.identifyReferenceType(book),
