@@ -29,7 +29,7 @@ abstract class BibleReference {
   final bool isValid;
 
   /// Constructs the [BibleReference] as a reference to a book.
-  BibleReference(book)
+  BibleReference(String book)
       : book = Librarian.getBookNames(book)['name'] ?? book,
         reference = Librarian.createReferenceString(book),
         bookNumber = Librarian.findBookNumber(book),

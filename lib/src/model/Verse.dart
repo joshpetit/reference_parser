@@ -23,7 +23,7 @@ class Verse extends BibleReference {
   /// Whether this verse is found within the bible.
   @override
   final bool isValid;
-  Verse(book, chapter, verseNumber)
+  Verse(String book, int chapter, int verseNumber)
       : reference = Librarian.createReferenceString(book, chapter, verseNumber),
         chapter = chapter,
         verseNumber = verseNumber,

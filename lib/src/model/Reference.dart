@@ -46,7 +46,7 @@ class Reference extends BibleReference {
   @override
   final bool isValid;
 
-  Reference(book, [chp, svn, evn])
+  Reference(String book, [int chp, int svn, int evn])
       : chapter = chp,
         startVerseNumber = svn ?? 1,
         startVerse = svn != null
