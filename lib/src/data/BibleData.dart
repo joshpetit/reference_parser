@@ -208,6 +208,7 @@ class BibleData {
 
   ///Varied ways some books are referenced
   static const variants = {
+    'exo': 2,
     'psalm': 19,
     'songs': 22,
     'song of songs': 22,
