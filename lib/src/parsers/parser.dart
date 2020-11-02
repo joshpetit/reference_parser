@@ -11,11 +11,26 @@ final _exp = _createFullRegex();
 /// parseReference('I love James 4:5 and Matthew 2:4');
 ///```
 /// Returns a reference object of James :45.
+///
+/// **Note**: The word 'is' will be parsed as the book of Isaiah.
+/// An efficient workaround is in the works.
 Reference parseReference(String stringReference) {
   var match = _exp.firstMatch(stringReference);
   if (match == null) return Reference('');
   return _createRefFromMatch(match);
 }
+
+/// Finds all the references within a string. Returns an empty
+/// list when no references are found.
+///
+/// ```dart
+/// parseAllReferences('I love James 4:5 and Matthew 2:4');
+///```
+/// Returns a list of reference objects with James 4:5
+/// and Matthew 2:4
+///
+/// **Note**: The word 'is' will be parsed as the book of Isaiah.
+/// An efficient workaround is in the works.
 
 List<Reference> parseAllReferences(String stringReference) {
   List<Reference> refs = [];
