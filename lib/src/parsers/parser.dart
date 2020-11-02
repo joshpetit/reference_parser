@@ -4,19 +4,6 @@ import 'package:reference_parser/src/model/Reference.dart';
 
 final _exp = _createFullRegex();
 
-Map<String, String> _parseString(String reference) {
-  var match = _exp.firstMatch(reference);
-  if (match == null) return null;
-  var thing = match.groups([0, 1, 2, 3, 4]);
-  return {
-    'reference': thing[0],
-    'book': thing[1],
-    'chapter': thing[2],
-    'startVerse': thing[3],
-    'endVerse': thing[4],
-  };
-}
-
 /// Finds the first reference from within a string.
 ///
 ///
@@ -25,16 +12,9 @@ Map<String, String> _parseString(String reference) {
 ///```
 /// Returns a reference object of James :45.
 Reference parseReference(String stringReference) {
-  var pr = _parseString(stringReference);
-  if (pr == null) return Reference('');
-  var book = Librarian.getBookNames(pr['book'])['name'] ?? pr['book'];
-  var reference = Reference(
-      book,
-      pr['chapter'] == null ? null : int.parse(pr['chapter']),
-      pr['startVerse'] == null ? null : int.parse(pr['startVerse']),
-      pr['endVerse'] == null ? null : int.parse(pr['endVerse']));
-
-  return reference;
+  var match = _exp.firstMatch(stringReference);
+  if (match == null) return Reference('');
+  return _createRefFromMatch(match);
 }
 
 List<Reference> parseAllReferences(String stringReference) {
