@@ -37,6 +37,23 @@ Reference parseReference(String stringReference) {
   return reference;
 }
 
+List<Reference> parseAllReferences(String stringReference) {
+  List<Reference> refs = [];
+  var matches = _exp.allMatches(stringReference);
+  if (matches == null) return refs;
+  matches.forEach((x) => refs.add(_createRefFromMatch(x)));
+  return refs;
+}
+
+Reference _createRefFromMatch(RegExpMatch match) {
+  var pr = match.groups([0, 1, 2, 3, 4]);
+  return Reference(
+      Librarian.getBookNames(pr[1])['name'] ?? pr[1],
+      pr[2] == null ? null : int.parse(pr[2]),
+      pr[3] == null ? null : int.parse(pr[3]),
+      pr[4] == null ? null : int.parse(pr[4]));
+}
+
 RegExp _createFullRegex() {
   var books = BibleData.bookNames.expand((i) => i).toList();
   books.addAll(BibleData.variants.keys);
