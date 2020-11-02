@@ -47,15 +47,4 @@ void main() {
     //expect(ref.book, equals(''));
     //expect(ref.isValid, equals(false));
   });
-
-  test('Creation of reference from createReference', () {
-    var ref = createReference('James', 2, 1);
-    expect(ref.book, equals('James'));
-    expect(ref.chapter, equals(2));
-    expect(ref.startVerseNumber, equals(1));
-
-    ref = createReference('JOHN', 2, 1);
-    expect(ref.book, equals('John'));
-    expect(ref.startVerseNumber, equals(1));
-  });
 }

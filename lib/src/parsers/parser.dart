@@ -23,7 +23,7 @@ Map<String, String> _parseString(String reference) {
 /// ```dart
 /// parseReference('I love James 4:5 and Matthew 2:4');
 ///```
-/// Returns a reference object of James :45
+/// Returns a reference object of James :45.
 Reference parseReference(String stringReference) {
   var pr = _parseString(stringReference);
   if (pr == null) return Reference('');
@@ -35,17 +35,6 @@ Reference parseReference(String stringReference) {
       pr['endVerse'] == null ? null : int.parse(pr['endVerse']));
 
   return reference;
-}
-
-/// Directly create a reference, parses [book] for variant spellings
-///
-/// initializes the [Reference] book to the long name of the passed
-/// in book parameter
-Reference createReference(String book,
-    [int chapter, int startVerse, int endVerse]) {
-  book = Librarian.getBookNames(book)['name'] ?? book;
-  return Reference(
-      book, chapter = chapter, startVerse = startVerse, endVerse = endVerse);
 }
 
 RegExp _createFullRegex() {
