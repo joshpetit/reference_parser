@@ -36,7 +36,6 @@ void main() {
     expect(ref.book, equals('Isaiah'), reason: '\'is\' is parsed first');
 
     ref = parseReference('Only jam should be parsed');
-    print(ref.reference);
     expect(ref.book, equals('James'));
 
     // I guess the Gospel of Joe does exist!
@@ -46,5 +45,23 @@ void main() {
     //ref = parseReference('Joe 4:5-10');
     //expect(ref.book, equals(''));
     //expect(ref.isValid, equals(false));
+  });
+  test('Parsing all references', () {
+    var refs = parseAllReferences('I hope Matt 2:4 and James 5:1-5 get parsed');
+    expect(refs.length, equals(2));
+    var mat = refs[0];
+    var jam = refs[1];
+    expect(mat.book, equals('Matthew'));
+    expect(mat.chapter, equals(2));
+    expect(mat.startVerseNumber, equals(4));
+
+    expect(jam.book, equals('James'));
+    expect(jam.chapter, equals(5));
+    expect(jam.startVerseNumber, equals(1));
+    expect(jam.endVerseNumber, equals(5));
+
+    refs = parseAllReferences('This contains nothing');
+    expect(refs.length, equals(0),
+        reason: 'This string contains no references');
   });
 }
