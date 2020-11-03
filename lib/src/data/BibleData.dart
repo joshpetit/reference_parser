@@ -206,15 +206,54 @@ class BibleData {
     'rv': 66
   };
 
-  ///Varied ways some books are referenced
+  /// Varied ways some books are referenced and Paratext
+  /// abbreviations not contained in OSIS.
   static const variants = {
     'exo': 2,
+    'deu': 5,
+    'jdg': 7,
+    'rut': 8,
+    '1sa': 9,
+    '2sa': 10,
+    '1ki': 11,
+    '2ki': 12,
+    '1ch': 13,
+    '2ch': 14,
+    'job': 18,
     'psalm': 19,
+    'psa': 19,
+    'pro': 20,
+    'ecc': 21,
+    'sos': 22,
     'songs': 22,
     'song of songs': 22,
     'songs of solomon': 22,
+    'eze': 26,
+    'joe': 29,
+    'amo': 30,
+    'oba': 31,
+    'mat': 40,
+    'mar': 41,
+    'luk': 42,
+    'joh': 43,
+    'act': 44,
     'acts of the apostles': 44,
+    '1co': 46,
+    '2co': 47,
+    'php': 50,
+    '1th': 51,
+    '2th': 52,
+    '1ti': 54,
+    '2ti': 55,
+    'tit': 56,
+    'phm': 57,
     'jam': 59,
+    '1pe': 60,
+    '2pe': 61,
+    '1jo': 62,
+    '2jo': 63,
+    '3jo': 64,
+    'jde': 65,
     'revelations': 66
   };
 
