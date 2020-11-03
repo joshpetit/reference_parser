@@ -38,13 +38,13 @@ void main() {
     ref = parseReference('Only jam should be parsed');
     expect(ref.book, equals('James'));
 
-    // I guess the Gospel of Joe does exist!
-    //
-    // TODO: Add paratext abbreviations to parsed books, filter out
-    // paratexts that are found in OSIS references.
-    //ref = parseReference('Joe 4:5-10');
-    //expect(ref.book, equals(''));
-    //expect(ref.isValid, equals(false));
+    ref = parseReference('Joe 2:5-10');
+    expect(ref.book, equals('Joel'));
+    expect(ref.isValid, equals(true));
+
+    ref = parseReference('Joseph 5:10-11');
+    expect(ref.isValid, equals(false));
+    expect(ref.book, equals(''));
   });
   test('Parsing all references', () {
     var refs = parseAllReferences('I hope Matt 2:4 and James 5:1-5 get parsed');
@@ -63,5 +63,12 @@ void main() {
     refs = parseAllReferences('This contains nothing');
     expect(refs.length, equals(0),
         reason: 'This string contains no references');
+  });
+  test('Verify paratexts', () {
+    var refs = parseAllReferences('Mat Jam PSA joh');
+    refs.forEach((x) {
+      expect(x.book.length, greaterThan(3),
+          reason: 'Paratexts should be parsed');
+    });
   });
 }
