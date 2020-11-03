@@ -1,3 +1,19 @@
+## 1.0.0
+- **Massive improvements to regex!** 
+- Now possible to parse texts from anywhere within a string. For example, 'I like Matthew 2:4.
+- Paratexts can be parsed(for example 'Mat', 'JAM', 'exo').
+- Parsing multiple texts from within a string possible with [parseAllReferences]
+- BibleReference class added as a base for Reference and Verse.
+- Added Verse, Reference, and BibleReference to export.
+- Added getters for osis, paratext abbreviation, and short bible books.
+- BibleReferences toString return the reference string.
+- Documentation added to functions and classes.
+- Chapters that are not specified initialize [BibleReference.chapter] to null.
+- Refactored Verse.verseType to [Verse.referenceType] .
+- Renamed Librarian.findBook to [Librarian.findBookNumber].
+- [BibleReference.book] initializes to the full book name.
+- Static typing in BibleReference object constructors
+
 ## 0.7.5
 - endVerseNumber and endVerse determine last verse if passed value is null
 - [start/end]VerseNumber fields initialize based on passed parameters
