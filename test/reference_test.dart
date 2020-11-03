@@ -69,9 +69,9 @@ void main() {
     ref = Reference('Revelation');
     expect(ref.bookNumber, equals(66), reason: 'Revelation is the 66th book');
 
-    ref = Reference('Joe');
+    ref = Reference('Joseph');
     expect(ref.bookNumber, equals(null),
-        reason: 'The Gospel of Joe does not exist');
+        reason: 'The Gospel of Joseph does not exist');
     expect(ref.endVerseNumber, equals(null));
   });
   test('Verse object creation', () {
@@ -100,9 +100,9 @@ void main() {
     expect(ref.startVerse.isValid, equals(true),
         reason: 'Verse is a valid reference');
 
-    ref = Reference('Joe', 2, 5);
+    ref = Reference('Joseph', 2, 5);
     expect(ref.startVerse.isValid, equals(false),
-        reason: 'Joe is not a book in the bible');
+        reason: 'Joseph is not a book in the bible');
   });
   test('Reference [start/end]Verse objects for range references', () {
     var ref = Reference('Genesis', 2, 5, 10);

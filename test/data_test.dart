@@ -17,12 +17,13 @@ void main() {
     expect(bookNumber, equals(19), reason: 'Psalm(s) is the 19th book');
   });
   test('Returns null for nonexistent books', () {
-    var bookNumber = Librarian.findBookNumber('joe');
-    expect(bookNumber, equals(null), reason: 'Joe is not a book in the bible');
+    var bookNumber = Librarian.findBookNumber('joseph');
+    expect(bookNumber, equals(null),
+        reason: 'Joseph is not a book in the bible');
   });
   test('Librarian checks book validity correctly', () {
-    expect(Librarian.checkBook('joe'), equals(false),
-        reason: 'Joe is an invalid book');
+    expect(Librarian.checkBook('joseph'), equals(false),
+        reason: 'Joseph is an invalid book');
 
     expect(Librarian.checkBook('1cor'), equals(true),
         reason: '1cor is a valid book');
@@ -92,10 +93,10 @@ void main() {
     expect(Librarian.identifyReferenceType('John', 1),
         equals(ReferenceType.CHAPTER));
 
-    expect(Librarian.identifyReferenceType('Joe', 2, 4),
+    expect(Librarian.identifyReferenceType('Joeseph', 2, 4),
         equals(ReferenceType.VERSE));
 
-    expect(Librarian.identifyReferenceType('Joe', 2, 4, 5),
+    expect(Librarian.identifyReferenceType('Joeseph', 2, 4, 5),
         equals(ReferenceType.RANGE));
   });
   test('Librarian correctly creates last verse objects', () {
