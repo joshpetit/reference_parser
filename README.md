@@ -52,7 +52,7 @@ All of these fields are specific to the BibleReference class and its subclasses
 -------
 
 ### Verses
-Verses are done a little differently to allow for more usecases. For example, to retrieve
+Verses are done a little differently to allow for more use-cases. For example, to retrieve
 the first/last verse in a given reference you can use the `[start/end]VerseNumber` field.
 
 So for our 'Matthew 2:4-10' example:
@@ -81,7 +81,7 @@ This is useful when we start working with chapter and book references.
 ------
 
 ### Chapters
-For this example we will use
+For this example, we will use
 ```dart
 ref = parseReference("James 5 is a chapter");
 ```
@@ -106,7 +106,7 @@ ref.endVerse.verseNumber // 20
 
 ### Books
 
-In this example we will set ref to
+In this example, we will set ref to
 ```dart
 ref = parseReference("Ecclesiastes is hard to spell");
 ```
@@ -148,7 +148,7 @@ This creates a reference to 'Matthew 2:4-10'.
 ### Invalid References
 
 All references have an `isValid` field that verifies if the book, chapter,
-starting, and ending verse are all in the bible. For `Verse` objects the book, chapter,
+starting, and ending verse are all in the bible. For `Verse` objects, the book, chapter,
 and verse number are verified.
 
 ```dart
