@@ -5,6 +5,10 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 import 'package:reference_parser/src/util/VerseEnum.dart';
 
 /// A general BibleReference, can contain all [ReferenceType]s.
+///
+/// Reference objects are general references that can refer to either a single verse, a range of verses,
+/// a single chapter, or entire an entire book. This is the returned type when using [parseReference]
+/// and [parseAllReferences].
 class Reference extends BibleReference {
   /// The representation of the reference.
   @override
