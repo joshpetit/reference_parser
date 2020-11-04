@@ -135,5 +135,10 @@ void main() {
     expect(ref.osis, equals('Gen'));
     expect(ref.abbr, equals('GEN'));
     expect(ref.short, equals('Gn'));
+
+    ref = Reference('Joseph', 2, 5, 10);
+    expect(ref.osis, equals(null));
+    expect(ref.abbr, equals(null));
+    expect(ref.short, equals(null));
   });
 }

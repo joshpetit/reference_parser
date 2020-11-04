@@ -28,8 +28,6 @@ var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2');
 ```
 This will create a list of [Reference]s with 'Genesis 5:7' and '1 Corinthians 2'
 
-----------
-
 ## Objects and References
 
 ### Reference
@@ -41,7 +39,7 @@ a single chapter, or entire an entire book. They extend the BibleReference class
 ref.book // 'Matthew'
 ref.bookNumber // 40
 ref.chapter // 2
-ref.isValid // true
+ref.isValid // true 
 ref.osis // 'Matt'
 ref.abbr // 'MAT'
 ref.short // 'Mt'
@@ -96,20 +94,28 @@ ref.referenceType // ReferenceType.CHAPTER
 ```
 In addition to this, the corresponding `[start/end]Verse` objects are initialized to the
 first and last verses of the chapter.
+```dart
+ref.startVerse.chapter // 5
+ref.startVerse.verseNumber // 1
+ref.endVerse.chapter // 5
+ref.endVerse.verseNumber // 20
+```
 
 ------
 
 ### Books
+
 In this example we will set ref to
 ```dart
 ref = parseReference("Ecclesiastes is hard to spell");
 ```
-This creates a [Reference] object of type ReferenceType.BOOK. One thing to note is that
+This creates a [Reference] object of type `ReferenceType.BOOK`. One thing to note is that
 there is no `chapter` class, so when the chapter is not specified it is initialized to null
 ```dart
 ref.chapter // null
+ref.ReferenceType // ReferenceType.CHAPTER
 ```
-Verse objects are still created however with reference to the first verse in the book and the
+Verse objects are still created but with reference to the first verse in the book and the
 last verse in the book.
 ```dart
 ref.startVerse // An object refering to 'Ecclesiastes 1:1'
@@ -124,3 +130,39 @@ ref.startVerseNumber // 1
 ref.endVerseNumber // 14
 ```
 ------
+
+## Constructing References
+
+You can directly create all BibleReferences by calling their constructors
+```dart
+var ref = Reference("Mat", 2, 4);
+```
+This creates a reference to 'Matthew 2:4'
+
+```dart
+ref = Reference("Mat", 2, 4, 10);
+```
+This creates a reference to 'Matthew 2:4-10'
+
+### Invalid References
+
+```dart
+ref = Reference("McDonald", 2, 4, 10);
+```
+This creates a reference to "McDonald 2:4-10". It is possible to create nonexistent
+book references. When this occurs, the `isValid` property will be set to false, but
+the fields that are passed in will still be initialized.
+```dart
+ref.reference // "McDonald 2:4-10"
+ref.book // "McDonald"
+ref.isValid // false
+ref.startVerseNumber // 4
+ref.endVerseNumber // 10
+ref.osis // null (and so will be all other secondary book fields)
+```
+The startVerse and endVerse objects will also be created, but the isValid field
+will be initialized to false
+```dart
+ref.startVerse.verseNumber // 4
+ref.startVerse.isValid // false
+```
