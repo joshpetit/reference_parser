@@ -12,14 +12,22 @@ to include the default exports of reference parser add this to your imports:
 import package:reference_parser/reference_parser.dart`
 ```
 
-### Single References
+### Parsing References
 To parse a single reference from a string, call the `parseReference` function:
 
 ```dart
-var ref = parseReference("I like Mat 2:4-10");
+var ref = parseReference("I like Mat 2:4-10 and John 3:1");
 ```
-
 This will return a reference object containing the reference to 'Matthew 2:4-10'.
+
+To parse all the references within a string and return a `List<Reference>`, call the
+`parseAllReferences` function:
+
+```dart
+var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2');
+```
+This will create a list of [Reference]s with 'Genesis 5:7' and '1 Corinthians 2'
+
 
 ### Reference
 ***(Prepare for the alliteration!)***
@@ -100,7 +108,7 @@ ref.endVerse // An object refering to 'Ecclesiastes 5:14', the last verse in Ecc
 ref.endVerse.chapter // 5
 ref.endVerse.verseNumber // 14
 ```
-The [start/end]VerseNumber fields in `ref` will still refere to the first and last verse numbers
+The [start/end]VerseNumber fields in `ref` will still refer to the first and last verse numbers
 within Ecclesiastes
 ```dart
 ref.startVerseNumber // 1
