@@ -4,7 +4,6 @@ A dart package that parses strings for bible references. You can parse single re
 multiple references from a string in a variety of formats.
 
 <!-- toc -->
-
   * [Installation](#installation)
 - [Usage](#usage)
   * [Parsing References](#parsing-references)
@@ -15,7 +14,6 @@ multiple references from a string in a variety of formats.
     + [Books](#books)
   * [Constructing References](#constructing-references)
     + [Invalid References](#invalid-references)
-
 <!-- tocstop -->
 
 ## Installation
@@ -43,6 +41,9 @@ To parse all the references within a string and return a `List<Reference>`, call
 var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2');
 ```
 This will create a list of [Reference]s with 'Genesis 5:7' and '1 Corinthians 2'
+
+**Note**: The word 'is' will be parsed as the book of Isaiah, this may not be the case in
+future versions.
 
 ## Objects and References
 
