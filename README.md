@@ -44,6 +44,7 @@ ref.osis // 'Matt'
 ref.abbr // 'MAT'
 ref.short // 'Mt'
 ref.reference // 'Matthew 2:4-10'
+ref.toString() // 'Matthew 2:4-10'
 ref.referenceType // ReferenceType.RANGE
 ```
 All of these fields are specific to the BibleReference class and its subclasses
@@ -129,28 +130,32 @@ within Ecclesiastes
 ref.startVerseNumber // 1
 ref.endVerseNumber // 14
 ```
-------
 
 ## Constructing References
 
 You can directly create all BibleReferences by calling their constructors
 ```dart
 var ref = Reference("Mat", 2, 4);
+var verse = Verse("Matt", 2, 4);
 ```
-This creates a reference to 'Matthew 2:4'
+This creates `Reference` and `Verse` objects of 'Matthew 2:4'
 
 ```dart
 ref = Reference("Mat", 2, 4, 10);
 ```
-This creates a reference to 'Matthew 2:4-10'
+This creates a reference to 'Matthew 2:4-10'.
 
 ### Invalid References
+
+All references have an `isValid` field that verifies if the book, chapter,
+starting, and ending verse are all in the bible. For `Verse` objects the book, chapter,
+and verse number are verified.
 
 ```dart
 ref = Reference("McDonald", 2, 4, 10);
 ```
-This creates a reference to "McDonald 2:4-10". It is possible to create nonexistent
-book references. When this occurs, the `isValid` property will be set to false, but
+This creates a reference to "McDonald 2:4-10". 
+When an invalid book is passed in the constructor, the `isValid` property will be set to false, but
 the fields that are passed in will still be initialized.
 ```dart
 ref.reference // "McDonald 2:4-10"
@@ -160,9 +165,16 @@ ref.startVerseNumber // 4
 ref.endVerseNumber // 10
 ref.osis // null (and so will be all other secondary book fields)
 ```
-The startVerse and endVerse objects will also be created, but the isValid field
-will be initialized to false
+
+The same logic applies to chapters and verse numbers.
 ```dart
-ref.startVerse.verseNumber // 4
+ref = Reference("Jude", 2, 10);
+ref.isValid // false (Jude only has one chapter)
+```
+The startVerse and endVerse objects will also be created but their isValid field
+will be initialized to false.
+```dart
+ref.startVerse.verseNumber // 10
 ref.startVerse.isValid // false
 ```
+
