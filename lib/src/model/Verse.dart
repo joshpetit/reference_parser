@@ -5,7 +5,7 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 /// A bible reference that contains the book, chapter, and a single verse number.
 ///
 /// When instantiated by the [Reference] class, this object usually refers to the
-/// reference object's first and last verses.
+/// reference object's first or last verse.
 class Verse extends BibleReference {
   /// The book, chapter, and verse number.
   ///

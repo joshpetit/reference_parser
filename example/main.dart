@@ -2,47 +2,53 @@ import 'package:reference_parser/reference_parser.dart';
 
 void main() {
   //Parse Reference
-  var ref = parseReference('Jn 3:16');
-  print(ref.book); //'John'
-  print(ref.bookNumber); //43
-  print(ref.chapter); //3
-  print(ref.startVerseNumber); //16
-  print(ref.isValid); //true
+  var ref = parseReference('The most recited verse is Jn 3:16');
+  print(ref.book); // 'John'
+  print(ref.bookNumber); // 43
+  print(ref.chapter); // 3
+  print(ref.startVerseNumber); // 16
+  print(ref.isValid); // true
 
   ref = parseReference('1john 4:5');
-  print(ref.book); //'1 John'
+  print(ref.book); // '1 John'
 
   //Variant Spellings
   ref = parseReference('Songs 2:1');
-  print(ref.reference); //'Song of Solomon 2:1'
+  print(ref.reference); // 'Song of Solomon 2:1'
 
   //Range of verses
   ref = parseReference('Gen 4:5-10');
-  print(ref.reference); //'Genesis 4:5-10'
-  print(ref.startVerseNumber); //5
-  print(ref.endVerseNumber); //10
+  print(ref.reference); // 'Genesis 4:5-10'
+  print(ref.startVerseNumber); // 5
+  print(ref.endVerseNumber); // 10
 
   //Book and chapter references
   ref = parseReference('Ps 1');
-  print(ref.reference); //'Psalms 1'
+  print(ref.reference); // 'Psalms 1';
+  print(ref.startVerseNumber); // 1
+  print(ref.endVerseNumber); // 6
 
   //Book References
   ref = parseReference('gn');
-  print(ref.reference); //'Genesis'
+  print(ref.reference); // 'Genesis'
 
   //Validation
-  ref = parseReference('Joe 2:4');
-  print(ref.book); //Joe
-  print(ref.bookNumber); //null
-  print(ref.isValid); //false
+  ref = parseReference('Joseph 2:4');
+  print(ref.book); // Joseph
+  print(ref.bookNumber); // null
+  print(ref.isValid); // false
 
-  ref = parseReference('Genesis 1:100');
-  print(ref.isValid); //false
+  ref = parseReference(' This is Genesis 1:100');
+  print(ref.isValid); // false
 
   //Create Reference
-  ref = createReference('1co', 3, 4, 5);
+  ref = Reference('1Co', 3, 4, 5);
   print(ref.book); //'1 Corinthians'
-  print(ref.chapter); //3
-  print(ref.startVerseNumber); //4
-  print(ref.endVerseNumber); //5
+  print(ref.chapter); // 3
+  print(ref.startVerseNumber); // 4
+  print(ref.endVerseNumber); // 5
+
+  var refs =
+      parseAllReferences('This is going to get Gen 2:4 and another book');
+  print(refs); // ['Isaiah', 'Genesis 2:4'], 'is' will be parsed as Isaiah
 }

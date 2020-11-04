@@ -10,7 +10,7 @@ final _exp = _createFullRegex();
 /// ```dart
 /// parseReference('I love James 4:5 and Matthew 2:4');
 ///```
-/// Returns a reference object of James :45.
+/// Returns a [Reference] object of James :45.
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
@@ -26,7 +26,7 @@ Reference parseReference(String stringReference) {
 /// ```dart
 /// parseAllReferences('I love James 4:5 and Matthew 2:4');
 ///```
-/// Returns a list of reference objects with James 4:5
+/// Returns a list of [Reference] objects with James 4:5
 /// and Matthew 2:4
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
