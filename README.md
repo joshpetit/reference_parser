@@ -5,14 +5,14 @@ multiple references from a string in a variety of formats.
 ## Installation
 Add `reference_parser: ^1.0.0` to your pubspec.yaml then run pub get in the project directory
 
-## Usage
+# Usage
 
 to include the default exports of reference parser add this to your imports:
 ```dart
 import package:reference_parser/reference_parser.dart`
 ```
 
-### Parsing References
+## Parsing References
 To parse a single reference from a string, call the `parseReference` function:
 
 ```dart
@@ -28,12 +28,15 @@ var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2');
 ```
 This will create a list of [Reference]s with 'Genesis 5:7' and '1 Corinthians 2'
 
+----------
+
+## Objects and References
 
 ### Reference
 ***(Prepare for the alliteration!)***
 
-Reference objects are general references that can refer to either single verses, a range of verses,
-a single chapter, or entire books. They extend the BibleReference class so include these base fields:
+Reference objects are general references that can refer to either a single verse, a range of verses,
+a single chapter, or entire an entire book. They extend the BibleReference class so include these base fields:
 ```dart
 ref.book // 'Matthew'
 ref.bookNumber // 40
@@ -46,6 +49,8 @@ ref.reference // 'Matthew 2:4-10'
 ref.referenceType // ReferenceType.RANGE
 ```
 All of these fields are specific to the BibleReference class and its subclasses
+
+-------
 
 ### Verses
 Verses are done a little differently to allow for more usecases. For example, to retrieve
@@ -74,6 +79,8 @@ about reference objects (book, osis, abbreviation, reference, and so on).
 
 This is useful when we start working with chapter and book references.
 
+------
+
 ### Chapters
 For this example we will use
 ```dart
@@ -89,6 +96,8 @@ ref.referenceType // ReferenceType.CHAPTER
 ```
 In addition to this, the corresponding `[start/end]Verse` objects are initialized to the
 first and last verses of the chapter.
+
+------
 
 ### Books
 In this example we will set ref to
@@ -114,3 +123,4 @@ within Ecclesiastes
 ref.startVerseNumber // 1
 ref.endVerseNumber // 14
 ```
+------
