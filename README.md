@@ -1,6 +1,22 @@
 # reference_parser
+
 A dart package that parses strings for bible references. You can parse single references or
 multiple references from a string in a variety of formats.
+
+<!-- toc -->
+
+  * [Installation](#installation)
+- [Usage](#usage)
+  * [Parsing References](#parsing-references)
+  * [Objects and References](#objects-and-references)
+    + [Reference](#reference)
+    + [Verses](#verses)
+    + [Chapters](#chapters)
+    + [Books](#books)
+  * [Constructing References](#constructing-references)
+    + [Invalid References](#invalid-references)
+
+<!-- tocstop -->
 
 ## Installation
 Add `reference_parser: ^1.0.0` to your pubspec.yaml then run pub get in the project directory
