@@ -1,1 +1,1 @@
-enum ReferenceType { VERSE, RANGE, CHAPTER, BOOK }
+enum ReferenceType { VERSE, VERSE_RANGE, CHAPTER, CHAPTER_RANGE, RANGE, BOOK }
