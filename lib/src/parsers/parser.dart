@@ -31,7 +31,6 @@ Reference parseReference(String stringReference) {
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-
 List<Reference> parseAllReferences(String stringReference) {
   List<Reference> refs = [];
   var matches = _exp.allMatches(stringReference);
@@ -42,11 +41,20 @@ List<Reference> parseAllReferences(String stringReference) {
 
 Reference _createRefFromMatch(RegExpMatch match) {
   var pr = match.groups([0, 1, 2, 3, 4]);
+  if (pr[3] == null) {
+    return Reference(
+        Librarian.getBookNames(pr[1])['name'] ?? pr[1],
+        pr[2] == null ? null : int.parse(pr[2]),
+        null,
+        pr[4] == null ? null : int.parse(pr[4]));
+  }
   return Reference(
-      Librarian.getBookNames(pr[1])['name'] ?? pr[1],
-      pr[2] == null ? null : int.parse(pr[2]),
-      pr[3] == null ? null : int.parse(pr[3]),
-      pr[4] == null ? null : int.parse(pr[4]));
+    Librarian.getBookNames(pr[1])['name'] ?? pr[1],
+    pr[2] == null ? null : int.parse(pr[2]),
+    pr[3] == null ? null : int.parse(pr[3]),
+    pr[2] == null ? null : int.parse(pr[2]),
+    pr[4] == null ? null : int.parse(pr[4]),
+  );
 }
 
 RegExp _createFullRegex() {

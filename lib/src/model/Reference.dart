@@ -13,10 +13,12 @@ class Reference extends BibleReference {
   @override
   final String reference;
 
-  /// The chapter number in this reference.
+  /// The beginning chapter number in this reference.
   ///
   /// Initializes to `null` if unspecified.
   final int startChapterNumber;
+
+  final int endChapterNumber;
 
   /// The first verse number found in this reference.
   ///
@@ -49,23 +51,24 @@ class Reference extends BibleReference {
   @override
   final bool isValid;
 
-  Reference(String book, [int chp, int svn, int evn])
-      : startChapterNumber = chp,
+  Reference(String book, [int schp, int svn, int echp, int evn])
+      : startChapterNumber = schp ?? 1,
         startVerseNumber = svn ?? 1,
         startVerse = svn != null
-            ? Verse(book, chp, svn)
-            : chp != null
-                ? Verse(book, chp, 1)
+            ? Verse(book, schp, svn)
+            : schp != null
+                ? Verse(book, schp, 1)
                 : Verse(book, 1, 1),
-        endVerseNumber = evn ?? svn ?? Librarian.getLastVerseNumber(book, chp),
+        endChapterNumber = echp ?? schp ?? Librarian.getLastChapterNumber(book),
+        endVerseNumber = evn ?? svn ?? Librarian.getLastVerseNumber(book, echp),
         endVerse = evn != null
-            ? Verse(book, chp, evn)
+            ? Verse(book, schp, evn)
             : svn != null
-                ? Verse(book, chp, svn)
-                : Librarian.getLastVerse(book, chp),
-        reference = Librarian.createReferenceString(book, chp, svn, evn),
-        referenceType = Librarian.identifyReferenceType(book, chp, svn, evn),
-        isValid = Librarian.verifyVerse(book, chp, svn) &&
-            Librarian.verifyVerse(book, chp, evn),
+                ? Verse(book, schp, svn)
+                : Librarian.getLastVerse(book, schp),
+        reference = Librarian.createReferenceString(book, schp, svn, echp, evn),
+        referenceType = Librarian.identifyReferenceType(book, schp, svn, evn),
+        isValid = Librarian.verifyVerse(book, schp, svn) &&
+            Librarian.verifyVerse(book, schp, evn),
         super(book);
 }
