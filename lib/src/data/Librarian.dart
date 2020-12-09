@@ -126,15 +126,20 @@ class Librarian {
 
   ///Creates a String reference from a book and optionallly chapter and verses.
   static String createReferenceString(String book,
-      [int chapter, int startVerse, int endVerse]) {
+      [int startChapter, int startVerse, int endChapter, int endVerse]) {
     var reference = '' + book;
-    if (chapter != null) {
-      reference += ' ${chapter}';
+    if (startChapter != null) {
+      reference += ' ${startChapter}';
       if (startVerse != null) {
         reference += ':${startVerse}';
-        if (endVerse != null) {
-          reference += '-$endVerse';
+        if (endChapter != null && endChapter != startChapter) {
+          reference += ' - ${endChapter}';
+          reference += ':${endVerse ?? 1}';
+        } else if (endVerse != null) {
+          reference += '-${endVerse}';
         }
+      } else if (endChapter != null) {
+        reference += '-${endChapter}';
       }
     }
     return reference;
