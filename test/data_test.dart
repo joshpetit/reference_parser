@@ -119,4 +119,12 @@ void main() {
     expect(verse.verseNumber, equals(25));
     expect(verse.referenceType, equals(ReferenceType.VERSE));
   });
+  test('Librarian creates correct reference strings', () {
+    expect(Librarian.createReferenceString('John', 2), equals('John 2'));
+    expect(Librarian.createReferenceString('John', 2, 3), equals('John 2:3'));
+    expect(Librarian.createReferenceString('John', 2, 3, 4),
+        equals('John 2:3 - 4:1'));
+    expect(Librarian.createReferenceString('John', 2, 3, 4, 5),
+        equals('John 2:3 - 4:5'));
+  });
 }
