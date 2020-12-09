@@ -1,7 +1,6 @@
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:reference_parser/src/model/Verse.dart';
 import 'package:reference_parser/src/model/BibleReference.dart';
-
 import 'package:reference_parser/src/util/VerseEnum.dart';
 
 /// A general BibleReference, can contain all [ReferenceType]s.
@@ -17,7 +16,7 @@ class Reference extends BibleReference {
   /// The chapter number in this reference.
   ///
   /// Initializes to `null` if unspecified.
-  final int chapter;
+  final int startChapterNumber;
 
   /// The first verse number found in this reference.
   ///
@@ -28,7 +27,7 @@ class Reference extends BibleReference {
   ///
   /// Returns the verse object of the first verse in the chapter if
   /// [startVerse] is not specified or the verse object of the first
-  /// verse in the book if [chapter] is not specified.
+  /// verse in the book if [startChapterNumber] is not specified.
   final Verse startVerse;
 
   /// The last verse number found in this reference.
@@ -38,7 +37,7 @@ class Reference extends BibleReference {
   ///
   /// Returns the verse object of the last verse in the chapter if
   /// [endVerse] is not specified or the verse object of the last verse in the
-  /// book if [chapter] is not specified.
+  /// book if [startChapterNumber] is not specified.
   final Verse endVerse;
 
   /// The type of reference.
@@ -51,7 +50,7 @@ class Reference extends BibleReference {
   final bool isValid;
 
   Reference(String book, [int chp, int svn, int evn])
-      : chapter = chp,
+      : startChapterNumber = chp,
         startVerseNumber = svn ?? 1,
         startVerse = svn != null
             ? Verse(book, chp, svn)

@@ -5,20 +5,20 @@ void main() {
   test('Creation of reference from parser', () {
     var ref = parseReference('John 3:16');
     expect(ref.book, equals('John'));
-    expect(ref.chapter, equals(3));
+    expect(ref.startChapterNumber, equals(3));
     expect(ref.reference, equals('John 3:16'));
     expect(ref.startVerseNumber, equals(16));
 
     ref = parseReference('1john 3:16');
     expect(ref.book, equals('1 John'));
-    expect(ref.chapter, equals(3));
+    expect(ref.startChapterNumber, equals(3));
     expect(ref.reference, equals('1 John 3:16'));
     expect(ref.startVerseNumber, equals(16));
 
     ref = parseReference('Jn 2:4');
     expect(ref.book, equals('John'));
     expect(ref.book, 'John');
-    expect(ref.chapter, 2);
+    expect(ref.startChapterNumber, 2);
     expect(ref.startVerseNumber, 4);
     expect(ref.isValid, true);
 
@@ -28,7 +28,7 @@ void main() {
 
     ref = parseReference('I love John 4:5-10');
     expect(ref.book, equals('John'));
-    expect(ref.chapter, equals(4));
+    expect(ref.startChapterNumber, equals(4));
     expect(ref.startVerseNumber, equals(5));
     expect(ref.endVerseNumber, equals(10));
 
@@ -52,11 +52,11 @@ void main() {
     var mat = refs[0];
     var jam = refs[1];
     expect(mat.book, equals('Matthew'));
-    expect(mat.chapter, equals(2));
+    expect(mat.startChapterNumber, equals(2));
     expect(mat.startVerseNumber, equals(4));
 
     expect(jam.book, equals('James'));
-    expect(jam.chapter, equals(5));
+    expect(jam.startChapterNumber, equals(5));
     expect(jam.startVerseNumber, equals(1));
     expect(jam.endVerseNumber, equals(5));
 
@@ -70,5 +70,9 @@ void main() {
       expect(x.book.length, greaterThan(3),
           reason: 'Paratexts should be parsed');
     });
+  });
+  test('capabilities', () {
+    var ref = parseReference('Mat 2-3');
+    print(ref);
   });
 }
