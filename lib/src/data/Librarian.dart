@@ -58,6 +58,16 @@ class Librarian {
     return BibleData.lastVerse[book - 1][chapter - 1];
   }
 
+  static int getLastChapterNumber(dynamic book) {
+    if (book is String) {
+      book = findBookNumber(book);
+    }
+    if (book is! int) {
+      return null;
+    }
+    return BibleData.lastVerse[book - 1].length;
+  }
+
   /// Creates a verse object for the last verse in a book or book + chapter.
   static Verse getLastVerse(dynamic book, [int chapter]) {
     int bookNumber;
