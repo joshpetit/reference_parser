@@ -11,14 +11,14 @@ void main() {
     expect(ref.startVerseNumber, equals(1));
     expect(ref.endVerseNumber, equals(20),
         reason: 'The last verse in James is 20');
-    expect(ref.chapter, equals(null));
+    expect(ref.startChapterNumber, equals(null));
     expect(ref.referenceType, equals(ReferenceType.BOOK));
   });
   test('Creation of book and chapter reference', () {
     var ref = Reference('James', 5);
     expect(ref.reference, equals('James 5'));
     expect(ref.book, equals('James'));
-    expect(ref.chapter, equals(5));
+    expect(ref.startChapterNumber, equals(5));
     expect(ref.startVerseNumber, equals(1));
     expect(ref.endVerseNumber, equals(20));
     expect(ref.referenceType, equals(ReferenceType.CHAPTER));
@@ -27,7 +27,7 @@ void main() {
     var ref = Reference('James', 5, 2);
     expect(ref.reference, equals('James 5:2'));
     expect(ref.book, equals('James'));
-    expect(ref.chapter, equals(5));
+    expect(ref.startChapterNumber, equals(5));
     expect(ref.startVerseNumber, equals(2));
     expect(ref.endVerseNumber, equals(2));
     expect(ref.referenceType, equals(ReferenceType.VERSE));
@@ -36,7 +36,7 @@ void main() {
     var ref = Reference('James', 5, 2, 3);
     expect(ref.reference, equals('James 5:2-3'));
     expect(ref.book, equals('James'));
-    expect(ref.chapter, equals(5));
+    expect(ref.startChapterNumber, equals(5));
     expect(ref.startVerseNumber, equals(2));
     expect(ref.endVerseNumber, equals(3));
     expect(ref.referenceType, equals(ReferenceType.RANGE));
