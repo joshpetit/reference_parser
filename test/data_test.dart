@@ -131,4 +131,49 @@ void main() {
     expect(Librarian.createReferenceString('John', 2, null, 4),
         equals('John 2-4'));
   });
+
+  test('Librarian correctly verifies references', () {
+    expect(Librarian.verifyReference(1), equals(true),
+        reason: 'First book should exist');
+
+    expect(Librarian.verifyReference(66), equals(true),
+        reason: 'Last book should exist');
+
+    expect(Librarian.verifyReference(67), equals(false),
+        reason: '67th book does not exist');
+
+    expect(Librarian.verifyReference(-1), equals(false),
+        reason: 'Negative books do not exist');
+
+    expect(Librarian.verifyReference(33, 1), equals(true),
+        reason: 'Book and chapter should exist');
+
+    expect(Librarian.verifyReference(33, -1), equals(false),
+        reason: 'Negative chapters do not exist');
+
+    expect(Librarian.verifyReference(33, 8), equals(false),
+        reason: 'Book and chapter should not exist');
+
+    expect(Librarian.verifyReference(33, 1, 1), equals(true),
+        reason: 'Book, chapter, and verse should exist');
+
+    expect(Librarian.verifyReference(33, 1, 16), equals(true),
+        reason: 'Book, chapter, and ending verse should exist');
+
+    expect(Librarian.verifyReference(33, 1, 17), equals(false),
+        reason: 'Reference should not exist');
+
+    expect(Librarian.verifyReference('John', 1, 1), equals(true),
+        reason: 'String book references should work');
+
+    expect(Librarian.verifyReference('John', 1, null, 1), equals(true),
+        reason: 'Multi chapter references should work');
+
+    expect(Librarian.verifyReference('John', 1, null, null, 5), equals(false),
+        reason: 'End verses require a starting verse or ending chapter');
+
+    expect(Librarian.verifyReference('John', 1, null, 2, 5), equals(true),
+        reason:
+            'Ending verse + chapter can have a starting chapter without a starting verse');
+  });
 }
