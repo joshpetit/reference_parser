@@ -124,6 +124,47 @@ class Librarian {
     return true;
   }
 
+  static bool verifyReference(dynamic book,
+      [int startChapter, int startVerse, endChapter, endVerse]) {
+    if (book is String) {
+      book = findBookNumber(book);
+    }
+    if (book is! int) return false;
+
+    if (!(book > 0 && BibleData.lastVerse.length >= book)) {
+      return false;
+    }
+
+    if (startChapter != null) {
+      if (!(startChapter > 0 &&
+          BibleData.lastVerse[book - 1].length >= startChapter)) {
+        return false;
+      }
+      if (endChapter != null && startChapter > endChapter) {
+        return false;
+      }
+    } else if (endChapter != null || endVerse != null) {
+      return false;
+    }
+
+    if (startVerse != null) {
+      if (!(startVerse > 0 &&
+          BibleData.lastVerse[book - 1][startChapter - 1] >= startVerse)) {
+        return false;
+      }
+      if (endVerse != null && startVerse > endVerse) {
+        return false;
+      }
+    }
+
+    if (endVerse != null) {
+      if (endChapter == null && startVerse == null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   ///Creates a String reference from a book and optionallly chapter and verses.
   static String createReferenceString(String book,
       [int startChapter, int startVerse, int endChapter, int endVerse]) {
