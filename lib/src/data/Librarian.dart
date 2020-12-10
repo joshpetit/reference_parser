@@ -120,6 +120,9 @@ class Librarian {
     } else if (verse != null &&
         !(verse > 0 && BibleData.lastVerse[book - 1][chapter - 1] >= verse)) {
       return false;
+    } else if (verse != null &&
+        !(verse > 0 && BibleData.lastVerse[book - 1][chapter - 1] >= verse)) {
+      return false;
     }
     return true;
   }
@@ -134,7 +137,7 @@ class Librarian {
         reference += ':${startVerse}';
         if (endChapter != null && endChapter != startChapter) {
           reference += ' - ${endChapter}';
-          reference += ':${endVerse ?? 1}';
+          reference += ':${endVerse ?? getLastVerseNumber(endChapter) ?? 1}';
         } else if (endVerse != null) {
           reference += '-${endVerse}';
         }
