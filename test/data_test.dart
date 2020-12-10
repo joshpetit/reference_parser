@@ -123,8 +123,12 @@ void main() {
     expect(Librarian.createReferenceString('John', 2), equals('John 2'));
     expect(Librarian.createReferenceString('John', 2, 3), equals('John 2:3'));
     expect(Librarian.createReferenceString('John', 2, 3, 4),
-        equals('John 2:3 - 4:1'));
+        equals('John 2:3 - 4:13'));
     expect(Librarian.createReferenceString('John', 2, 3, 4, 5),
         equals('John 2:3 - 4:5'));
+    expect(Librarian.createReferenceString('John', 2, null, 4, 5),
+        equals('John 2:1 - 4:5'));
+    expect(Librarian.createReferenceString('John', 2, null, 4),
+        equals('John 2-4'));
   });
 }
