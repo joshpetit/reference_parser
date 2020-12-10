@@ -5,7 +5,7 @@ void main() {
   var ref = parseReference('The most recited verse is Jn 3:16');
   print(ref.book); // 'John'
   print(ref.bookNumber); // 43
-  print(ref.chapter); // 3
+  print(ref.startChapterNumber); // 3
   print(ref.startVerseNumber); // 16
   print(ref.isValid); // true
 
@@ -44,7 +44,7 @@ void main() {
   //Create Reference
   ref = Reference('1Co', 3, 4, 5);
   print(ref.book); //'1 Corinthians'
-  print(ref.chapter); // 3
+  print(ref.startChapterNumber); // 3
   print(ref.startVerseNumber); // 4
   print(ref.endVerseNumber); // 5
 
