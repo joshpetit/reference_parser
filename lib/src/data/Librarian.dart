@@ -120,9 +120,6 @@ class Librarian {
     } else if (verse != null &&
         !(verse > 0 && BibleData.lastVerse[book - 1][chapter - 1] >= verse)) {
       return false;
-    } else if (verse != null &&
-        !(verse > 0 && BibleData.lastVerse[book - 1][chapter - 1] >= verse)) {
-      return false;
     }
     return true;
   }
@@ -130,21 +127,26 @@ class Librarian {
   ///Creates a String reference from a book and optionallly chapter and verses.
   static String createReferenceString(String book,
       [int startChapter, int startVerse, int endChapter, int endVerse]) {
-    var reference = '' + book;
+    var reference = StringBuffer(book);
     if (startChapter != null) {
-      reference += ' ${startChapter}';
+      reference.write(' ${startChapter}');
       if (startVerse != null) {
-        reference += ':${startVerse}';
+        reference.write(':${startVerse}');
         if (endChapter != null && endChapter != startChapter) {
-          reference += ' - ${endChapter}';
-          reference += ':${endVerse ?? getLastVerseNumber(endChapter) ?? 1}';
+          reference.write(' - ${endChapter}');
+          reference
+              .write(':${endVerse ?? getLastVerseNumber(endChapter) ?? 1}');
         } else if (endVerse != null) {
-          reference += '-${endVerse}';
+          reference.write('-${endVerse}');
         }
-      } else if (endChapter != null) {
-        reference += '-${endChapter}';
+      } else if (endChapter != null && endChapter != startChapter) {
+        if (endVerse != null) {
+          reference.write(':1 - ${endChapter}:${endVerse}');
+        } else {
+          reference.write('-${endChapter}');
+        }
       }
     }
-    return reference;
+    return reference.toString();
   }
 }
