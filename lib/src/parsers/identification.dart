@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:reference_parser/src/model/Reference.dart';
 import 'package:reference_parser/src/parsers/parser.dart';
+import 'package:reference_parser/src/model/ReferenceQuery.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
@@ -21,16 +21,4 @@ Future<List<ReferenceQuery>> identifyReference(String text) async {
     }
   }
   return queries;
-}
-
-class ReferenceQuery {
-  final String query;
-  final Reference reference;
-  final String preview;
-
-  ReferenceQuery(this.query, this.preview, this.reference);
-
-  String toString() {
-    return "${reference} - ${preview}";
-  }
 }
