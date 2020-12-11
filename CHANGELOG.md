@@ -1,3 +1,6 @@
+## 1.2.0
+- Adds function to identify bible verses.
+
 ## 1.0.0
 - **Massive improvements to regex!** 
 - Now possible to parse texts from anywhere within a string. For example, 'I like Matthew 2:4.
