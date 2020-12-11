@@ -1,3 +1,6 @@
+## 1.1.2
+- Updates dependencies
+
 ## 1.1.1
 - Fixes README versioning and linting for static analysis
 
