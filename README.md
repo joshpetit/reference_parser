@@ -48,14 +48,19 @@ future versions.
 
 ## Identifying References
 The `identifyReference` method included in reference_parser will use [biblehub.com](https://biblehub.com)
-to generate a list of possible bible references for a string. For example:
-
+to generate a list of possible bible references for a string. Make sure to import the
+identification library `import 'package:reference_parser/identification.dart';`
+For example:
 ```dart
-var refs = identifyReference("In the beginning God");
-var ref = refs[0]; // This is likely the most matching verse
+import 'package:reference_parser/identification.dart';
+//...
+identifyReference("Come to me all ye").then((possibilities) => {
+      print(possibilities[0]), // The most likely match would be at index 0
+    });
 ```
-This will return a list of objects of type `ReferenceQuery` with the fields `ref.query`, 
-`ref.reference`, and `ref.preview`. The `ref.reference` field will return a `Reference` object.
+This will return a future with a list of objects of type `ReferenceQuery` with the fields `x.query`, 
+`x.reference`, and `x.preview`. The `x.reference` field will return a `Reference` object and
+the other two are Strings. Check the API documentation for more information.
 
 ## Objects and References
 
