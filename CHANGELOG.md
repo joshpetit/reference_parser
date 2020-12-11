@@ -1,3 +1,6 @@
+## 1.1.1
+- Fixes README versioning
+
 ## 1.1.0
 - Adds function to identify bible verses.
 
