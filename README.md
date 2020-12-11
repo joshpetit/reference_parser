@@ -18,7 +18,7 @@ multiple references from a string in a variety of formats.
 <!-- tocstop -->
 
 ## Installation
-Add `reference_parser: ^1.1.1` to your pubspec.yaml then run pub get in the project directory
+Add `reference_parser: ^1.1.2` to your pubspec.yaml then run pub get in the project directory
 
 # Usage
 
