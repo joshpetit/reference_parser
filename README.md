@@ -7,6 +7,7 @@ multiple references from a string in a variety of formats.
   * [Installation](#installation)
 - [Usage](#usage)
   * [Parsing References](#parsing-references)
+  * [Identifying References](#identifying-references)
   * [Objects and References](#objects-and-references)
     + [Reference](#reference)
     + [Verses](#verses)
@@ -40,10 +41,21 @@ To parse all the references within a string and return a `List<Reference>`, call
 ```dart
 var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2');
 ```
-This will create a list of [Reference]s with 'Genesis 5:7' and '1 Corinthians 2'
+This will create a list of References with 'Genesis 5:7' and '1 Corinthians 2'
 
 **Note**: The word 'is' will be parsed as the book of Isaiah, this may not be the case in
 future versions.
+
+## Identifying References
+The `identifyReference` method included in reference_parser will use [biblehub.com](https://biblehub.com)
+to generate a list of possible bible references for a string. For example:
+
+```dart
+var refs = identifyReference("In the beginning God");
+var ref = refs[0]; // This is likely the most matching verse
+```
+This will return a list of objects of type `ReferenceQuery` with the fields `ref.query`, 
+`ref.reference`, and `ref.preview`. The `ref.reference` field will return a `Reference` object.
 
 ## Objects and References
 
