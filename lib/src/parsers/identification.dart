@@ -1,9 +1,8 @@
-import 'dart:convert';
 import 'package:reference_parser/src/parsers/parser.dart';
 import 'package:reference_parser/src/model/ReferenceQuery.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
-import 'package:html/dom.dart';
+import 'dart:async';
 
 /// Identify possible references to Strings
 ///
@@ -20,9 +19,9 @@ Future<List<ReferenceQuery>> identifyReference(String text) async {
   final uri = Uri.https('biblehub.net', '/search.php', params);
   final res = await http.get(uri);
   var doc = parse(res.body);
-  List<Element> l = doc.querySelectorAll('#leftbox > div > p > a > span.l');
+  var l = doc.querySelectorAll('#leftbox > div > p > a > span.l');
   var queries = <ReferenceQuery>[];
-  for (int i = 0; i < l.length; i++) {
+  for (var i = 0; i < l.length; i++) {
     var ref = parseReference(l[i].text.trim());
     var len = ref.reference.length;
     var preview = l[i].text.substring(len + 1).trim();

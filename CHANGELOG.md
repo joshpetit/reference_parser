@@ -1,5 +1,5 @@
 ## 1.1.1
-- Fixes README versioning
+- Fixes README versioning and linting for static analysis
 
 ## 1.1.0
 - Adds function to identify bible verses.

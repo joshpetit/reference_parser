@@ -19,7 +19,8 @@ class ReferenceQuery {
 
   ReferenceQuery(this.query, this.preview, this.reference);
 
+  @override
   String toString() {
-    return "${reference} - ${preview}";
+    return '${reference} - ${preview}';
   }
 }
