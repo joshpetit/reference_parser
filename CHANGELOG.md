@@ -1,4 +1,4 @@
-## 1.2.0
+## 1.1.0
 - Adds function to identify bible verses.
 
 ## 1.0.0
