@@ -5,6 +5,16 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
 
+/// Identify possible references to Strings
+///
+/// Calling this method will return a Future of
+/// [ReferenceQuery] objects. If there are no possible
+/// matches found then the list will be empty.
+/// ```
+/// identifyReference("Come to me all ye who").then((x) => {
+///        print(x[0]),
+///      });
+/// ```
 Future<List<ReferenceQuery>> identifyReference(String text) async {
   final params = {'q': text};
   final uri = Uri.https('biblehub.net', '/search.php', params);
