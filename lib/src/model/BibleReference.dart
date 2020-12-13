@@ -35,7 +35,7 @@ abstract class BibleReference {
         bookNumber = Librarian.findBookNumber(book),
         referenceType = Librarian.identifyReferenceType(book),
         _bookNames = Librarian.getBookNames(book),
-        isValid = Librarian.verifyVerse(book);
+        isValid = Librarian.verifyReference(book);
 
   /// Returns [BibleReference.reference]
   @override

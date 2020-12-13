@@ -31,6 +31,6 @@ class Verse extends BibleReference {
         chapter = chapter,
         verseNumber = verseNumber,
         referenceType = ReferenceType.VERSE,
-        isValid = Librarian.verifyVerse(book, chapter, verseNumber),
+        isValid = Librarian.verifyReference(book, chapter, verseNumber),
         super(book);
 }

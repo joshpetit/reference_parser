@@ -68,7 +68,6 @@ class Reference extends BibleReference {
                 : Librarian.getLastVerse(book, schp),
         reference = Librarian.createReferenceString(book, schp, svn, echp, evn),
         referenceType = Librarian.identifyReferenceType(book, schp, svn, evn),
-        isValid = Librarian.verifyVerse(book, schp, svn) &&
-            Librarian.verifyVerse(book, schp, evn),
+        isValid = Librarian.verifyReference(book, schp, svn, echp, evn),
         super(book);
 }
