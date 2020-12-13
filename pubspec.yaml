@@ -2,7 +2,7 @@ name: reference_parser
 description: >-
   A pub package that allows you to parse strings for bible references.
   Can parse varying formats of references and multiple references at a time.
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/joshpetit/reference_parser
 issue_tracker:  https://github.com/joshpetit/reference_parser/issues
 environment:
