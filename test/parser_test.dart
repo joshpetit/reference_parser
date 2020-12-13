@@ -71,7 +71,4 @@ void main() {
           reason: 'Paratexts should be parsed');
     });
   });
-  test('capabilities', () {
-    var ref = parseReference('Mat 2-3');
-  });
 }
