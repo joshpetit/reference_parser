@@ -169,7 +169,8 @@ void main() {
     expect(Librarian.verifyReference('John', 1, null, 1), equals(true),
         reason: 'Multi chapter references should work');
 
-    expect(Librarian.verifyReference('John', 1, null, null, 5), equals(false),
+    expect(
+        Librarian.verifyReference('John', null, null, null, 5), equals(false),
         reason: 'End verses require a starting verse or ending chapter');
 
     expect(Librarian.verifyReference('John', 1, null, 2, 5), equals(true),
