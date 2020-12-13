@@ -73,6 +73,5 @@ void main() {
   });
   test('capabilities', () {
     var ref = parseReference('Mat 2-3');
-    print(ref);
   });
 }
