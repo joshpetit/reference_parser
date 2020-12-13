@@ -132,6 +132,7 @@ class Librarian {
     } else if (startVerse != null) {
       return ReferenceType.VERSE;
     }
+    return null;
   }
 
   /// Verifies that a book, and optionally chapter and verse, are in the bible.
