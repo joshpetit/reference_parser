@@ -1,3 +1,6 @@
+## 1.2.1
+- adds return statement to identifyReferenceType
+
 ## 1.2.0
 - Adds [Chapter] objects.
 - Chapter objects added to Reference class fields.
