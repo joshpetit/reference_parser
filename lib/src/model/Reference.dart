@@ -1,5 +1,6 @@
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:reference_parser/src/model/Verse.dart';
+import 'package:reference_parser/src/model/Chapter.dart';
 import 'package:reference_parser/src/model/BibleReference.dart';
 import 'package:reference_parser/src/util/VerseEnum.dart';
 
@@ -18,7 +19,11 @@ class Reference extends BibleReference {
   /// Initializes to `null` if unspecified.
   final int startChapterNumber;
 
+  final Chapter startChapter;
+
   final int endChapterNumber;
+
+  final Chapter endChapter;
 
   /// The first verse number found in this reference.
   ///
@@ -53,6 +58,7 @@ class Reference extends BibleReference {
 
   Reference(String book, [int schp, int svn, int echp, int evn])
       : startChapterNumber = schp ?? 1,
+        startChapter = schp != null ? Chapter(book, schp) : Chapter(book, 1),
         startVerseNumber = svn ?? 1,
         startVerse = svn != null
             ? Verse(book, schp, svn)
@@ -60,6 +66,11 @@ class Reference extends BibleReference {
                 ? Verse(book, schp, 1)
                 : Verse(book, 1, 1),
         endChapterNumber = echp ?? schp ?? Librarian.getLastChapterNumber(book),
+        endChapter = echp != null
+            ? Chapter(book, echp)
+            : schp != null
+                ? Chapter(book, schp)
+                : Librarian.getLastChapter(book),
         endVerseNumber = evn ?? svn ?? Librarian.getLastVerseNumber(book, echp),
         endVerse = evn != null
             ? Verse(book, schp, evn)

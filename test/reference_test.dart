@@ -129,6 +129,17 @@ void main() {
     expect(ref.endVerse.chapter, equals(12));
     expect(ref.endVerse.verseNumber, equals(14));
   });
+
+  test('Reference [start/end]Chapter objects', () {
+    var ref = Reference('Ecclesiastes', 5);
+    expect(ref.startChapter.chapterNumber, equals(5));
+    expect(ref.endChapter.chapterNumber, equals(5));
+
+    ref = Reference('Ecclesiastes');
+    expect(ref.startChapter.chapterNumber, equals(1));
+    expect(ref.endChapter.chapterNumber, equals(12));
+  });
+
   test('BibleReferences correctly returns osis, abbr, and short book names',
       () {
     var ref = Reference('Genesis', 2, 5, 10);
