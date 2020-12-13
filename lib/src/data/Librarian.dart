@@ -59,6 +59,7 @@ class Librarian {
     return BibleData.lastVerse[book - 1][chapter - 1];
   }
 
+  /// Returns the number for the last chapter within a book.
   static int getLastChapterNumber(dynamic book) {
     if (book is String) {
       book = findBookNumber(book);
@@ -92,6 +93,8 @@ class Librarian {
     return Verse(book, chapter, lastVerse);
   }
 
+  /// Returns a [Chapter] object that corresponds to the
+  /// last chapter within a book.
   static Chapter getLastChapter(dynamic book) {
     int bookNumber;
     if (book is int) {
@@ -112,15 +115,22 @@ class Librarian {
 
   /// Returns the type of reference based on the number of passed in arguments.
   static ReferenceType identifyReferenceType(book,
-      [chapter, startVerse, endVerse]) {
-    if (endVerse != null) {
-      return ReferenceType.RANGE;
+      [startChapter, startVerse, endChapter, endVerse]) {
+    if (startChapter == null && endChapter == null) {
+      return ReferenceType.BOOK;
+    } else if (startChapter != null &&
+        endChapter != null &&
+        startChapter != endChapter) {
+      return ReferenceType.CHAPTER_RANGE;
+    } else if (startChapter != null &&
+        (endChapter == null || endChapter == startChapter) &&
+        startVerse == null &&
+        endVerse == null) {
+      return ReferenceType.CHAPTER;
+    } else if (startVerse != null && endVerse != null) {
+      return ReferenceType.VERSE_RANGE;
     } else if (startVerse != null) {
       return ReferenceType.VERSE;
-    } else if (chapter != null) {
-      return ReferenceType.CHAPTER;
-    } else {
-      return ReferenceType.BOOK;
     }
   }
 
@@ -144,6 +154,8 @@ class Librarian {
     return true;
   }
 
+  /// Verifies a reference based on which fields are left `null`
+  /// or can be found within the bible.
   static bool verifyReference(dynamic book,
       [int startChapter, int startVerse, endChapter, endVerse]) {
     if (book == null) {
@@ -203,7 +215,7 @@ class Librarian {
     return true;
   }
 
-  ///Creates a String reference from a book and optionallly chapter and verses.
+  /// Creates a String reference based on which fields are left `null`
   static String createReferenceString(String book,
       [int startChapter, int startVerse, int endChapter, int endVerse]) {
     var reference = StringBuffer(book);

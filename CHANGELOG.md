@@ -1,3 +1,7 @@
+## 1.2.0
+- Adds [Chapter] objects.
+- Chapter objects added to Reference class fields.
+- Parsing of multi-chapter references possible.
 ## 1.1.2
 - Updates dependencies
 

@@ -2,7 +2,6 @@ import 'package:reference_parser/src/model/Reference.dart';
 
 /// A query object returned by the [identifyReference()] function.
 ///
-/// The [preview] field contains a shortened portion of the verse.
 /// ```
 /// var refs = await identifyReference("This is what");
 /// var ref = refs[0];
@@ -13,12 +12,18 @@ import 'package:reference_parser/src/model/Reference.dart';
 ///
 /// *Note*, the [reference] field will be a [Reference] object, not a String.
 class ReferenceQuery {
+  /// The query passed by the [identifyReference()] parameter.
   final String query;
+
+  /// The [Reference] object that corresponds to the queries verse.
   final Reference reference;
+
+  /// This field contains a shortened portion of the verse.
   final String preview;
 
   ReferenceQuery(this.query, this.preview, this.reference);
 
+  /// [reference] - [preview]
   @override
   String toString() {
     return '${reference} - ${preview}';

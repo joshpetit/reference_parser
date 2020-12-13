@@ -32,7 +32,7 @@ Reference parseReference(String stringReference) {
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
 List<Reference> parseAllReferences(String stringReference) {
-  List<Reference> refs = [];
+  var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
   if (matches == null) return refs;
   matches.forEach((x) => refs.add(_createRefFromMatch(x)));

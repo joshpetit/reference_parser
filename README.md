@@ -18,7 +18,7 @@ multiple references from a string in a variety of formats.
 <!-- tocstop -->
 
 ## Installation
-Add `reference_parser: ^1.1.2` to your pubspec.yaml then run pub get in the project directory
+Add `reference_parser: ^1.2.0` to your pubspec.yaml then run pub get in the project directory
 
 # Usage
 
@@ -39,9 +39,9 @@ To parse all the references within a string and return a `List<Reference>`, call
 `parseAllReferences` function:
 
 ```dart
-var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2');
+var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2-3');
 ```
-This will create a list of References with 'Genesis 5:7' and '1 Corinthians 2'
+This will create a list of References with 'Genesis 5:7' and '1 Corinthians 2-3'
 
 **Note**: The word 'is' will be parsed as the book of Isaiah, this may not be the case in
 future versions.
@@ -72,14 +72,14 @@ a single chapter, or entire an entire book. They extend the BibleReference class
 ```dart
 ref.book // 'Matthew'
 ref.bookNumber // 40
-ref.chapter // 2
+ref.startChapterNumber // 2
 ref.isValid // true 
 ref.osis // 'Matt'
 ref.abbr // 'MAT'
 ref.short // 'Mt'
 ref.reference // 'Matthew 2:4-10'
 ref.toString() // 'Matthew 2:4-10'
-ref.referenceType // ReferenceType.RANGE
+ref.referenceType // ReferenceType.VERSE_RANGE
 ```
 All of these fields are specific to the BibleReference class and its subclasses
 
@@ -136,6 +136,15 @@ ref.endVerse.chapter // 5
 ref.endVerse.verseNumber // 20
 ```
 
+The Reference object also has fields denoting the starting end ending chapters as similar to verses
+
+```dart
+var ref = parseReference('James 5-10 is cool');
+ref.startChapter.chapterNumber // 5
+ref.endChapter.chapterNumber // 10
+```
+This is not very useful at the moment but will eventually have methods and getters for different needs.
+
 ------
 
 ### Books
@@ -144,18 +153,21 @@ In this example, we will set ref to
 ```dart
 ref = parseReference("Ecclesiastes is hard to spell");
 ```
-This creates a [Reference] object of type `ReferenceType.BOOK`. One thing to note is that
-there is no `chapter` class, so when the chapter is not specified it is initialized to null
+This creates a [Reference] object of type `ReferenceType.BOOK`. 
 ```dart
-ref.chapter // null
-ref.ReferenceType // ReferenceType.CHAPTER
+ref.startChapterNumber // 1
+ref.endChapterNumber // 12
+ref.ReferenceType // ReferenceType.BOOK
 ```
+
 Verse objects are still created but with reference to the first verse in the book and the
 last verse in the book.
 ```dart
 ref.startVerse // An object refering to 'Ecclesiastes 1:1'
-ref.endVerse // An object refering to 'Ecclesiastes 5:14', the last verse in Ecclesiastes
-ref.endVerse.chapter // 5
+ref.endVerse // An object refering to 'Ecclesiastes 12:14', the last verse in Ecclesiastes
+ref.startChapter // An object refering to 'Ecclesiastes 1'
+ref.endChapter // An object refering to 'Ecclesiastes 12'
+ref.endVerse.chapter // 12
 ref.endVerse.verseNumber // 14
 ```
 The [start/end]VerseNumber fields in `ref` will still refer to the first and last verse numbers
@@ -175,9 +187,10 @@ var verse = Verse("Matt", 2, 4);
 This creates `Reference` and `Verse` objects of 'Matthew 2:4'
 
 ```dart
-ref = Reference("Mat", 2, 4, 10);
+ref = Reference("Mat", 2, 4, 2, 10);
 ```
-This creates a reference to 'Matthew 2:4-10'.
+This creates a reference to 'Matthew 2:4-10'. Note that the constructor has the ordering
+(startChapter, startVerse, endChapter, endVerse). More constructors for simple usage are planned.
 
 ### Invalid References
 

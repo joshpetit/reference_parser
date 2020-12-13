@@ -16,13 +16,33 @@ class Reference extends BibleReference {
 
   /// The beginning chapter number in this reference.
   ///
-  /// Initializes to `null` if unspecified.
+  /// Initializes to 1 if unspecified.
   final int startChapterNumber;
 
+  /// The first [Chapter] object within this reference.
+  ///
+  /// This field is not to useful yet, but is still present.
+  /// If the reference is invalid will return null.
+  /// ```
+  /// var ref = parseReference('John 2-4');
+  /// var firstChap = ref.startChapter;
+  /// print(startChapter.chapterNumber); // 2
+  /// ```
   final Chapter startChapter;
 
+  /// The number for the last chapter in this reference.
   final int endChapterNumber;
 
+  /// The last [Chapter] object within this reference.
+  ///
+  /// This field is not to useful yet, but is still present.
+  /// If the reference is invalid will return null.
+  /// ```
+  /// var ref = parseReference('John 2-4');
+  /// var firstChap = ref.startChapter;
+  /// print(endChapter.chapterNumber); // 4
+  /// ```
+  ///
   final Chapter endChapter;
 
   /// The first verse number found in this reference.
@@ -56,6 +76,8 @@ class Reference extends BibleReference {
   @override
   final bool isValid;
 
+  /// The universal constructor, determines what kind of reference
+  /// this is based on which fields are left `null`.
   Reference(String book, [int schp, int svn, int echp, int evn])
       : startChapterNumber = schp ?? 1,
         startChapter = schp != null ? Chapter(book, schp) : Chapter(book, 1),
