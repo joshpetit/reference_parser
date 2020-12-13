@@ -119,6 +119,13 @@ void main() {
     expect(verse.verseNumber, equals(25));
     expect(verse.referenceType, equals(ReferenceType.VERSE));
   });
+
+  test('Librarian correctly creates last chapter objects', () {
+    var chapter = Librarian.getLastChapter('Gen');
+    expect(chapter.book, equals('Genesis'));
+    expect(chapter.chapterNumber, equals(50));
+    expect(chapter.referenceType, equals(ReferenceType.CHAPTER));
+  });
   test('Librarian creates correct reference strings', () {
     expect(Librarian.createReferenceString('John', 2), equals('John 2'));
     expect(Librarian.createReferenceString('John', 2, 3), equals('John 2:3'));

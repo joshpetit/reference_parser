@@ -1,5 +1,6 @@
 import '../../reference_parser.dart';
 import 'package:reference_parser/src/model/Verse.dart';
+import 'package:reference_parser/src/model/Chapter.dart';
 import 'BibleData.dart';
 
 class Librarian {
@@ -89,6 +90,24 @@ class Librarian {
     }
     var lastVerse = BibleData.lastVerse[bookNumber - 1][chapter - 1];
     return Verse(book, chapter, lastVerse);
+  }
+
+  static Chapter getLastChapter(dynamic book) {
+    int bookNumber;
+    if (book is int) {
+      bookNumber = book;
+    } else if (book is String) {
+      bookNumber = findBookNumber(book);
+    } else {
+      return null;
+    }
+    if (bookNumber == null) {
+      return null;
+    }
+    var bookNames = getBookNames(book);
+    book = bookNames['name'];
+    var chapter = BibleData.lastVerse[bookNumber - 1].length;
+    return Chapter(book, chapter);
   }
 
   /// Returns the type of reference based on the number of passed in arguments.
