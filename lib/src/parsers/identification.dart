@@ -16,15 +16,17 @@ import 'dart:async';
 /// ```
 Future<List<ReferenceQuery>> identifyReference(String text) async {
   final params = {'q': text};
-  final uri = Uri.https('biblehub.net', '/search.php', params);
+  final uri = Uri.https('biblescan.com', '/search.php', params);
   final res = await http.get(uri);
   var doc = parse(res.body);
-  var l = doc.querySelectorAll('#leftbox > div > p > a > span.l');
+  var l = doc.querySelectorAll(
+      '#leftbox > div.results > div.result_block, div.result_altblock');
   var queries = <ReferenceQuery>[];
   for (var i = 0; i < l.length; i++) {
-    var ref = parseReference(l[i].text.trim());
+    var text = l[i].querySelector('a').text;
+    var ref = parseReference(text);
     var len = ref.reference.length;
-    var preview = l[i].text.substring(len + 1).trim();
+    var preview = text.substring(len + 1).trim();
     if (preview.substring(0, 1) != '/') {
       queries.add(ReferenceQuery(text, preview, ref));
     }

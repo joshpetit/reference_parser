@@ -1,4 +1,5 @@
 import 'package:reference_parser/reference_parser.dart';
+import 'package:reference_parser/identification.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -70,5 +71,11 @@ void main() {
       expect(x.book.length, greaterThan(3),
           reason: 'Paratexts should be parsed');
     });
+  });
+  test('Reference identification', () {
+    var refs = identifyReference('Come to me all ye');
+    refs.then((x) => {
+          expect(x.length, greaterThan(3)),
+        });
   });
 }
