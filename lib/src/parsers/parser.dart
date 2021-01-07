@@ -35,7 +35,9 @@ List<Reference> parseAllReferences(String stringReference) {
   var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
   if (matches == null) return refs;
-  matches.forEach((x) => refs.add(_createRefFromMatch(x)));
+  matches.forEach((x) => {
+        if (x[0].trim() != 'is') refs.add(_createRefFromMatch(x)),
+      });
   return refs;
 }
 

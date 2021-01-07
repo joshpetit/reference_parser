@@ -70,6 +70,7 @@ void main() {
     expect(ref.reference, equals('James 1-2'));
     expect(ref.isValid, true);
   });
+
   test('Parsing all references', () {
     var refs = parseAllReferences('I hope Matt 2:4 and James 5:1-5 get parsed');
     expect(refs.length, equals(2));
@@ -78,6 +79,9 @@ void main() {
     expect(mat.book, equals('Matthew'));
     expect(mat.startChapterNumber, equals(2));
     expect(mat.startVerseNumber, equals(4));
+
+    refs = parseAllReferences('is should not be parsed');
+    expect(refs.length, equals(0));
 
     expect(jam.book, equals('James'));
     expect(jam.startChapterNumber, equals(5));
@@ -88,6 +92,7 @@ void main() {
     expect(refs.length, equals(0),
         reason: 'This string contains no references');
   });
+
   test('Verify paratexts', () {
     var refs = parseAllReferences('Mat Jam PSA joh');
     refs.forEach((x) {
@@ -95,6 +100,7 @@ void main() {
           reason: 'Paratexts should be parsed');
     });
   });
+
   test('Reference identification', () {
     var refs = identifyReference('Come to me all ye');
     refs.then((x) => {
