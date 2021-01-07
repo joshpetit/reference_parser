@@ -14,6 +14,7 @@ void main() {
     expect(ref.startChapterNumber, equals(1));
     expect(ref.referenceType, equals(ReferenceType.BOOK));
   });
+
   test('Creation of book and chapter reference', () {
     var ref = Reference('James', 5);
     expect(ref.reference, equals('James 5'));
@@ -23,6 +24,18 @@ void main() {
     expect(ref.endVerseNumber, equals(20));
     expect(ref.referenceType, equals(ReferenceType.CHAPTER));
   });
+
+  test('Creation of chapter range references', () {
+    var ref = Reference('Matthew', 5, null, 6);
+    expect(ref.reference, equals('Matthew 5-6'));
+    expect(ref.book, equals('Matthew'));
+    expect(ref.startChapterNumber, equals(5));
+    expect(ref.endChapterNumber, equals(6));
+    expect(ref.startVerseNumber, equals(1));
+    expect(ref.endVerseNumber, equals(34));
+    expect(ref.referenceType, equals(ReferenceType.CHAPTER_RANGE));
+  });
+
   test('Creation of verse reference', () {
     var ref = Reference('James', 5, 2);
     expect(ref.reference, equals('James 5:2'));
@@ -32,6 +45,7 @@ void main() {
     expect(ref.endVerseNumber, equals(2));
     expect(ref.referenceType, equals(ReferenceType.VERSE));
   });
+
   test('Creation of range of verses reference', () {
     var ref = Reference('James', 5, 2, 5, 3);
     expect(ref.reference, equals('James 5:2-3'));
@@ -39,8 +53,9 @@ void main() {
     expect(ref.startChapterNumber, equals(5));
     expect(ref.startVerseNumber, equals(2));
     expect(ref.endVerseNumber, equals(3));
-    expect(ref.referenceType, equals(ReferenceType.RANGE));
+    expect(ref.referenceType, equals(ReferenceType.VERSE_RANGE));
   });
+
   test('Verification works correctly', () {
     var ref = Reference('James', 2, 4);
     expect(ref.isValid, equals(true), reason: 'Passage should be valid');
@@ -55,10 +70,12 @@ void main() {
     ref = Reference('Psalms', 1, 5, 1, 100);
     expect(ref.isValid, equals(false), reason: 'End verse should not be valid');
   });
+
   test('Reference.book field initializes to full book name', () {
     var ref = Reference('Ps');
     expect(ref.book, equals('Psalms'));
   });
+
   test('Book numbers correctly initialized', () {
     var ref = Reference('Genesis');
     expect(ref.bookNumber, equals(1), reason: 'Genesis is the 1st book');
@@ -83,6 +100,7 @@ void main() {
     expect(verse.reference, equals('Genesis 2:3'));
     expect(verse.isValid, equals(true));
   });
+
   test('Reference [start/end]Verse objects for single verse references', () {
     var ref = Reference('John', 2, 4);
     expect(ref.endVerse.verseNumber, ref.startVerse.verseNumber,
@@ -104,6 +122,7 @@ void main() {
     expect(ref.startVerse.isValid, equals(false),
         reason: 'Joseph is not a book in the bible');
   });
+
   test('Reference [start/end]Verse objects for range references', () {
     var ref = Reference('Genesis', 2, 5, 2, 10);
     expect(ref.endVerse.book, equals('Genesis'));
@@ -115,6 +134,7 @@ void main() {
     expect(ref.endVerse.chapter, equals(60));
     expect(ref.endVerse.isValid, equals(false));
   });
+
   test(
       'Reference [start/end]Verse objects for (book and chapter) and chapter references',
       () {

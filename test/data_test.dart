@@ -98,7 +98,7 @@ void main() {
         equals(ReferenceType.VERSE));
 
     expect(Librarian.identifyReferenceType('Joeseph', 2, 4, 5),
-        equals(ReferenceType.RANGE));
+        equals(ReferenceType.CHAPTER_RANGE));
   });
   test('Librarian correctly creates last verse objects', () {
     var verse = Librarian.getLastVerse('John');
