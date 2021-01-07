@@ -48,6 +48,7 @@ Reference _createRefFromMatch(RegExpMatch match) {
         null,
         pr[4] == null ? null : int.parse(pr[4]));
   }
+
   return Reference(
     Librarian.getBookNames(pr[1])['name'] ?? pr[1],
     pr[2] == null ? null : int.parse(pr[2]),
@@ -61,7 +62,7 @@ RegExp _createFullRegex() {
   var books = BibleData.bookNames.expand((i) => i).toList();
   books.addAll(BibleData.variants.keys);
   var regBooks = books.join('\\b|\\b');
-  var expression = '(\\b$regBooks\\b) ?(\\d+)?:?(\\d+)?-?(\\d+)?';
+  var expression = '(\\$regBooks\\b) *(\\d+)?[ :.]*(\\d+)?[— -]*(\\d+)?';
   var exp = RegExp(expression, caseSensitive: false);
   return exp;
 }

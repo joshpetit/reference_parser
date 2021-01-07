@@ -46,6 +46,29 @@ void main() {
     ref = parseReference('Joseph 5:10-11');
     expect(ref.isValid, equals(false));
     expect(ref.book, equals(''));
+
+    ref = parseReference('So what about James 1 - 2');
+    expect(ref.book, equals('James'));
+    expect(ref.reference, equals('James 1-2'));
+    expect(ref.startChapterNumber, 1);
+    expect(ref.endChapterNumber, 2);
+    expect(ref.isValid, true);
+
+    ref = parseReference('James 1.2');
+    expect(ref.book, equals('James'));
+    expect(ref.reference, equals('James 1:2'));
+    expect(ref.isValid, true);
+
+    ref = parseReference('James 1.2 -  2');
+    expect(ref.book, equals('James'));
+    expect(ref.reference, equals('James 1:2-2'));
+    expect(ref.isValid, true);
+
+    // The ~em~ dash
+    ref = parseReference('James 1—2');
+    expect(ref.book, equals('James'));
+    expect(ref.reference, equals('James 1-2'));
+    expect(ref.isValid, true);
   });
   test('Parsing all references', () {
     var refs = parseAllReferences('I hope Matt 2:4 and James 5:1-5 get parsed');
