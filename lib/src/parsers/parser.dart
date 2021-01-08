@@ -42,21 +42,17 @@ List<Reference> parseAllReferences(String stringReference) {
 }
 
 Reference _createRefFromMatch(RegExpMatch match) {
-  var pr = match.groups([0, 1, 2, 3, 4]);
-  if (pr[3] == null) {
-    return Reference(
-        Librarian.getBookNames(pr[1])['name'] ?? pr[1],
-        pr[2] == null ? null : int.parse(pr[2]),
-        null,
-        pr[4] == null ? null : int.parse(pr[4]));
-  }
-
+  var pr = match.groups([0, 1, 2, 3, 4, 5]);
   return Reference(
     Librarian.getBookNames(pr[1])['name'] ?? pr[1],
     pr[2] == null ? null : int.parse(pr[2]),
     pr[3] == null ? null : int.parse(pr[3]),
-    pr[2] == null ? null : int.parse(pr[2]),
-    pr[4] == null ? null : int.parse(pr[4]),
+    pr[4] != null && (pr[3] == null || pr[5] != null) ? int.parse(pr[4]) : null,
+    pr[5] != null
+        ? int.parse(pr[5])
+        : pr[4] != null && pr[3] != null
+            ? int.parse(pr[4])
+            : null,
   );
 }
 
@@ -64,7 +60,8 @@ RegExp _createFullRegex() {
   var books = BibleData.bookNames.expand((i) => i).toList();
   books.addAll(BibleData.variants.keys);
   var regBooks = books.join('\\b|\\b');
-  var expression = '(\\$regBooks\\b) *(\\d+)?[ :.]*(\\d+)?[— -]*(\\d+)?';
+  var expression =
+      '(\\b$regBooks\\b) *(\\d+)?[ :.]*(\\d+)?[— -]*(\\d+)?[ :.]*(\\d+)?';
   var exp = RegExp(expression, caseSensitive: false);
   return exp;
 }

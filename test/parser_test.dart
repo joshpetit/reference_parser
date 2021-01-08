@@ -5,18 +5,20 @@ import 'package:test/test.dart';
 void main() {
   test('Creation of reference from parser', () {
     var ref = parseReference('John 3:16');
+    expect(ref.reference, equals('John 3:16'));
     expect(ref.book, equals('John'));
     expect(ref.startChapterNumber, equals(3));
-    expect(ref.reference, equals('John 3:16'));
     expect(ref.startVerseNumber, equals(16));
 
     ref = parseReference('1john 3:16');
+    expect(ref.reference, equals('1 John 3:16'));
     expect(ref.book, equals('1 John'));
     expect(ref.startChapterNumber, equals(3));
     expect(ref.reference, equals('1 John 3:16'));
     expect(ref.startVerseNumber, equals(16));
 
     ref = parseReference('Jn 2:4');
+    expect(ref.reference, equals('John 2:4'));
     expect(ref.book, equals('John'));
     expect(ref.book, 'John');
     expect(ref.startChapterNumber, 2);
@@ -28,18 +30,20 @@ void main() {
     expect(ref.isValid, false);
 
     ref = parseReference('I love John 4:5-10');
+    expect(ref.reference, equals('John 4:5-10'));
     expect(ref.book, equals('John'));
     expect(ref.startChapterNumber, equals(4));
     expect(ref.startVerseNumber, equals(5));
     expect(ref.endVerseNumber, equals(10));
 
-    ref = parseReference('This is going to parse Isaiah');
+    ref = parseReference('This is not going to parse Matthew');
     expect(ref.book, equals('Isaiah'), reason: '\'is\' is parsed first');
 
     ref = parseReference('Only jam should be parsed');
     expect(ref.book, equals('James'));
 
     ref = parseReference('Joe 2:5-10');
+    expect(ref.reference, equals('Joel 2:5-10'));
     expect(ref.book, equals('Joel'));
     expect(ref.isValid, equals(true));
 
@@ -48,8 +52,8 @@ void main() {
     expect(ref.book, equals(''));
 
     ref = parseReference('So what about James 1 - 2');
-    expect(ref.book, equals('James'));
     expect(ref.reference, equals('James 1-2'));
+    expect(ref.book, equals('James'));
     expect(ref.startChapterNumber, 1);
     expect(ref.endChapterNumber, 2);
     expect(ref.isValid, true);
@@ -66,9 +70,22 @@ void main() {
 
     // The ~em~ dash
     ref = parseReference('James 1—2');
-    expect(ref.book, equals('James'));
     expect(ref.reference, equals('James 1-2'));
+    expect(ref.book, equals('James'));
     expect(ref.isValid, true);
+
+    ref = parseReference('James 1.2 -  2:4');
+    expect(ref.reference, equals('James 1:2 - 2:4'));
+    expect(ref.book, equals('James'));
+    expect(ref.isValid, true);
+
+    ref = parseReference('James 1 . 2 -  2 . 4');
+    expect(ref.reference, equals('James 1:2 - 2:4'));
+    expect(ref.book, equals('James'));
+    expect(ref.isValid, true);
+
+    ref = parseReference('Matthew 2:3-5 - 5:7');
+    expect(ref.reference, equals('Matthew 2:3-5'));
   });
 
   test('Parsing all references', () {
