@@ -1,3 +1,6 @@
+## 1.3.1
+- linting for static analysis
+
 ## 1.3.0
 - Cross chapter verse ranges can be parsed
 - fixes references not being categorized as CHAPTER_RANGE
