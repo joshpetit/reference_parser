@@ -17,9 +17,6 @@ multiple references from a string in a variety of formats.
     + [Invalid References](#invalid-references)
 <!-- tocstop -->
 
-## Installation
-Add `reference_parser: ^1.2.2` to your pubspec.yaml then run pub get in the project directory
-
 # Usage
 
 to include the default exports of reference parser add this to your imports:

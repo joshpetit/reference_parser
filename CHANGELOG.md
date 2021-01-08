@@ -1,3 +1,7 @@
+## 1.3.0
+- Cross chapter verse ranges can be parsed
+- fixes references not being categorized as CHAPTER_RANGE
+
 ## 1.2.2
 - fixes reference identification
 
