@@ -97,8 +97,8 @@ void main() {
     expect(mat.startChapterNumber, equals(2));
     expect(mat.startVerseNumber, equals(4));
 
-    refs = parseAllReferences('is should not be parsed');
-    expect(refs.length, equals(0));
+    refs = parseAllReferences('is is still parsed');
+    expect(refs.length, equals(2));
 
     expect(jam.book, equals('James'));
     expect(jam.startChapterNumber, equals(5));
