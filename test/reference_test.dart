@@ -181,14 +181,36 @@ void main() {
 
   test('BibleReferences correctly returns osis, abbr, and short book names',
       () {
-    var ref = Reference('Genesis', 2, 5, 10);
-    expect(ref.osis, equals('Gen'));
-    expect(ref.abbr, equals('GEN'));
-    expect(ref.short, equals('Gn'));
+    var ref = Reference('Genesis', 2, 5);
+    expect(ref.osisBook, equals('Gen'));
+    expect(ref.abbrBook, equals('GEN'));
+    expect(ref.shortBook, equals('Gn'));
 
-    ref = Reference('Joseph', 2, 5, 10);
-    expect(ref.osis, equals(null));
-    expect(ref.abbr, equals(null));
-    expect(ref.short, equals(null));
+    ref = Reference('Joseph', 2, 5);
+    expect(ref.osisBook, equals(null));
+    expect(ref.abbrBook, equals(null));
+    expect(ref.shortBook, equals(null));
+  });
+
+  test('Retrieving osis, abbr, and short references', () {
+    var ref = Reference('Genesis', 2, 5);
+    expect(ref.osisReference, equals('Gen 2:5'));
+    expect(ref.abbrReference, equals('GEN 2:5'));
+    expect(ref.shortReference, equals('Gn 2:5'));
+
+    ref = Reference('Joseph', 2, 5);
+    expect(ref.osisReference, equals(null));
+    expect(ref.abbrReference, equals(null));
+    expect(ref.shortReference, equals(null));
+
+    var chapter = Chapter('Matthew', 1);
+    expect(chapter.osisReference, equals('Matt 1'));
+    expect(chapter.abbrReference, equals('MAT 1'));
+    expect(chapter.shortReference, equals('Mt 1'));
+
+    var verse = Verse('Joel', 1, 2);
+    expect(verse.osisReference, equals('Joel 1:2'));
+    expect(verse.abbrReference, equals('JOE 1:2'));
+    expect(verse.shortReference, equals('Jl 1:2'));
   });
 }
