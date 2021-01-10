@@ -56,6 +56,9 @@ class Librarian {
       return null;
     }
     chapter ??= BibleData.lastVerse[book - 1].length;
+    if (BibleData.lastVerse[book - 1].length < chapter || chapter < 1) {
+      return null;
+    }
     return BibleData.lastVerse[book - 1][chapter - 1];
   }
 
@@ -65,6 +68,9 @@ class Librarian {
       book = findBookNumber(book);
     }
     if (book is! int) {
+      return null;
+    }
+    if (book > BibleData.lastVerse.length) {
       return null;
     }
     return BibleData.lastVerse[book - 1].length;
@@ -107,9 +113,13 @@ class Librarian {
     if (bookNumber == null) {
       return null;
     }
+    if (BibleData.lastVerse.length < bookNumber) {
+      return null;
+    }
     var bookNames = getBookNames(book);
     book = bookNames['name'];
     var chapter = BibleData.lastVerse[bookNumber - 1].length;
+
     return Chapter(book, chapter);
   }
 
