@@ -103,19 +103,19 @@ void main() {
   test('Librarian correctly creates last verse objects', () {
     var verse = Librarian.getLastVerse('John');
     expect(verse.book, equals('John'));
-    expect(verse.chapter, equals(21));
+    expect(verse.chapterNumber, equals(21));
     expect(verse.verseNumber, equals(25));
     expect(verse.referenceType, equals(ReferenceType.VERSE));
 
     verse = Librarian.getLastVerse('Ps');
     expect(verse.book, equals('Psalms'));
-    expect(verse.chapter, equals(150));
+    expect(verse.chapterNumber, equals(150));
     expect(verse.verseNumber, equals(6));
     expect(verse.referenceType, equals(ReferenceType.VERSE));
 
     verse = Librarian.getLastVerse('Gen', 2);
     expect(verse.book, equals('Genesis'));
-    expect(verse.chapter, equals(2));
+    expect(verse.chapterNumber, equals(2));
     expect(verse.verseNumber, equals(25));
     expect(verse.referenceType, equals(ReferenceType.VERSE));
   });

@@ -96,7 +96,7 @@ void main() {
   test('Verse object creation', () {
     var verse = Verse('Genesis', 2, 3);
     expect(verse.book, equals('Genesis'));
-    expect(verse.chapter, equals(2));
+    expect(verse.chapterNumber, equals(2));
     expect(verse.bookNumber, equals(1));
     expect(verse.verseNumber, equals(3));
     expect(verse.reference, equals('Genesis 2:3'));
@@ -128,7 +128,7 @@ void main() {
     expect(ref.startVerse.book, equals('John'),
         reason: 'All verses have a book');
 
-    expect(ref.startVerse.chapter, equals(2),
+    expect(ref.startVerse.chapterNumber, equals(2),
         reason: 'Verse should have a chapter');
 
     expect(ref.startVerse.verseNumber, equals(4),
@@ -146,11 +146,11 @@ void main() {
     var ref = Reference('Genesis', 2, 5, 2, 10);
     expect(ref.endVerse.book, equals('Genesis'));
     expect(ref.endVerse.verseNumber, equals(10));
-    expect(ref.endVerse.chapter, equals(2));
+    expect(ref.endVerse.chapterNumber, equals(2));
     expect(ref.endVerse.isValid, equals(true));
 
     ref = Reference('Genesis', 60, 5, 60, 10);
-    expect(ref.endVerse.chapter, equals(60));
+    expect(ref.endVerse.chapterNumber, equals(60));
     expect(ref.endVerse.isValid, equals(false));
   });
 
@@ -159,13 +159,13 @@ void main() {
       () {
     var ref = Reference('Ecclesiastes', 5);
     expect(ref.startVerse.verseNumber, equals(1));
-    expect(ref.startVerse.chapter, equals(5));
+    expect(ref.startVerse.chapterNumber, equals(5));
     expect(ref.endVerse.verseNumber, equals(20));
-    expect(ref.endVerse.chapter, equals(5));
+    expect(ref.endVerse.chapterNumber, equals(5));
 
     ref = Reference('Ecclesiastes');
     expect(ref.startVerse.verseNumber, equals(1));
-    expect(ref.endVerse.chapter, equals(12));
+    expect(ref.endVerse.chapterNumber, equals(12));
     expect(ref.endVerse.verseNumber, equals(14));
   });
 
