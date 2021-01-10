@@ -104,4 +104,16 @@ class Reference extends BibleReference {
             Librarian.identifyReferenceType(book, schp, svn, echp, evn),
         isValid = Librarian.verifyReference(book, schp, svn, echp, evn),
         super(book);
+
+  @override
+  String get osisReference => Librarian.createReferenceString(osisBook,
+      startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
+
+  @override
+  String get abbrReference => Librarian.createReferenceString(abbrBook,
+      startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
+
+  @override
+  String get shortReference => Librarian.createReferenceString(shortBook,
+      startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 }

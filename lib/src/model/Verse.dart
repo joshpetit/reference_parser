@@ -14,6 +14,7 @@ class Verse extends BibleReference {
   final String reference;
 
   /// The chapter number this verse is within.
+  //TODO: Rename to chapterNumber
   final int chapter;
 
   /// The verse number this verse refers to within a chapter.
@@ -21,7 +22,7 @@ class Verse extends BibleReference {
 
   /// [ReferenceType.VERSE].
   @override
-  ReferenceType referenceType;
+  final ReferenceType referenceType;
 
   /// Whether this verse is found within the bible.
   @override
@@ -33,4 +34,16 @@ class Verse extends BibleReference {
         referenceType = ReferenceType.VERSE,
         isValid = Librarian.verifyReference(book, chapter, verseNumber),
         super(book);
+
+  @override
+  String get osisReference =>
+      Librarian.createReferenceString(osisBook, chapter, verseNumber);
+
+  @override
+  String get abbrReference =>
+      Librarian.createReferenceString(abbrBook, chapter, verseNumber);
+
+  @override
+  String get shortReference =>
+      Librarian.createReferenceString(shortBook, chapter, verseNumber);
 }

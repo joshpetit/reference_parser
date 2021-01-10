@@ -42,4 +42,16 @@ class Chapter extends BibleReference {
         endVerseNumber = Librarian.getLastVerseNumber(book, chapterNumber),
         isValid = Librarian.verifyReference(book, chapterNumber),
         super(book);
+
+  @override
+  String get osisReference =>
+      Librarian.createReferenceString(osisBook, chapterNumber);
+
+  @override
+  String get abbrReference =>
+      Librarian.createReferenceString(abbrBook, chapterNumber);
+
+  @override
+  String get shortReference =>
+      Librarian.createReferenceString(shortBook, chapterNumber);
 }
