@@ -65,7 +65,7 @@ void main() {
 
     ref = parseReference('James 1.2 -  2');
     expect(ref.book, equals('James'));
-    expect(ref.reference, equals('James 1:2-2'));
+    expect(ref.reference, equals('James 1:2'));
     expect(ref.isValid, true);
 
     // The ~em~ dash

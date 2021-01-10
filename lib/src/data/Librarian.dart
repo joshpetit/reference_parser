@@ -229,6 +229,7 @@ class Librarian {
   /// Creates a String reference based on which fields are left `null`
   static String createReferenceString(String book,
       [int startChapter, int startVerse, int endChapter, int endVerse]) {
+    if (book == null) return null;
     var reference = StringBuffer(book);
     if (startChapter != null) {
       reference.write(' ${startChapter}');
@@ -238,7 +239,7 @@ class Librarian {
           reference.write(' - ${endChapter}');
           reference
               .write(':${endVerse ?? getLastVerseNumber(endChapter) ?? 1}');
-        } else if (endVerse != null) {
+        } else if (endVerse != null && endVerse != startVerse) {
           reference.write('-${endVerse}');
         }
       } else if (endChapter != null && endChapter != startChapter) {
