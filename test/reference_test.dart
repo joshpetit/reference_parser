@@ -1,5 +1,6 @@
 import 'package:reference_parser/src/model/Reference.dart';
 import 'package:reference_parser/src/model/Verse.dart';
+import 'package:reference_parser/src/model/Chapter.dart';
 import 'package:reference_parser/src/util/VerseEnum.dart';
 import 'package:test/test.dart';
 
@@ -91,6 +92,7 @@ void main() {
         reason: 'The Gospel of Joseph does not exist');
     expect(ref.endVerseNumber, equals(null));
   });
+
   test('Verse object creation', () {
     var verse = Verse('Genesis', 2, 3);
     expect(verse.book, equals('Genesis'));
@@ -99,6 +101,23 @@ void main() {
     expect(verse.verseNumber, equals(3));
     expect(verse.reference, equals('Genesis 2:3'));
     expect(verse.isValid, equals(true));
+  });
+
+  test('Chapter object creation', () {
+    var chapter = Chapter('Genesis', 2);
+    expect(chapter.reference, equals('Genesis 2'));
+    expect(chapter.book, equals('Genesis'));
+    expect(chapter.chapterNumber, equals(2));
+    expect(chapter.bookNumber, equals(1));
+    expect(chapter.endVerseNumber, equals(25));
+    expect(chapter.isValid, equals(true));
+
+    expect(chapter.startVerse.reference, equals('Genesis 2:1'));
+    expect(chapter.endVerse.reference, equals('Genesis 2:25'));
+
+    chapter = Chapter('Genesis', 60);
+    expect(chapter.isValid, equals(false));
+    expect(chapter.endVerse, equals(null));
   });
 
   test('Reference [start/end]Verse objects for single verse references', () {
