@@ -1,4 +1,5 @@
 import 'package:reference_parser/src/util/VerseEnum.dart';
+import 'package:reference_parser/src/model/Verse.dart';
 import 'package:reference_parser/src/data/Librarian.dart';
 import 'package:reference_parser/src/model/BibleReference.dart';
 
@@ -16,6 +17,11 @@ class Chapter extends BibleReference {
   @override
   final String reference;
 
+  final int startVerseNumber;
+  final int endVerseNumber;
+  final Verse startVerse;
+  final Verse endVerse;
+
   /// The numerated chapter that this reference is within the book.
   final int chapterNumber;
 
@@ -23,13 +29,17 @@ class Chapter extends BibleReference {
   ///
   /// This reference refers to a single chapter in the bible.
   @override
-  ReferenceType referenceType;
+  final ReferenceType referenceType;
 
   @override
   final bool isValid;
   Chapter(String book, this.chapterNumber)
       : reference = Librarian.createReferenceString(book, chapterNumber),
         referenceType = ReferenceType.CHAPTER,
+        startVerseNumber = 1,
+        startVerse = Verse(book, chapterNumber, 1),
+        endVerse = Librarian.getLastVerse(book, chapterNumber),
+        endVerseNumber = Librarian.getLastVerseNumber(book, chapterNumber),
         isValid = Librarian.verifyReference(book, chapterNumber),
         super(book);
 }
