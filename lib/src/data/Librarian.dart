@@ -145,26 +145,6 @@ class Librarian {
     return null;
   }
 
-  /// Verifies that a book, and optionally chapter and verse, are in the bible.
-  @Deprecated('migration to verifyReference')
-  static bool verifyVerse(dynamic book, [int chapter, int verse]) {
-    if (book is String) {
-      book = findBookNumber(book);
-    }
-    if (book is! int) return false;
-
-    if (!(book > 0 && BibleData.lastVerse.length >= book)) {
-      return false;
-    } else if (chapter != null &&
-        !(chapter > 0 && BibleData.lastVerse[book - 1].length >= chapter)) {
-      return false;
-    } else if (verse != null &&
-        !(verse > 0 && BibleData.lastVerse[book - 1][chapter - 1] >= verse)) {
-      return false;
-    }
-    return true;
-  }
-
   /// Verifies a reference based on which fields are left `null`
   /// or can be found within the bible.
   static bool verifyReference(dynamic book,
