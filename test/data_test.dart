@@ -16,11 +16,13 @@ void main() {
     bookNumber = Librarian.findBookNumber('psalm');
     expect(bookNumber, equals(19), reason: 'Psalm(s) is the 19th book');
   });
+
   test('Returns null for nonexistent books', () {
     var bookNumber = Librarian.findBookNumber('joseph');
     expect(bookNumber, equals(null),
         reason: 'Joseph is not a book in the bible');
   });
+
   test('Librarian checks book validity correctly', () {
     expect(Librarian.checkBook('joseph'), equals(false),
         reason: 'Joseph is an invalid book');
@@ -34,6 +36,7 @@ void main() {
     expect(Librarian.checkBook('jn'), equals(true),
         reason: 'jn is a valid book');
   });
+
   test('Librarian returns correct book names', () {
     var names = Librarian.getBookNames(1);
     expect(names['osis'], equals('Gen'));
@@ -50,44 +53,53 @@ void main() {
     names = Librarian.getBookNames('');
     expect(names.length, equals(0));
   });
+
   test('Librarian correctly verifies verses', () {
-    expect(Librarian.verifyVerse(1), equals(true),
+    expect(Librarian.verifyReference(1), equals(true),
         reason: 'First book should exist');
 
-    expect(Librarian.verifyVerse(33), equals(true),
+    expect(Librarian.verifyReference(33), equals(true),
         reason: 'Middle book should exist');
 
-    expect(Librarian.verifyVerse(66), equals(true),
+    expect(Librarian.verifyReference(66), equals(true),
         reason: 'Last book should exist');
 
-    expect(Librarian.verifyVerse(67), equals(false),
+    expect(Librarian.verifyReference(67), equals(false),
         reason: '67th book does not exist');
 
-    expect(Librarian.verifyVerse(-1), equals(false),
+    expect(Librarian.verifyReference(-1), equals(false),
         reason: 'Negative books do not exist');
 
-    expect(Librarian.verifyVerse(33, 1), equals(true),
+    expect(Librarian.verifyReference(33, 1), equals(true),
         reason: 'Book and chapter should exist');
 
-    expect(Librarian.verifyVerse(33, 8), equals(false),
+    expect(Librarian.verifyReference(33, 8), equals(false),
         reason: 'Book and chapter should not exist');
 
-    expect(Librarian.verifyVerse(33, 1, 1), equals(true),
+    expect(Librarian.verifyReference(33, 1, 1), equals(true),
         reason: 'Book, chapter, and verse should exist');
 
-    expect(Librarian.verifyVerse(33, 1, 16), equals(true),
+    expect(Librarian.verifyReference(33, 1, 16), equals(true),
         reason: 'Book, chapter, and ending verse should exist');
 
-    expect(Librarian.verifyVerse(33, 1, 17), equals(false),
+    expect(Librarian.verifyReference(33, 1, 17), equals(false),
         reason: 'Verse should not exist');
 
-    expect(Librarian.verifyVerse('John', 1, 1), equals(true),
+    expect(Librarian.verifyReference('John', 1, 1), equals(true),
+        reason: 'String book references should work');
+
+    expect(Librarian.verifyReference(33, 1, 17, null, 18), equals(false),
+        reason: 'Verse should not exist');
+
+    expect(Librarian.verifyReference('John', 1, 1, 1, 2), equals(true),
         reason: 'String book references should work');
   });
+
   test('Librarian correctly fetches last verse and chapter numbers', () {
     expect(Librarian.getLastVerseNumber('John'), equals(25));
     expect(Librarian.getLastChapterNumber('John'), equals(21));
   });
+
   test('Librarian correctly creates ReferenceType', () {
     expect(Librarian.identifyReferenceType('John'), equals(ReferenceType.BOOK));
 
@@ -100,6 +112,7 @@ void main() {
     expect(Librarian.identifyReferenceType('Joeseph', 2, 4, 5),
         equals(ReferenceType.CHAPTER_RANGE));
   });
+
   test('Librarian correctly creates last verse objects', () {
     var verse = Librarian.getLastVerse('John');
     expect(verse.book, equals('John'));
@@ -126,6 +139,7 @@ void main() {
     expect(chapter.chapterNumber, equals(50));
     expect(chapter.referenceType, equals(ReferenceType.CHAPTER));
   });
+
   test('Librarian creates correct reference strings', () {
     expect(Librarian.createReferenceString('John', 2), equals('John 2'));
     expect(Librarian.createReferenceString('John', 2, 3), equals('John 2:3'));
