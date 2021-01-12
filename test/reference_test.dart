@@ -213,4 +213,12 @@ void main() {
     expect(verse.abbrReference, equals('JOE 1:2'));
     expect(verse.shortReference, equals('Jl 1:2'));
   });
+
+  test('Retrieving subdivided references', () {
+    var chapter = Chapter('Genesis', 2);
+    var verses = chapter.verses;
+    expect(verses.length, equals(25));
+    verses = chapter.verses;
+    expect(verses.length, equals(25), reason: 'Ensures verses are cached');
+  });
 }
