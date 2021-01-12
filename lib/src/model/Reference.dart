@@ -109,6 +109,17 @@ class Reference extends BibleReference {
         isValid = Librarian.verifyReference(book, schp, svn, echp, evn),
         super(book);
 
+  Reference.chapter(String book, int chapter) : this(book, chapter);
+
+  Reference.verse(String book, int chapter, int verse)
+      : this(book, chapter, verse);
+
+  Reference.chapterRange(String book, int startChapter, int endChapter)
+      : this(book, startChapter, null, endChapter);
+
+  Reference.verseRange(String book, int chapter, int startVerse, int endVerse)
+      : this(book, chapter, startVerse, null, endVerse);
+
   @override
   String get osisReference => Librarian.createReferenceString(osisBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
