@@ -21,6 +21,7 @@ class Chapter extends BibleReference {
   final int endVerseNumber;
   final Verse startVerse;
   final Verse endVerse;
+
   List<Verse> _verses;
 
   /// The numerated chapter that this reference is within the book.
