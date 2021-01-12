@@ -238,4 +238,21 @@ void main() {
     verses = verse.verses;
     expect(verses.length, equals(1));
   });
+
+  test('Redirective constructors', () {
+    var chapter = Reference.chapter('Genesis', 2);
+    expect(chapter.reference, equals('Genesis 2'));
+    expect(chapter.referenceType, equals(ReferenceType.CHAPTER));
+
+    var verse = Reference.verse('Genesis', 2, 2);
+    expect(verse.reference, equals('Genesis 2:2'));
+    expect(verse.referenceType, equals(ReferenceType.VERSE));
+
+    var chapterRange = Reference.chapterRange('Genesis', 2, 3);
+    expect(chapterRange.reference, equals('Genesis 2-3'));
+    expect(chapterRange.referenceType, equals(ReferenceType.CHAPTER_RANGE));
+
+    var verseRange = Reference.verseRange('Genesis', 2, 3, 4);
+    expect(verseRange.referenceType, equals(ReferenceType.VERSE_RANGE));
+  });
 }
