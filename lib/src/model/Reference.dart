@@ -50,6 +50,10 @@ class Reference extends BibleReference {
   /// Defaults to 1.
   final int startVerseNumber;
 
+  List<Chapter> _chapters;
+
+  List<Verse> _verses;
+
   /// The [Verse] object representing the first verse in this reference.
   ///
   /// Returns the verse object of the first verse in the chapter if
@@ -116,4 +120,33 @@ class Reference extends BibleReference {
   @override
   String get shortReference => Librarian.createReferenceString(shortBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
+
+  List<Chapter> get chapters {
+    if (_chapters != null) {
+      return _chapters;
+    }
+    _chapters = <Chapter>[];
+    for (var i = startChapterNumber; i <= endChapterNumber; i++) {
+      _chapters.add(Chapter(book, i));
+    }
+    return _chapters;
+  }
+
+  List<Verse> get verses {
+    if (_verses != null) {
+      return _verses;
+    }
+    _verses = <Verse>[];
+    for (var i = startChapterNumber; i <= endChapterNumber; i++) {
+      var start = i == startChapterNumber ? startVerseNumber : 1;
+      var end = i == endChapterNumber
+          ? endVerseNumber
+          : Librarian.getLastVerseNumber(book, i);
+      for (var j = start; j <= end; j++) {
+        _verses.add(Verse(book, i, j));
+      }
+    }
+
+    return _verses;
+  }
 }

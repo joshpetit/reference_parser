@@ -22,6 +22,8 @@ class Chapter extends BibleReference {
   final Verse startVerse;
   final Verse endVerse;
 
+  List<Verse> _verses;
+
   /// The numerated chapter that this reference is within the book.
   final int chapterNumber;
 
@@ -54,4 +56,17 @@ class Chapter extends BibleReference {
   @override
   String get shortReference =>
       Librarian.createReferenceString(shortBook, chapterNumber);
+
+  @override
+  List<Verse> get verses {
+    if (_verses != null) {
+      return _verses;
+    }
+    _verses = <Verse>[];
+    for (int i = 1; i <= endVerseNumber; i++) {
+      _verses.add(Verse(book, chapterNumber, i));
+    }
+
+    return _verses;
+  }
 }
