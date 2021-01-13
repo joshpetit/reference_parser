@@ -42,7 +42,6 @@ class Reference extends BibleReference {
   /// var firstChap = ref.startChapter;
   /// print(endChapter.chapterNumber); // 4
   /// ```
-  ///
   final Chapter endChapter;
 
   /// The first verse number found in this reference.
@@ -50,8 +49,12 @@ class Reference extends BibleReference {
   /// Defaults to 1.
   final int startVerseNumber;
 
+  /// Caches the generated chapter objects
+  /// when [Reference.chapters] is retrieved.
   List<Chapter> _chapters;
 
+  /// Caches the generated verse objects
+  /// when [Reference.verses] is retrieved.
   List<Verse> _verses;
 
   /// The [Verse] object representing the first verse in this reference.
@@ -109,29 +112,43 @@ class Reference extends BibleReference {
         isValid = Librarian.verifyReference(book, schp, svn, echp, evn),
         super(book);
 
+  /// Construct a [Reference] as a chapter.
   Reference.chapter(String book, int chapter) : this(book, chapter);
 
+  /// Construct a [Reference] as a verse.
   Reference.verse(String book, int chapter, int verse)
       : this(book, chapter, verse);
 
+  /// Construct a [Reference] as a chapter range such as
+  /// Genesis 2-3.
   Reference.chapterRange(String book, int startChapter, int endChapter)
       : this(book, startChapter, null, endChapter);
 
+  /// Construct a [Reference] as a verse range such as
+  /// Genesis 2:3-4.
   Reference.verseRange(String book, int chapter, int startVerse, int endVerse)
       : this(book, chapter, startVerse, null, endVerse);
 
+  /// The title cased representation for this reference.
   @override
   String get osisReference => Librarian.createReferenceString(osisBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
+  /// The uppercased paratext abbreviation for this reference.
   @override
   String get abbrReference => Librarian.createReferenceString(abbrBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
+  /// The shortest standard abbreviation for this reference.
   @override
   String get shortReference => Librarian.createReferenceString(shortBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
+  /// Creates a list containing every chapter found
+  /// within this reference.
+  ///
+  /// Onces called this list is cached so subsequent
+  /// calls will be quicker.
   List<Chapter> get chapters {
     if (_chapters != null) {
       return _chapters;
@@ -143,6 +160,11 @@ class Reference extends BibleReference {
     return _chapters;
   }
 
+  /// Creates a list containing every verse found
+  /// within this reference.
+  ///
+  /// Onces called this list is cached so subsequent
+  /// calls will be quicker.
   List<Verse> get verses {
     if (_verses != null) {
       return _verses;

@@ -3,6 +3,10 @@
 A dart package that parses strings for bible references. You can parse single references or
 multiple references from a string in a variety of formats.
 
+Really 99% of what you need to know will be found in the 
+[Parsing References](#parsing-references) and [Identifying References](#identifying-references)
+headers. But if you have more complicated needs this package can handle those!
+
 <!-- toc -->
   * [Installation](#installation)
 - [Usage](#usage)
@@ -67,18 +71,32 @@ the other two are Strings. Check the API documentation for more information.
 Reference objects are general references that can refer to either a single verse, a range of verses,
 a single chapter, or entire an entire book. They extend the BibleReference class so include these base fields:
 ```dart
+ref.isValid // true 
 ref.book // 'Matthew'
 ref.bookNumber // 40
+ref.osisBook // 'Matt'
+ref.osisReference // 'Matt 2:4-10'
+
+ref.abbrBook // 'MAT'
+ref.abbrReference // 'MAT 2:4-10'
+
+ref.shortBook // 'Mt'
+ref.shortReference // 'Mt 2:4-10'
 ref.startChapterNumber // 2
-ref.isValid // true 
-ref.osis // 'Matt'
-ref.abbr // 'MAT'
-ref.short // 'Mt'
+ref.startVerseNumber // 4
+ref.endVerseNumber // 10
 ref.reference // 'Matthew 2:4-10'
+
+ref.chapters // [Matthew 2] -- if this were a cross chapter reference
+			 // Each chapter would be present in this list.
+
+ref.verses 	 // [Matthew 2:4, Matt 2:5, Matthew...] -- Creates a Verse object
+			 // for every verse within this reference.
+
 ref.toString() // 'Matthew 2:4-10'
 ref.referenceType // ReferenceType.VERSE_RANGE
 ```
-All of these fields are specific to the BibleReference class and its subclasses
+Check the documentation for an overlook of all the offered fields.
 
 -------
 
@@ -179,15 +197,19 @@ ref.endVerseNumber // 14
 You can directly create all BibleReferences by calling their constructors
 ```dart
 var ref = Reference("Mat", 2, 4);
+var ref = Reference.verse("Mat", 2, 4);
 var verse = Verse("Matt", 2, 4);
 ```
-This creates `Reference` and `Verse` objects of 'Matthew 2:4'
+This creates `Reference` and `Verse` objects of 'Matthew 2:4'.
 
 ```dart
-ref = Reference("Mat", 2, 4, 2, 10);
+ref = Reference("Mat", 2, 4, null, 10);
+ref = Reference.verseRange("Mat", 2, 4, 10);
 ```
-This creates a reference to 'Matthew 2:4-10'. Note that the constructor has the ordering
-(startChapter, startVerse, endChapter, endVerse). More constructors for simple usage are planned.
+These are equivalents that create a reference to 'Matthew 2:4-10'. Note that the constructor has the ordering
+(startChapter, startVerse, endChapter, endVerse). So using the verseRange constructor
+just makes things more declarative. Look at the Reference class' documentation for a list of all
+available constructors.
 
 ### Invalid References
 
@@ -207,7 +229,7 @@ ref.book // "McDonald"
 ref.isValid // false
 ref.startVerseNumber // 4
 ref.endVerseNumber // 10
-ref.osis // null (and so will be all other secondary book fields)
+ref.osisBook // null (and so will short and abbr)
 ```
 
 The same logic applies to chapters and verse numbers.
