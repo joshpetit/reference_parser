@@ -197,15 +197,19 @@ ref.endVerseNumber // 14
 You can directly create all BibleReferences by calling their constructors
 ```dart
 var ref = Reference("Mat", 2, 4);
+var ref = Reference.verse("Mat", 2, 4);
 var verse = Verse("Matt", 2, 4);
 ```
-This creates `Reference` and `Verse` objects of 'Matthew 2:4'
+This creates `Reference` and `Verse` objects of 'Matthew 2:4'.
 
 ```dart
-ref = Reference("Mat", 2, 4, 2, 10);
+ref = Reference("Mat", 2, 4, null, 10);
+ref = Reference.verseRange("Mat", 2, 4, 10);
 ```
-This creates a reference to 'Matthew 2:4-10'. Note that the constructor has the ordering
-(startChapter, startVerse, endChapter, endVerse). More constructors for simple usage are planned.
+These are equivalents that create a reference to 'Matthew 2:4-10'. Note that the constructor has the ordering
+(startChapter, startVerse, endChapter, endVerse). So using the verseRange constructor
+just makes things more declarative. Look at the Reference class' documentation for a list of all
+available constructors.
 
 ### Invalid References
 

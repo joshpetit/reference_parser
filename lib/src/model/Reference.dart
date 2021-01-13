@@ -112,14 +112,20 @@ class Reference extends BibleReference {
         isValid = Librarian.verifyReference(book, schp, svn, echp, evn),
         super(book);
 
+  /// Construct a [Reference] as a chapter.
   Reference.chapter(String book, int chapter) : this(book, chapter);
 
+  /// Construct a [Reference] as a verse.
   Reference.verse(String book, int chapter, int verse)
       : this(book, chapter, verse);
 
+  /// Construct a [Reference] as a chapter range such as
+  /// Genesis 2-3.
   Reference.chapterRange(String book, int startChapter, int endChapter)
       : this(book, startChapter, null, endChapter);
 
+  /// Construct a [Reference] as a verse range such as
+  /// Genesis 2:3-4.
   Reference.verseRange(String book, int chapter, int startVerse, int endVerse)
       : this(book, chapter, startVerse, null, endVerse);
 
