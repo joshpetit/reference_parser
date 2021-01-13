@@ -5,7 +5,7 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 /// A bible reference that contains the book, chapter, and a single verse number.
 ///
 /// When instantiated by the [Reference] class, this object usually refers to the
-/// reference object's first or last verse.
+/// reference object's first or last verse within that reference.
 class Verse extends BibleReference {
   /// The book, chapter, and verse number.
   ///
@@ -34,14 +34,20 @@ class Verse extends BibleReference {
         isValid = Librarian.verifyReference(book, chapterNumber, verseNumber),
         super(book);
 
+  /// The title cased osis representation for this verse in
+  /// Book chapter:verse format.
   @override
   String get osisReference =>
       Librarian.createReferenceString(osisBook, chapterNumber, verseNumber);
 
+  /// The uppercased paratext abbreviation for this verse.
+  /// in BOOKchapter:verse format.
   @override
   String get abbrReference =>
       Librarian.createReferenceString(abbrBook, chapterNumber, verseNumber);
 
+  /// The shortest standard abbreviation for this verse in
+  /// Book chapter:verse format.
   @override
   String get shortReference =>
       Librarian.createReferenceString(shortBook, chapterNumber, verseNumber);

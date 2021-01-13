@@ -120,14 +120,17 @@ class Reference extends BibleReference {
   Reference.verseRange(String book, int chapter, int startVerse, int endVerse)
       : this(book, chapter, startVerse, null, endVerse);
 
+  /// The title cased representation for this reference.
   @override
   String get osisReference => Librarian.createReferenceString(osisBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
+  /// The uppercased paratext abbreviation for this reference.
   @override
   String get abbrReference => Librarian.createReferenceString(abbrBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
+  /// The shortest standard abbreviation for this reference.
   @override
   String get shortReference => Librarian.createReferenceString(shortBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);

@@ -52,12 +52,12 @@ abstract class BibleReference {
   /// The shortest standard abbreviation for this reference's book.
   String get shortBook => _bookNames['short'];
 
-  /// The title cased representation for this reference's book.
+  /// The title cased representation for this reference.
   String get osisReference => _bookNames['osis'];
 
-  /// The uppercased paratext abbreviation for this reference's book.
+  /// The uppercased paratext abbreviation for this reference.
   String get abbrReference => _bookNames['abbr'];
 
-  /// The shortest standard abbreviation for this reference's book.
+  /// The shortest standard abbreviation for this reference.
   String get shortReference => _bookNames['short'];
 }

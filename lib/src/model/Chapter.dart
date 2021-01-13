@@ -45,14 +45,20 @@ class Chapter extends BibleReference {
         isValid = Librarian.verifyReference(book, chapterNumber),
         super(book);
 
+  /// The title cased osis representation for this chapter in
+  /// Book chapter format.
   @override
   String get osisReference =>
       Librarian.createReferenceString(osisBook, chapterNumber);
 
+  /// The uppercased paratext abbreviation for this chapter.
+  /// in BOOK chapter format.
   @override
   String get abbrReference =>
       Librarian.createReferenceString(abbrBook, chapterNumber);
 
+  /// The shortest standard abbreviation for this chapter in
+  /// Book chapter format.
   @override
   String get shortReference =>
       Librarian.createReferenceString(shortBook, chapterNumber);

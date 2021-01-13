@@ -3,6 +3,10 @@
 A dart package that parses strings for bible references. You can parse single references or
 multiple references from a string in a variety of formats.
 
+Really 99% of what you need to know will be found in the 
+[Parsing References](#parsing-references) and [Identifying References](#identifying-references)
+headers. But if you have more complicated needs this package can handle those!
+
 <!-- toc -->
   * [Installation](#installation)
 - [Usage](#usage)
@@ -71,14 +75,22 @@ ref.book // 'Matthew'
 ref.bookNumber // 40
 ref.startChapterNumber // 2
 ref.isValid // true 
-ref.osis // 'Matt'
-ref.abbr // 'MAT'
-ref.short // 'Mt'
 ref.reference // 'Matthew 2:4-10'
+
+ref.osisBook // 'Matt'
+ref.osisReference // 'Matt 2:4-10'
+
+ref.abbrBook // 'MAT'
+ref.abbrReference // 'MAT 2:4-10'
+
+ref.shortBook // 'Mt'
+ref.shortReference // 'Mt 2:4-10'
+
 ref.toString() // 'Matthew 2:4-10'
 ref.referenceType // ReferenceType.VERSE_RANGE
 ```
-All of these fields are specific to the BibleReference class and its subclasses
+All of these fields are specific to the BibleReference class and its subclasses.
+Check the documentation for an overlook of all the offered fields.
 
 -------
 
@@ -207,7 +219,7 @@ ref.book // "McDonald"
 ref.isValid // false
 ref.startVerseNumber // 4
 ref.endVerseNumber // 10
-ref.osis // null (and so will be all other secondary book fields)
+ref.osisBook // null (and so will short and abbr)
 ```
 
 The same logic applies to chapters and verse numbers.
