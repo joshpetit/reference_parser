@@ -71,12 +71,9 @@ the other two are Strings. Check the API documentation for more information.
 Reference objects are general references that can refer to either a single verse, a range of verses,
 a single chapter, or entire an entire book. They extend the BibleReference class so include these base fields:
 ```dart
+ref.isValid // true 
 ref.book // 'Matthew'
 ref.bookNumber // 40
-ref.startChapterNumber // 2
-ref.isValid // true 
-ref.reference // 'Matthew 2:4-10'
-
 ref.osisBook // 'Matt'
 ref.osisReference // 'Matt 2:4-10'
 
@@ -85,11 +82,20 @@ ref.abbrReference // 'MAT 2:4-10'
 
 ref.shortBook // 'Mt'
 ref.shortReference // 'Mt 2:4-10'
+ref.startChapterNumber // 2
+ref.startVerseNumber // 4
+ref.endVerseNumber // 10
+ref.reference // 'Matthew 2:4-10'
+
+ref.chapters // [Matthew 2] -- if this were a cross chapter reference
+			 // Each chapter would be present in this list.
+
+ref.verses 	 // [Matthew 2:4, Matt 2:5, Matthew...] -- Creates a Verse object
+			 // for every verse within this reference.
 
 ref.toString() // 'Matthew 2:4-10'
 ref.referenceType // ReferenceType.VERSE_RANGE
 ```
-All of these fields are specific to the BibleReference class and its subclasses.
 Check the documentation for an overlook of all the offered fields.
 
 -------

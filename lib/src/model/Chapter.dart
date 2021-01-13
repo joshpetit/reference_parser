@@ -13,15 +13,26 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 /// print(chap.referenceType); // ReferenceType.CHAPTER
 /// ```
 class Chapter extends BibleReference {
-  /// The reference in *book* *chapter* format, for example Psalm 5.
+  /// The reference in book chapter format, for example Psalm 5.
   @override
   final String reference;
 
+  /// The first verse within this chapter.
   final int startVerseNumber;
+
+  /// The last verse within this chapter.
   final int endVerseNumber;
+
+  /// The first verse in this chapter represented
+  /// by a [Verse] object.
   final Verse startVerse;
+
+  /// The last verse in this chapter represented
+  /// by a [Verse] object.
   final Verse endVerse;
 
+  /// Caches the generated verse objects
+  /// when [Reference.verses] is retrieved.
   List<Verse> _verses;
 
   /// The numerated chapter that this reference is within the book.
@@ -33,6 +44,7 @@ class Chapter extends BibleReference {
   @override
   final ReferenceType referenceType;
 
+  /// Whether this chapter is found within the bible.
   @override
   final bool isValid;
   Chapter(String book, this.chapterNumber)
@@ -63,6 +75,11 @@ class Chapter extends BibleReference {
   String get shortReference =>
       Librarian.createReferenceString(shortBook, chapterNumber);
 
+  /// Creates a list containing every verse found
+  /// within this chapter.
+  ///
+  /// Onces called this list is cached so subsequent
+  /// calls will be quicker.
   @override
   List<Verse> get verses {
     if (_verses != null) {

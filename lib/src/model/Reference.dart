@@ -42,7 +42,6 @@ class Reference extends BibleReference {
   /// var firstChap = ref.startChapter;
   /// print(endChapter.chapterNumber); // 4
   /// ```
-  ///
   final Chapter endChapter;
 
   /// The first verse number found in this reference.
@@ -50,8 +49,12 @@ class Reference extends BibleReference {
   /// Defaults to 1.
   final int startVerseNumber;
 
+  /// Caches the generated chapter objects
+  /// when [Reference.chapters] is retrieved.
   List<Chapter> _chapters;
 
+  /// Caches the generated verse objects
+  /// when [Reference.verses] is retrieved.
   List<Verse> _verses;
 
   /// The [Verse] object representing the first verse in this reference.
@@ -135,6 +138,11 @@ class Reference extends BibleReference {
   String get shortReference => Librarian.createReferenceString(shortBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
+  /// Creates a list containing every chapter found
+  /// within this reference.
+  ///
+  /// Onces called this list is cached so subsequent
+  /// calls will be quicker.
   List<Chapter> get chapters {
     if (_chapters != null) {
       return _chapters;
@@ -146,6 +154,11 @@ class Reference extends BibleReference {
     return _chapters;
   }
 
+  /// Creates a list containing every verse found
+  /// within this reference.
+  ///
+  /// Onces called this list is cached so subsequent
+  /// calls will be quicker.
   List<Verse> get verses {
     if (_verses != null) {
       return _verses;
