@@ -1,4 +1,9 @@
+/// Reference information used by the [Librarian]
+/// class to analyze potential references.
 class BibleData {
+  /// All full book names of the
+  /// mapped to which number they
+  /// are chronologically.
   static const books = {
     'genesis': 1,
     'exodus': 2,
@@ -68,6 +73,8 @@ class BibleData {
     'revelation': 66
   };
 
+  /// The osis representation of each book
+  /// mapped to the chronological ordering.
   static const osisBooks = {
     'gen': 1,
     'exod': 2,
@@ -137,6 +144,8 @@ class BibleData {
     'rev': 66
   };
 
+  /// The shortened form of every book
+  /// mapped to the chronological ordering.
   static const shortenedBooks = {
     'gn': 1,
     'ex': 2,
@@ -206,8 +215,9 @@ class BibleData {
     'rv': 66
   };
 
-  /// Varied ways some books are referenced and Paratext
-  /// abbreviations not contained in OSIS.
+  /// Varied ways some books are referenced and
+  /// Paratext abbreviations that do not
+  /// overlap with [osisBooks].
   static const variants = {
     'exo': 2,
     'deu': 5,

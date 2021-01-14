@@ -3,6 +3,11 @@ import 'package:reference_parser/src/model/Verse.dart';
 import 'package:reference_parser/src/model/Chapter.dart';
 import 'BibleData.dart';
 
+/// A grouping of fields that parse strings and numbers
+/// to create reference objects or return information
+/// on certain bible properties.
+///
+/// Uses the [BibleData] class extensively.
 class Librarian {
   ///Returns the book number from a string.
   static int findBookNumber(String book) {
@@ -30,7 +35,7 @@ class Librarian {
         BibleData.shortenedBooks.containsKey(book);
   }
 
-  ///Returns the osis, abbr, name, and short versions of a book title.
+  /// Returns the osis, abbr, name, and short versions of a book title.
   static Map<String, String> getBookNames(dynamic book) {
     if (book is String) {
       book = findBookNumber(book);
@@ -47,7 +52,7 @@ class Librarian {
     };
   }
 
-  /// Gets the last verse number in a specified book or book + chapter.
+  /// Gets the last verse number in a specified book or book or chapter.
   static int getLastVerseNumber(dynamic book, [int chapter]) {
     if (book is String) {
       book = findBookNumber(book);
@@ -76,7 +81,7 @@ class Librarian {
     return BibleData.lastVerse[book - 1].length;
   }
 
-  /// Creates a verse object for the last verse in a book or book + chapter.
+  /// Creates a [Verse] object for the last verse in a book or chapter.
   static Verse getLastVerse(dynamic book, [int chapter]) {
     int bookNumber;
     if (book is int) {
@@ -123,7 +128,7 @@ class Librarian {
     return Chapter(book, chapter);
   }
 
-  /// Returns the type of reference based on the number of passed in arguments.
+  /// Returns the [ReferenceType] based on the number of passed in arguments.
   static ReferenceType identifyReferenceType(book,
       [startChapter, startVerse, endChapter, endVerse]) {
     if (startChapter == null && endChapter == null) {
@@ -206,7 +211,11 @@ class Librarian {
     return true;
   }
 
-  /// Creates a String reference based on which fields are left `null`
+  /// Creates a String reference based on which fields are left `null`.
+  ///
+  /// Does not validate references beyond checkin to see if the book
+  /// field is left null. In cases where the book field is left null
+  /// a `null` value will be returned.
   static String createReferenceString(String book,
       [int startChapter, int startVerse, int endChapter, int endVerse]) {
     if (book == null) return null;
