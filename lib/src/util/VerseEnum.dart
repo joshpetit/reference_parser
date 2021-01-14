@@ -29,8 +29,6 @@ enum ReferenceType {
   /// of chapter ranges.
   CHAPTER_RANGE,
 
-  RANGE,
-
   /// A reference that contains
   /// only a book.
   ///
