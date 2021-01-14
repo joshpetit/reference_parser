@@ -74,8 +74,7 @@ class Reference extends BibleReference {
   /// book if [startChapterNumber] is not specified.
   final Verse endVerse;
 
-  /// The type of reference.
-  /// [ReferenceType.VERSE] [ReferenceType.RANGE],[ReferenceType.CHAPTER], [ReferenceType.BOOK].
+  /// The type of reference this is.
   @override
   final ReferenceType referenceType;
 

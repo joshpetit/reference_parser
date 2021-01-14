@@ -1,7 +1,7 @@
 import 'package:reference_parser/src/util/VerseEnum.dart';
 import 'package:reference_parser/src/data/Librarian.dart';
 
-/// Base class for all reference objects, basically a [ReferenceType.BOOK].
+/// Base class for all reference objects.
 abstract class BibleReference {
   /// The representation of the reference.
   final String reference;

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'dart:async';
 
-/// Identify possible references to Strings
+/// Identify possible references to Strings by searching biblehub.
 ///
 /// Calling this method will return a Future of
 /// [ReferenceQuery] objects. If there are no possible

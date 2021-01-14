@@ -1,3 +1,13 @@
+## 2.0.0
+- Adds fields to get reference subdivisions.
+- Adds named constructors to Reference to make instantiation more declarative.
+- Adds fields for different book types in References (i.e osisReference).
+- Publishes the theologian library that includes classes used to parse data.
+- Renames fields to make more sense.
+- Removes the RANGE type for ReferenceTypes.
+- Adds start/end verse objects to chapters.
+- Improves Librarian with error checking and fixes bugs.
+
 ## 1.3.1
 - linting for static analysis
 
