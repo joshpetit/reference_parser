@@ -80,13 +80,12 @@ class Chapter extends BibleReference {
   ///
   /// Onces called this list is cached so subsequent
   /// calls will be quicker.
-  @override
   List<Verse> get verses {
     if (_verses != null) {
       return _verses;
     }
     _verses = <Verse>[];
-    for (int i = 1; i <= endVerseNumber; i++) {
+    for (var i = 1; i <= endVerseNumber; i++) {
       _verses.add(Verse(book, chapterNumber, i));
     }
 
