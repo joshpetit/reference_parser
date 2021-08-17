@@ -12,7 +12,7 @@ import 'package:reference_parser/src/util/VerseEnum.dart';
 class Reference extends BibleReference {
   /// The representation of the reference.
   @override
-  final String reference;
+  final String? reference;
 
   /// The beginning chapter number in this reference.
   ///
@@ -31,7 +31,7 @@ class Reference extends BibleReference {
   final Chapter startChapter;
 
   /// The number for the last chapter in this reference.
-  final int endChapterNumber;
+  final int? endChapterNumber;
 
   /// The last [Chapter] object within this reference.
   ///
@@ -42,7 +42,7 @@ class Reference extends BibleReference {
   /// var firstChap = ref.startChapter;
   /// print(endChapter.chapterNumber); // 4
   /// ```
-  final Chapter endChapter;
+  final Chapter? endChapter;
 
   /// The first verse number found in this reference.
   ///
@@ -51,11 +51,11 @@ class Reference extends BibleReference {
 
   /// Caches the generated chapter objects
   /// when [Reference.chapters] is retrieved.
-  List<Chapter> _chapters;
+  List<Chapter>? _chapters;
 
   /// Caches the generated verse objects
   /// when [Reference.verses] is retrieved.
-  List<Verse> _verses;
+  List<Verse>? _verses;
 
   /// The [Verse] object representing the first verse in this reference.
   ///
@@ -65,18 +65,18 @@ class Reference extends BibleReference {
   final Verse startVerse;
 
   /// The last verse number found in this reference.
-  final int endVerseNumber;
+  final int? endVerseNumber;
 
   /// The [Verse] object representing the last verse in this reference.
   ///
   /// Returns the verse object of the last verse in the chapter if
   /// [endVerse] is not specified or the verse object of the last verse in the
   /// book if [startChapterNumber] is not specified.
-  final Verse endVerse;
+  final Verse? endVerse;
 
   /// The type of reference this is.
   @override
-  final ReferenceType referenceType;
+  final ReferenceType? referenceType;
 
   /// Whether this reference is within the bible.
   @override
@@ -84,7 +84,7 @@ class Reference extends BibleReference {
 
   /// The universal constructor, determines what kind of reference
   /// this is based on which fields are left `null`.
-  Reference(String book, [int schp, int svn, int echp, int evn])
+  Reference(String book, [int? schp, int? svn, int? echp, int? evn])
       : startChapterNumber = schp ?? 1,
         startChapter = schp != null ? Chapter(book, schp) : Chapter(book, 1),
         startVerseNumber = svn ?? 1,
@@ -130,17 +130,17 @@ class Reference extends BibleReference {
 
   /// The title cased representation for this reference.
   @override
-  String get osisReference => Librarian.createReferenceString(osisBook,
+  String? get osisReference => Librarian.createReferenceString(osisBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
   /// The uppercased paratext abbreviation for this reference.
   @override
-  String get abbrReference => Librarian.createReferenceString(abbrBook,
+  String? get abbrReference => Librarian.createReferenceString(abbrBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
   /// The shortest standard abbreviation for this reference.
   @override
-  String get shortReference => Librarian.createReferenceString(shortBook,
+  String? get shortReference => Librarian.createReferenceString(shortBook,
       startChapterNumber, startVerseNumber, endChapterNumber, endVerseNumber);
 
   /// Creates a list containing every chapter found
@@ -148,13 +148,13 @@ class Reference extends BibleReference {
   ///
   /// Onces called this list is cached so subsequent
   /// calls will be quicker.
-  List<Chapter> get chapters {
+  List<Chapter>? get chapters {
     if (_chapters != null) {
       return _chapters;
     }
     _chapters = <Chapter>[];
-    for (var i = startChapterNumber; i <= endChapterNumber; i++) {
-      _chapters.add(Chapter(book, i));
+    for (var i = startChapterNumber; i <= endChapterNumber!; i++) {
+      _chapters!.add(Chapter(book, i));
     }
     return _chapters;
   }
@@ -164,18 +164,18 @@ class Reference extends BibleReference {
   ///
   /// Onces called this list is cached so subsequent
   /// calls will be quicker.
-  List<Verse> get verses {
+  List<Verse>? get verses {
     if (_verses != null) {
       return _verses;
     }
     _verses = <Verse>[];
-    for (var i = startChapterNumber; i <= endChapterNumber; i++) {
+    for (var i = startChapterNumber; i <= endChapterNumber!; i++) {
       var start = i == startChapterNumber ? startVerseNumber : 1;
       var end = i == endChapterNumber
-          ? endVerseNumber
-          : Librarian.getLastVerseNumber(book, i);
+          ? endVerseNumber!
+          : Librarian.getLastVerseNumber(book, i)!;
       for (var j = start; j <= end; j++) {
-        _verses.add(Verse(book, i, j));
+        _verses!.add(Verse(book, i, j));
       }
     }
 

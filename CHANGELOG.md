@@ -1,3 +1,6 @@
+## 3.0.0
+- Null Safety!
+
 ## 2.0.0
 - Adds fields to get reference subdivisions.
 - Adds named constructors to Reference to make instantiation more declarative.

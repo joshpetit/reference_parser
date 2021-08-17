@@ -42,14 +42,14 @@ List<Reference> parseAllReferences(String stringReference) {
 Reference _createRefFromMatch(RegExpMatch match) {
   var pr = match.groups([0, 1, 2, 3, 4, 5]);
   return Reference(
-    Librarian.getBookNames(pr[1])['name'] ?? pr[1],
-    pr[2] == null ? null : int.parse(pr[2]),
-    pr[3] == null ? null : int.parse(pr[3]),
-    pr[4] != null && (pr[3] == null || pr[5] != null) ? int.parse(pr[4]) : null,
+    Librarian.getBookNames(pr[1])['name'] ?? pr[1]!,
+    pr[2] == null ? null : int.parse(pr[2]!),
+    pr[3] == null ? null : int.parse(pr[3]!),
+    pr[4] != null && (pr[3] == null || pr[5] != null) ? int.parse(pr[4]!) : null,
     pr[5] != null
-        ? int.parse(pr[5])
+        ? int.parse(pr[5]!)
         : pr[4] != null && pr[3] != null
-            ? int.parse(pr[4])
+            ? int.parse(pr[4]!)
             : null,
   );
 }

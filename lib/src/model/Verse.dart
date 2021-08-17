@@ -11,10 +11,10 @@ class Verse extends BibleReference {
   ///
   /// The full book name of the reference in Book chapter:verse format
   @override
-  final String reference;
+  final String? reference;
 
   /// The chapter number this verse is within.
-  final int chapterNumber;
+  final int? chapterNumber;
 
   /// The verse number this verse refers to within a chapter.
   final int verseNumber;
@@ -37,18 +37,18 @@ class Verse extends BibleReference {
   /// The title cased osis representation for this verse in
   /// Book chapter:verse format.
   @override
-  String get osisReference =>
+  String? get osisReference =>
       Librarian.createReferenceString(osisBook, chapterNumber, verseNumber);
 
   /// The uppercased paratext abbreviation for this verse.
   /// in BOOKchapter:verse format.
   @override
-  String get abbrReference =>
+  String? get abbrReference =>
       Librarian.createReferenceString(abbrBook, chapterNumber, verseNumber);
 
   /// The shortest standard abbreviation for this verse in
   /// Book chapter:verse format.
   @override
-  String get shortReference =>
+  String? get shortReference =>
       Librarian.createReferenceString(shortBook, chapterNumber, verseNumber);
 }

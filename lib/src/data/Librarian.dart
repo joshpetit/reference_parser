@@ -10,7 +10,7 @@ import 'BibleData.dart';
 /// Uses the [BibleData] class extensively.
 class Librarian {
   ///Returns the book number from a string.
-  static int findBookNumber(String book) {
+  static int? findBookNumber(String book) {
     book = book.toLowerCase();
     var val = BibleData.books[book];
     if (val != null) {
@@ -53,7 +53,7 @@ class Librarian {
   }
 
   /// Gets the last verse number in a specified book or book or chapter.
-  static int getLastVerseNumber(dynamic book, [int chapter]) {
+  static int? getLastVerseNumber(dynamic book, [int? chapter]) {
     if (book is String) {
       book = findBookNumber(book);
     }
@@ -68,7 +68,7 @@ class Librarian {
   }
 
   /// Returns the number for the last chapter within a book.
-  static int getLastChapterNumber(dynamic book) {
+  static int? getLastChapterNumber(dynamic book) {
     if (book is String) {
       book = findBookNumber(book);
     }
@@ -82,8 +82,8 @@ class Librarian {
   }
 
   /// Creates a [Verse] object for the last verse in a book or chapter.
-  static Verse getLastVerse(dynamic book, [int chapter]) {
-    int bookNumber;
+  static Verse? getLastVerse(dynamic book, [int? chapter]) {
+    int? bookNumber;
     if (book is int) {
       bookNumber = book;
     } else if (book is String) {
@@ -106,8 +106,8 @@ class Librarian {
 
   /// Returns a [Chapter] object that corresponds to the
   /// last chapter within a book.
-  static Chapter getLastChapter(dynamic book) {
-    int bookNumber;
+  static Chapter? getLastChapter(dynamic book) {
+    int? bookNumber;
     if (book is int) {
       bookNumber = book;
     } else if (book is String) {
@@ -129,7 +129,7 @@ class Librarian {
   }
 
   /// Returns the [ReferenceType] based on the number of passed in arguments.
-  static ReferenceType identifyReferenceType(book,
+  static ReferenceType? identifyReferenceType(book,
       [startChapter, startVerse, endChapter, endVerse]) {
     if (startChapter == null && endChapter == null) {
       return ReferenceType.BOOK;
@@ -153,7 +153,7 @@ class Librarian {
   /// Verifies a reference based on which fields are left `null`
   /// or can be found within the bible.
   static bool verifyReference(dynamic book,
-      [int startChapter, int startVerse, endChapter, endVerse]) {
+      [int? startChapter, int? startVerse, endChapter, endVerse]) {
     if (book == null) {
       return false;
     }
@@ -180,7 +180,7 @@ class Librarian {
 
     if (startVerse != null) {
       if (!(startVerse > 0 &&
-          BibleData.lastVerse[book - 1][startChapter - 1] >= startVerse)) {
+          BibleData.lastVerse[book - 1][startChapter! - 1] >= startVerse)) {
         return false;
       }
       if (endVerse != null && startVerse > endVerse) {
@@ -216,8 +216,8 @@ class Librarian {
   /// Does not validate references beyond checkin to see if the book
   /// field is left null. In cases where the book field is left null
   /// a `null` value will be returned.
-  static String createReferenceString(String book,
-      [int startChapter, int startVerse, int endChapter, int endVerse]) {
+  static String? createReferenceString(String? book,
+      [int? startChapter, int? startVerse, int? endChapter, int? endVerse]) {
     if (book == null) return null;
     var reference = StringBuffer(book);
     if (startChapter != null) {

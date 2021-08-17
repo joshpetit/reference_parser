@@ -15,13 +15,13 @@ import 'package:reference_parser/src/model/BibleReference.dart';
 class Chapter extends BibleReference {
   /// The reference in book chapter format, for example Psalm 5.
   @override
-  final String reference;
+  final String? reference;
 
   /// The first verse within this chapter.
   final int startVerseNumber;
 
   /// The last verse within this chapter.
-  final int endVerseNumber;
+  final int? endVerseNumber;
 
   /// The first verse in this chapter represented
   /// by a [Verse] object.
@@ -29,11 +29,11 @@ class Chapter extends BibleReference {
 
   /// The last verse in this chapter represented
   /// by a [Verse] object.
-  final Verse endVerse;
+  final Verse? endVerse;
 
   /// Caches the generated verse objects
   /// when [Reference.verses] is retrieved.
-  List<Verse> _verses;
+  List<Verse>? _verses;
 
   /// The numerated chapter that this reference is within the book.
   final int chapterNumber;
@@ -60,19 +60,19 @@ class Chapter extends BibleReference {
   /// The title cased osis representation for this chapter in
   /// Book chapter format.
   @override
-  String get osisReference =>
+  String? get osisReference =>
       Librarian.createReferenceString(osisBook, chapterNumber);
 
   /// The uppercased paratext abbreviation for this chapter.
   /// in BOOK chapter format.
   @override
-  String get abbrReference =>
+  String? get abbrReference =>
       Librarian.createReferenceString(abbrBook, chapterNumber);
 
   /// The shortest standard abbreviation for this chapter in
   /// Book chapter format.
   @override
-  String get shortReference =>
+  String? get shortReference =>
       Librarian.createReferenceString(shortBook, chapterNumber);
 
   /// Creates a list containing every verse found
@@ -80,13 +80,13 @@ class Chapter extends BibleReference {
   ///
   /// Onces called this list is cached so subsequent
   /// calls will be quicker.
-  List<Verse> get verses {
+  List<Verse>? get verses {
     if (_verses != null) {
       return _verses;
     }
     _verses = <Verse>[];
-    for (var i = 1; i <= endVerseNumber; i++) {
-      _verses.add(Verse(book, chapterNumber, i));
+    for (var i = 1; i <= endVerseNumber!; i++) {
+      _verses!.add(Verse(book, chapterNumber, i));
     }
 
     return _verses;

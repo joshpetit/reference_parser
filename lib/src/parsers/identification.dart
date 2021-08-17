@@ -23,9 +23,9 @@ Future<List<ReferenceQuery>> identifyReference(String text) async {
       '#leftbox > div.results > div.result_block, div.result_altblock');
   var queries = <ReferenceQuery>[];
   for (var i = 0; i < l.length; i++) {
-    var text = l[i].querySelector('a').text;
+    var text = l[i].querySelector('a')!.text;
     var ref = parseReference(text);
-    var len = ref.reference.length;
+    var len = ref.reference!.length;
     var preview = text.substring(len + 1).trim();
     if (preview.substring(0, 1) != '/') {
       queries.add(ReferenceQuery(text, preview, ref));

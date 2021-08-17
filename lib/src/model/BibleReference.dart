@@ -4,7 +4,7 @@ import 'package:reference_parser/src/data/Librarian.dart';
 /// Base class for all reference objects.
 abstract class BibleReference {
   /// The representation of the reference.
-  final String reference;
+  final String? reference;
 
   /// The full book name of the reference.
   ///
@@ -20,10 +20,10 @@ abstract class BibleReference {
   /// The book number for the passed in reference book.
   ///
   /// `null` if the book name is null or invalid.
-  final int bookNumber;
+  final int? bookNumber;
 
   /// The type of reference.
-  final ReferenceType referenceType;
+  final ReferenceType? referenceType;
 
   /// Whether the reference is in the bible.
   final bool isValid;
@@ -40,24 +40,24 @@ abstract class BibleReference {
   /// Returns [BibleReference.reference]
   @override
   String toString() {
-    return reference;
+    return reference!;
   }
 
   /// The title cased representation for this reference's book.
-  String get osisBook => _bookNames['osis'];
+  String? get osisBook => _bookNames['osis'];
 
   /// The uppercased paratext abbreviation for this reference's book.
-  String get abbrBook => _bookNames['abbr'];
+  String? get abbrBook => _bookNames['abbr'];
 
   /// The shortest standard abbreviation for this reference's book.
-  String get shortBook => _bookNames['short'];
+  String? get shortBook => _bookNames['short'];
 
   /// The title cased representation for this reference.
-  String get osisReference => _bookNames['osis'];
+  String? get osisReference => _bookNames['osis'];
 
   /// The uppercased paratext abbreviation for this reference.
-  String get abbrReference => _bookNames['abbr'];
+  String? get abbrReference => _bookNames['abbr'];
 
   /// The shortest standard abbreviation for this reference.
-  String get shortReference => _bookNames['short'];
+  String? get shortReference => _bookNames['short'];
 }
