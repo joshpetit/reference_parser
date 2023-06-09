@@ -1,4 +1,4 @@
-## 3.0.0
+## 3.0.1
 - Update dependency constraints
 
 ## 3.0.0
