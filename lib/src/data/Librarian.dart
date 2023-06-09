@@ -1,6 +1,4 @@
 import '../../reference_parser.dart';
-import 'package:reference_parser/src/model/Verse.dart';
-import 'package:reference_parser/src/model/Chapter.dart';
 import 'BibleData.dart';
 
 /// A grouping of fields that parse strings and numbers
@@ -221,21 +219,21 @@ class Librarian {
     if (book == null) return null;
     var reference = StringBuffer(book);
     if (startChapter != null) {
-      reference.write(' ${startChapter}');
+      reference.write(' $startChapter');
       if (startVerse != null) {
-        reference.write(':${startVerse}');
+        reference.write(':$startVerse');
         if (endChapter != null && endChapter != startChapter) {
-          reference.write(' - ${endChapter}');
+          reference.write(' - $endChapter');
           reference
               .write(':${endVerse ?? getLastVerseNumber(endChapter) ?? 1}');
         } else if (endVerse != null && endVerse != startVerse) {
-          reference.write('-${endVerse}');
+          reference.write('-$endVerse');
         }
       } else if (endChapter != null && endChapter != startChapter) {
         if (endVerse != null) {
-          reference.write(':1 - ${endChapter}:${endVerse}');
+          reference.write(':1 - $endChapter:$endVerse');
         } else {
-          reference.write('-${endChapter}');
+          reference.write('-$endChapter');
         }
       }
     }

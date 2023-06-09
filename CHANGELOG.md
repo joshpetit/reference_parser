@@ -1,4 +1,7 @@
 ## 3.0.0
+- Update dependency constraints
+
+## 3.0.0
 - Null Safety!
 
 ## 2.0.0

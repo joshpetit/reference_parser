@@ -28,6 +28,6 @@ class ReferenceQuery {
   /// [reference] - [preview].
   @override
   String toString() {
-    return '${reference} - ${preview}';
+    return '$reference - $preview';
   }
 }
