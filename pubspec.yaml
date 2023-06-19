@@ -3,7 +3,7 @@ description: >-
   A package that allows you to parse strings for bible references or 
   match them to their bible verses.
   Can parse varying formats of references and multiple references at a time.
-version: 3.0.1
+version: 3.0.2
 homepage: https://github.com/joshpetit/reference_parser
 issue_tracker:  https://github.com/joshpetit/reference_parser/issues
 environment:

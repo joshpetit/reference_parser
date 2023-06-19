@@ -1,3 +1,6 @@
+## 3.0.2
+- Fixed incorrect ending verse for chapters when parsing references
+
 ## 3.0.1
 - Update dependency constraints
 
