@@ -99,7 +99,7 @@ class Reference extends BibleReference {
             : schp != null
                 ? Chapter(book, schp)
                 : Librarian.getLastChapter(book),
-        endVerseNumber = evn ?? svn ?? Librarian.getLastVerseNumber(book, echp),
+        endVerseNumber = evn ?? svn ?? Librarian.getLastVerseNumber(book, echp ?? schp),
         endVerse = evn != null
             ? Verse(book, schp, evn)
             : svn != null

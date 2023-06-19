@@ -84,6 +84,11 @@ void main() {
     expect(ref.book, equals('James'));
     expect(ref.isValid, true);
 
+    ref = parseReference('Genesis 3');
+    expect(ref.reference, equals('Genesis 3'));
+    expect(ref.endVerseNumber, equals(24));
+    expect(ref.isValid, true);
+
     ref = parseReference('Matthew 2:3-5 - 5:7');
     expect(ref.reference, equals('Matthew 2:3-5'));
   });

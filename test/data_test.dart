@@ -100,6 +100,10 @@ void main() {
     expect(Librarian.getLastChapterNumber('John'), equals(21));
   });
 
+  test('Librarian correctly fetches last verse and chapter numbers', () {
+    expect(Librarian.getLastVerseNumber('Genesis', 3), equals(24));
+  });
+
   test('Librarian correctly creates ReferenceType', () {
     expect(Librarian.identifyReferenceType('John'), equals(ReferenceType.BOOK));
 
