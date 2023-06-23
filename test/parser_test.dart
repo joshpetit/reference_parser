@@ -93,6 +93,11 @@ void main() {
     expect(ref.reference, equals('Matthew 2:3-5'));
   });
 
+  test('Allow parsing books with roman numerals', () {
+    var ref = parseReference('I corinthians');
+    expect(ref.reference, equals('1 Corinthians'));
+  });
+
   test('Parsing all references', () {
     var refs = parseAllReferences('I hope Matt 2:4 and James 5:1-5 get parsed');
     expect(refs.length, equals(2));
