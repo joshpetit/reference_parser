@@ -1,3 +1,6 @@
+## 3.0.3
+- Allow parsing books with roman numerals (i.e I Corinthians)
+
 ## 3.0.2
 - Fixed incorrect ending verse for chapters when parsing references
 
