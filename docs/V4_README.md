@@ -131,3 +131,73 @@ var parsedRef = bibleThing.parseReference("Matthieu 2:4");
 print(parsedRef.reference); // "Matthieu 2:4"
 print(parsedRef.toLocale(BibleThingEnglish.localeCode).reference); // "Matthew 2:4"
 ```
+
+## API
+
+```dart
+var lexicon = BibleLexicon(
+    locales: [
+        BibleLexiconEN(
+          bookForms: {
+            // Adds "Matty B" as a mapping to the book of matthew
+            "Matty B": BibleLexiconBooks.matthew,
+          },
+        ),
+        BibleLexiconFR(
+          bookForms: {
+            // Adds "Matty B" as a mapping to the book of matthew
+            "Matté B": BibleLexiconBooks.matthew,
+          },
+        ),
+    ],
+    defaultLocale: BibleLexiconEN.localeCode // The locale will default to English if not specified
+);
+
+var ref = lexicon.createReference(
+  book: BibleBooks.GENESIS,
+  startChapter: 1,
+  startVerse: 1,
+  endVerse: 2,
+);
+
+var ref = lexicon.createReference(
+  book: lexicon.parseBookFromString("Matty B"),
+  startChapter: 1,
+  startVerse: 1,
+  endVerse: 2,
+);
+print(ref.locale); // EN
+print(ref.reference); // Matthew
+
+ref.apocyphalBookNumber; // Whatever # book Matthew is in the apocrypha haha
+var verses = ref.verses;
+
+ref.containsMultipleVerses; // true
+ref.containsMultipleChapters; // true
+
+var ref = lexicon.createVerseReference(
+  book: lexicon.parseBookFromString("Gen"),
+  chapter: 1,
+  verse: 1,
+);
+
+var ref = lexicon.createVerseRangeReference(
+  book: lexicon.parseBookFromString("Gen"),
+  chapter: 1,
+  startVerse: 1,
+  endVerse: 1,
+  locale: BibleLexiconFR.localeCode,
+);
+print(ref.reference); // Genèse 1:1
+
+var ref = lexicon.createChapterReference(
+  book: lexicon.parseBookFromString("Gen"),
+  chapter: 1,
+);
+
+var ref = lexicon.createChapterRangeReference(
+  book: lexicon.parseBookFromString("Gen"),
+  startChapter: 1,
+  endChapter: 1,
+);
+```
