@@ -201,3 +201,47 @@ var ref = lexicon.createChapterRangeReference(
   endChapter: 1,
 );
 ```
+
+I think for a good first thing, we can keep all the lexicon locales in one
+package, and then if it starts getting too large we can just split them :). If
+someone is doing bible related software though I can't imagine it all being too
+large lol. Then in v5 we can split it into different packages if having more
+would be required if there seems to be added value.
+
+How about, instead of "locales" I call them "subLexicons." So lexicons are built
+by their own definitions and then sublexicons if definitons are not found. I
+suppose the hard thing about that is, what if I don't want to use English? 
+
+Or how about I call it "BibleLexemeFR" rather than LexiconFR. Or Just
+BibleLanguageFR haha to keep things simple
+
+
+```dart
+
+var lexicon = BibleLexicon(
+    formats: [
+        BibleEN(
+          bookForms: {
+            // Adds "Matty B" as a mapping to the book of matthew
+            "Matty B": BibleLexiconBooks.matthew,
+          },
+        ),
+        BibleFR(
+          bookForms: {
+            // Adds "Matty B" as a mapping to the book of matthew
+            "Matté B": BibleLexiconBooks.matthew,
+          },
+        ),
+    ],
+    defaultLocale: BibleLexiconEN.localeCode // The locale will default to English if not specified
+);
+
+
+```
+
+I need to remember catholic bible has different number of chapters and stuff too
+so I need to include last chapter in apocryphal things too
+
+OK, because of song of solomons I don't think I can make the variants something
+I include in parsing by default. (Or maybe I should 1 cor 16:13 and make a new
+regex...). ASIGASIG. I'll have to figure out a way around that either way
