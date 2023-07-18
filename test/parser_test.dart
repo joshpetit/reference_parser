@@ -98,6 +98,14 @@ void main() {
     expect(ref.reference, equals('1 Corinthians'));
   });
 
+  test('Allow parsing numbered books without spaces', () {
+    var ref = parseReference('1corinthians 1:23');
+    expect(ref.reference, equals('1 Corinthians 1:23'));
+
+    ref = parseReference('1tm 2:1-3');
+    expect(ref.reference, equals('1 Timothy 2:1-3'));
+  });
+
   test('Parsing all references', () {
     var refs = parseAllReferences('I hope Matt 2:4 and James 5:1-5 get parsed');
     expect(refs.length, equals(2));
