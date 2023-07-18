@@ -1,3 +1,6 @@
+## 3.0.4
+- Allow parsing books without spaces numerals (i.e ICorinthians)
+
 ## 3.0.3
 - Allow parsing books with roman numerals (i.e I Corinthians)
 
