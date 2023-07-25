@@ -373,6 +373,13 @@ will be a need to actually exhaustively match things. It may make the code a lot
 easier to read if it were to be an interface. But implementation aside, the
 consumer facing API is the most important.
 
+OKKKKKKKK. But now I realized... How are we supposed to change the number of
+chapters in Esther based on the canon. Well. DEFINE THE API figure out after.
+But I think it'd likely be that when constructing the reference, we use the
+context within the lexicon to set the number of chapters and what not. That
+would likely also be used when creating the subdivisions (chapterReferences) so
+that we can correctly generate the chapters.
+
 # PUTTING IT ALL TOGETHER
 
 The default API experience should look like:
