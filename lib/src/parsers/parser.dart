@@ -44,6 +44,40 @@ List<Reference> parseAllReferences(String stringReference, {bool ignoreIs = fals
   return refs;
 }
 
+String parseReferencesAndReplaceString(String stringReference, {bool ignoreIs = false}) {
+   if (ignoreIs) {
+    stringReference = stringReference.replaceAll(
+        RegExp(r'\bis\b', caseSensitive: false), '%%');
+  }
+
+  var matches = _exp.allMatches(stringReference);
+  var originalString = stringReference;
+
+  matches.forEach((x) {
+    var reference = _createRefFromMatch(x);
+    var matchedString = x.group(0);
+    if (matchedString != null) {
+      var punct = RegExp(r'[.,;!?]\s*$');
+      var replacementString = reference.toString();
+
+      if (punct.hasMatch(matchedString)) {
+        if (matchedString.length > 1) {
+          replacementString += matchedString[matchedString.length - 2];
+        }
+      }
+      replacementString += ' ';
+
+      originalString =
+          originalString.replaceFirst(matchedString, replacementString);
+    }
+  });
+
+  if (ignoreIs) {
+    originalString = originalString.replaceAll('%%', 'is');
+  }
+
+  return originalString;
+}
 Reference _createRefFromMatch(RegExpMatch match) {
   var pr = match.groups([0, 1, 2, 3, 4, 5]);
   var book = pr[1]!.replaceAllMapped(RegExp(r'(\d+)\s?'), (match) {
