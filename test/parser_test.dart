@@ -128,6 +128,27 @@ void main() {
         reason: 'This string contains no references');
   });
 
+  test('Parsing and replacing references', () {
+    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed');
+    expect(result.contains('Matthew 2:4'), true);
+    expect(result.contains('James 5:1-5'), true);
+    expect(result.contains('Isaiah'), true);
+    expect(result.contains('Matt 2:4'), false);
+    expect(result.contains('jas 5:1-5'), false);
+    expect(result.contains('is'), false);
+    expect(result, equals('There Isaiah hope that Matthew 2:4 and James 5:1-5 get parsed'));
+  });
+
+  test('Parsing and replacing references with ignoreIs flag', () {
+    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed', ignoreIs: true);
+    expect(result.contains('Matthew 2:4'), true);
+    expect(result.contains('James 5:1-5'), true);
+    expect(result.contains('Isaiah'), false);
+    expect(result.contains('Matt 2:4'), false);
+    expect(result.contains('jas 5:1-5'), false);
+    expect(result.contains('is'), true);
+    expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed'));
+  });
   test('Verify paratexts', () {
     var refs = parseAllReferences('Mat Jam PSA joh');
     refs.forEach((x) {
