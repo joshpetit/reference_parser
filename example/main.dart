@@ -17,7 +17,7 @@ void main() {
   print(ref.reference); // 'Song of Solomon 2:1'
 
   //Range of verses
-  ref = parseReference('Gen 4:5-10');
+  ref = parseReference('My name is Gen 4:5-10', ignoreIs: true);
   print(ref.reference); // 'Genesis 4:5-10'
   print(ref.startVerseNumber); // 5
   print(ref.endVerseNumber); // 10
@@ -49,6 +49,9 @@ void main() {
   print(ref.endVerseNumber); // 5
 
   var refs =
-      parseAllReferences('This is going to get Gen 2:4 and another book');
-  print(refs); // ['Isaiah', 'Genesis 2:4'], 'is' will be parsed as Isaiah
+      parseAllReferences('This is NOT going to get Gen 2:4 and another book', ignoreIs: true);
+  print(refs[0].reference); // ['Isaiah', 'Genesis 2:4'], 'is' will be parsed as Isaiah
+
+  var x = parseReferencesAndReplaceString('This is going to get Gen 2:4 reference and update the original string.', ignoreIs: true);
+  print(x);
 }
